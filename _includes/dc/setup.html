@@ -19,11 +19,20 @@ Ecology workshops
 {% elsif site.curriculum == "dc-ecology" %}
 
 {% if site.flavor == "r" %}
+{% comment %}
+The HTML below is masked for the 2025-11-04 presentation so we can include specific installation instructions
+
 <p>
   The setup instructions for the Data Carpentry Ecology workshops (with R)
   can be found at <a href="https://datacarpentry.org/ecology-workshop/setup-r-workshop.html">
     the workshop overview site</a>.
 </p>
+{% endcomment %}
+
+{% include install_instructions/editor.html %}
+{% include install_instructions/shell.html %}
+{% include install_instructions/openrefine.html %}
+{% include install_instructions/r.html %}
 
 {% elsif site.flavor == "python" %}
 <p>
@@ -40,14 +49,16 @@ Genomics workshops
 {% endcomment %}
 
 {% elsif site.curriculum == "dc-genomics" %}
-<p>The setup instructions for the Data Carpentry Genomics workshops can be found at <a href="https://datacarpentry.org/genomics-workshop/index.html#setup">the workshop overview site</a></p>.
+<p>The setup instructions for the Data Carpentry Genomics workshops can be found at <a
+    href="https://datacarpentry.org/genomics-workshop/index.html#setup">the workshop overview site</a></p>.
 
 {% comment %}
 Geospatial workshops
 {% endcomment %}
 
 {% elsif site.curriculum == "dc-geospatial" %}
-<p>The setup instructions for the Data Carpentry Geospatial workshop can be found at <a href="https://datacarpentry.org/geospatial-workshop/index.html#setup">the workshop overview site</a>.</p>
+<p>The setup instructions for the Data Carpentry Geospatial workshop can be found at <a
+    href="https://datacarpentry.org/geospatial-workshop/index.html#setup">the workshop overview site</a>.</p>
 
 {% comment %}
 Image workshops
@@ -55,7 +66,8 @@ Image workshops
 
 {% elsif site.curriculum == "dc-image" %}
 
-<p>The setup instructions for Data Carpentry Image Processing workshops can be found at <a href="https://datacarpentry.org/image-processing/index.html#setup">the curriculum site</a>.</p>
+<p>The setup instructions for Data Carpentry Image Processing workshops can be found at <a
+    href="https://datacarpentry.org/image-processing/index.html#setup">the curriculum site</a>.</p>
 
 {% comment %}
 Social sciences workshops
