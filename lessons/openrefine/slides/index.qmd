@@ -1,0 +1,78 @@
+---
+title: "OpenRefine Lesson"
+author:
+  - name: "Leighton Pritchard"
+    affiliation: "University of Strathclyde"
+date: "2025-11-05"
+format:
+  revealjs:
+    slide-number: true
+    controls: true
+    preview-links: true
+    footer: "IBioIC Carpentries Workshop"
+    logo: "images/carpentries_logo.png"
+    theme: [default, ./includes/custom.scss]
+    width: 1280
+    height: 720
+    self-contained: true
+revealjs-plugins:
+  - quiz
+---
+
+# 1. Summary and Setup
+
+## Software and files
+
+:::: { .columns }
+
+::: { .column width="60%" }
+
+- University PC: use `OpenRefine` (Start Menu)
+- Own computer: Download and install OpenRefine
+  - [https://openrefine.org/download](https://openrefine.org/download)
+  - Manual: [https://docs.openrefine.org/](https://docs.openrefine.org/)
+
+::: { .callout-important }
+- You will need to download some files to follow this lesson
+  - [https://datacarpentry.github.io/OpenRefine-ecology-lesson/data/Portal_rodents_19772002_simplified.csv](https://datacarpentry.github.io/OpenRefine-ecology-lesson/data/Portal_rodents_19772002_simplified.csv)
+  - Place this file on your desktop and unzip it
+:::
+
+:::
+
+::: { .column width="40%" }
+![lesson data download](images/download_qr.png){#fig-data-download}
+:::
+
+::::
+
+# 2. Exploring data
+
+## Challenge (3min)
+
+::: { .panel-tabset }
+
+## Problem
+
+::: { .callout-warning title="Use faceting to answer these questions"}
+1. How many years are represented in the census
+2. Which years have the most and least observations
+3. Is the year column formatted as `Number`, `Date`, or `Text`?
+:::
+
+## Solution
+
+::: { .callout-warning title="Use faceting to answer these questions"}
+1. How many years are represented in the census
+2. Which years have the most and least observations
+3. Is the year column formatted as `Number`, `Date`, or `Text`?
+:::
+
+::: { .callout-tip title="Solution"}
+1. 16
+2. Most: 1978 (237), least: 1993 (1)
+3. `Text`
+:::
+
+
+
