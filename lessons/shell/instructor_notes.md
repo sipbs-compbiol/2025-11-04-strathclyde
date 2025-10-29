@@ -802,3 +802,528 @@ lengths.txt
   - We don't need to make huge programs that do lots of slightly different things
   - Instead we make tools that do one job well, but that can link well with other small programs
 - **You can, and should, write your programs so that they play nicely with existing Unix tools**
+
+### Nelle's Pipeline: Checking Files
+
+- Let's get back to Nelle's pipeline
+- She's run her samples through the assay machines and has 17 files in the `north-pacific-gyre` directory
+  - We'll change directories to see this
+
+**[SHOW SHELL]**
+
+```bash
+% cd ../../north-pacific-gyre
+% ls
+goodiff.sh      NENE01729A.txt  NENE01736A.txt  NENE01751B.txt  NENE01843A.txt  NENE01971Z.txt  NENE01978B.txt  NENE02040A.txt  NENE02040Z.txt  NENE02043B.txt
+goostats.sh     NENE01729B.txt  NENE01751A.txt  NENE01812A.txt  NENE01843B.txt  NENE01978A.txt  NENE02018B.txt  NENE02040B.txt  NENE02043A.txt
+```
+
+- We'll use `wc` on the `.txt` file data to see how large the files are
+
+```bash
+% wc -l *.txt
+     300 NENE01729A.txt
+     300 NENE01729B.txt
+     300 NENE01736A.txt
+     300 NENE01751A.txt
+     300 NENE01751B.txt
+     300 NENE01812A.txt
+     300 NENE01843A.txt
+     300 NENE01843B.txt
+     300 NENE01971Z.txt
+     300 NENE01978A.txt
+     300 NENE01978B.txt
+     240 NENE02018B.txt
+     300 NENE02040A.txt
+     300 NENE02040B.txt
+     300 NENE02040Z.txt
+     300 NENE02043A.txt
+     300 NENE02043B.txt
+    5040 total
+% wc -l *.txt | sort -n | head -n 5
+     240 NENE02018B.txt
+     300 NENE01729A.txt
+     300 NENE01729B.txt
+     300 NENE01736A.txt
+     300 NENE01751A.txt
+```
+
+- **We can see there's an issue: one of these files is shorter than all the others**
+- When Nelle double-checks the file, she sees that she did the assay first thing on a Monday, and it's possible the machine hadn't been reset.
+- Just to be safe, Nelle looks to see if any files are a bit too large
+
+```bash
+% wc -l *.txt | sort -n | tail -n 5
+     300 NENE02040B.txt
+     300 NENE02040Z.txt
+     300 NENE02043A.txt
+     300 NENE02043B.txt
+    5040 total
+```
+
+- Now the sizes are fine, but one of the files appears to have a `Z` in it, which is unexpected
+  - Her lab has a convention, though - samples with missing information are labelled with a `Z`
+  - So she checks for more of them
+
+```bash
+% ls *Z.txt
+NENE01971Z.txt  NENE02040Z.txt
+```
+
+- When Nelle checks the logs, she sees that no depth information was recorded for these files, so they would need to be excluded from her analysis
+
+## Loops
+
+- Nelle wants to run the `goostats.sh` program on her data files, but it will take her a long time to do so if she has to type the command in each time.
+  - All that typing is also prone to error - it's easy to become bored or distracted
+- She can solve this problem if she knows about **loops**
+  - **Loops** let us repeat a command, or set of commands, on multiple inputs - and they are key to automating analyses
+
+- Let's move to the `exercise-data/creatures` directory:
+
+```bash
+% cd ../exercise-data/creatures
+% ls
+basilisk.dat  minotaur.dat  unicorn.dat
+```
+
+- There are a set of `.dat` files.
+- Let's look at their contents with `head`
+
+```bash
+% head -n 5 *.dat
+==> basilisk.dat <==
+COMMON NAME: basilisk
+CLASSIFICATION: basiliscus vulgaris
+UPDATED: 1745-05-02
+CCCCAACGAG
+GAAACAGATC
+
+==> minotaur.dat <==
+COMMON NAME: minotaur
+CLASSIFICATION: bos hominus
+UPDATED: 1765-02-17
+CCCGAAGGAC
+CGACATCTCT
+
+==> unicorn.dat <==
+COMMON NAME: unicorn
+CLASSIFICATION: equus monoceros
+UPDATED: 1738-11-24
+AGCCGGGTCG
+CTTTACCTTA
+```
+
+- All of these files have the same structure
+  - On line two there is a `CLASSIFICATION` for each creature
+  - Now suppose we wanted to print out the classification for each species
+    - We could do this by combining `head -n 2` and `tail -n 1`
+
+```bash
+% head -n 2 basilisk.dat | tail -n 1
+CLASSIFICATION: basiliscus vulgaris
+```
+
+- Doing this multiple times is a pain, so we would turn to loops to solve the problem
+
+**[SHOW SLIDE: The structure of a loop - ANIMATED]**
+
+- The general form of a loop is shown on-screen
+- What we want to do is operate on each **thing** in a **list of things**
+- We enclose what we want to do in a "job execution list"
+  - between **do** (start of the loop)
+  - and **done** (end of the loop)
+- Between **do** and **done** we place the commands that we want to apply to each **thing**
+- **Note that there is a specific change to the syntax here - `thing` has a `$` in front of it, indicating that it is a **variable**
+
+- So let's try this for our example
+  - Note that, as we hit "Return" on each line, we get a new prompt style to indicate we haven't finished typing the command/closed the for loop, yet
+
+**[SHOW SHELL]**
+
+```bash
+% for filename in basilisk.dat minotaur.dat unicorn.dat
+for> do
+for>     echo $filename
+for>     head -n 2 $filename | tail -n 1
+for> done
+basilisk.dat
+CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
+CLASSIFICATION: bos hominus
+unicorn.dat
+CLASSIFICATION: equus monoceros
+```
+
+- We have started using something called a **variable**
+  - This is essentially a "box" with a name on it (the _variable name_)
+  - Each time we go round the loop, the box gets the next item in the list of things
+  - Within the loop, rather than referring to the _thing_ itself, we refer to the box that contains it
+- In our loop, the box has the name `filename`, and we refer to it with the `$` to indicate that it is a variable: `$filename`
+- As the loop proceeds, the "filename" box first contains `basilisk.dat`, `minotaur.dat`, and finally `unicorn.dat`
+
+- To some extent the variable name itself doesn't matter
+  - But it is good practice to **make your code readable by using a desriptive variable name**
+- Using `x` works just as well as `filename`, but `filename` is clearer to understand
+
+```bash
+% for x in basilisk.dat minotaur.dat unicorn.dat
+for> do
+for>     head -n 2 $x | tail -n 1
+for> done
+CLASSIFICATION: basiliscus vulgaris
+CLASSIFICATION: bos hominus
+CLASSIFICATION: equus monoceros
+```
+
+**[SHOW SLIDE: Challenge (write your own loop)]**
+
+**[SHOW SHELL]**
+
+- We can use wildcards in loops
+
+```bash
+% for filename in *.dat
+for> do
+for>     head -n 2 $filename | tail -n 1
+for> done
+basilisk.dat
+CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
+CLASSIFICATION: bos hominus
+unicorn.dat
+CLASSIFICATION: equus monoceros
+```
+
+- We can also use another redirection symbol: `>>` to **append** data to a file (which we then inspect with `cat`)
+
+```bash
+% for filename in *.dat
+for> do
+for>     head -n 2 $filename | tail -n 1 >> classification.txt
+for> done
+% cat classification.txt
+basilisk.dat
+CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
+CLASSIFICATION: bos hominus
+unicorn.dat
+CLASSIFICATION: equus monoceros
+```
+
+### Nelle's pipeline: processing files
+
+- We now know enough for Nelle to process her data files using `goostats.sh`
+- This is a program written by her supervisor that calculates some statistics
+  - It takes two inputs:
+    - An input file (the raw data)
+    - An output file (where the statistics will be stored)
+- Let's go back to Nelle's data directory and make sure we can apply the program to the files we want
+  - This is only the files ending in `A` or `B` as they don't have missing data
+
+```bash
+% cd ../../north-pacific-gyre 
+% for datafile in NENE*A.txt NENE*B.txt
+for> do
+for> echo $datafile
+for> done
+NENE01729A.txt
+NENE01736A.txt
+NENE01751A.txt
+NENE01812A.txt
+NENE01843A.txt
+NENE01978A.txt
+NENE02040A.txt
+NENE02043A.txt
+NENE01729B.txt
+NENE01751B.txt
+NENE01843B.txt
+NENE01978B.txt
+NENE02018B.txt
+NENE02040B.txt
+NENE02043B.txt
+```
+
+- So we can loop over all the correct files - that's good
+- Now we need to decide what to call the output files for `goostats.sh`
+  - Nelle decides to prepend the string `stats`
+
+```bash
+% for datafile in NENE*A.txt NENE*B.txt
+for> do
+for> echo $datafile stats-$datafile
+for> done
+NENE01729A.txt stats-NENE01729A.txt
+NENE01736A.txt stats-NENE01736A.txt
+NENE01751A.txt stats-NENE01751A.txt
+NENE01812A.txt stats-NENE01812A.txt
+NENE01843A.txt stats-NENE01843A.txt
+NENE01978A.txt stats-NENE01978A.txt
+NENE02040A.txt stats-NENE02040A.txt
+NENE02043A.txt stats-NENE02043A.txt
+NENE01729B.txt stats-NENE01729B.txt
+NENE01751B.txt stats-NENE01751B.txt
+NENE01843B.txt stats-NENE01843B.txt
+NENE01978B.txt stats-NENE01978B.txt
+NENE02018B.txt stats-NENE02018B.txt
+NENE02040B.txt stats-NENE02040B.txt
+NENE02043B.txt stats-NENE02043B.txt
+```
+
+- So we have all the arguments we need
+- Now we can replace `echo` with `bash goostats.sh` (which is how we run the program)
+
+```bash
+% for datafile in NENE*A.txt NENE*B.txt
+for> do
+for> echo $datafile stats-$datafile
+for> bash goostats.sh $datafile stats-$datafile
+for> done
+NENE01729A.txt stats-NENE01729A.txt
+NENE01736A.txt stats-NENE01736A.txt
+NENE01751A.txt stats-NENE01751A.txt
+NENE01812A.txt stats-NENE01812A.txt
+NENE01843A.txt stats-NENE01843A.txt
+NENE01978A.txt stats-NENE01978A.txt
+NENE02040A.txt stats-NENE02040A.txt
+NENE02043A.txt stats-NENE02043A.txt
+NENE01729B.txt stats-NENE01729B.txt
+NENE01751B.txt stats-NENE01751B.txt
+NENE01843B.txt stats-NENE01843B.txt
+NENE01978B.txt stats-NENE01978B.txt
+NENE02018B.txt stats-NENE02018B.txt
+NENE02040B.txt stats-NENE02040B.txt
+NENE02043B.txt stats-NENE02043B.txt
+```
+
+## Shell scripts
+
+- Now we're going to see what makes the shell such a powerful environment for data analysis and computational science
+- We're going to take the commands we repeat frequently and save them in files so that we can re-run them on new data by typing a single command
+- These files are called **shell scripts**, and they are small **programs**.
+
+- Using scripts makes your work faster and more efficient
+  - It also makes it more accurate and less prone to errors through typing/copy-paste
+  - It also makes your work more reproducible - you can share scripts with colleagues and reviewers (and get the credit!)
+
+- Let's go back to `alkanes` and create a new file called `middle.sh` - this will be our shell script
+
+```bash
+% cd ../exercise-data/alkanes
+% nano middle.sh
+```
+
+- Now we are going to write a shell command in the new file
+
+```bash
+head -n 15 octane.pdb | tail -n 5
+```
+
+- This is a variation on the pipe we made earlier
+  - This command selects the first 15 lines of `octane.pdb` and then selects the last 5 of those 15 lines
+- Then save the file (`Ctrl+O`) and exit (`Ctrl-X`)
+
+- To run this file as a shell script, we use the command `bash middle.sh`
+
+```bash
+% bash middle.sh
+ATOM      9  H           1      -4.502   0.681   0.785  1.00  0.00
+ATOM     10  H           1      -5.254  -0.243  -0.537  1.00  0.00
+ATOM     11  H           1      -4.357   1.252  -0.895  1.00  0.00
+ATOM     12  H           1      -3.009  -0.741  -1.467  1.00  0.00
+ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
+```
+
+- This is giving us exactly what we'd get if we ran the command in `middle.sh` directly
+- But what if we wanted to perform the same action on a different file?
+  - `octane.pdb is "hard-coded" into the script
+- Shell scripts allow us to use special variables to catch filenames
+- Let's open `middle.sh` again and do that
+
+```bash
+% nano middle.sh
+```
+
+```bash
+head -n 15 "$1" | tail -n 5
+```
+
+- The `"$1"` tells the script to use the first argument that comes after the command to run the script.
+- Let's run our script specifying the `octane.pdb` file as input
+
+```bash
+% bash middle.sh octane.pdb
+ATOM      9  H           1      -4.502   0.681   0.785  1.00  0.00
+ATOM     10  H           1      -5.254  -0.243  -0.537  1.00  0.00
+ATOM     11  H           1      -4.357   1.252  -0.895  1.00  0.00
+ATOM     12  H           1      -3.009  -0.741  -1.467  1.00  0.00
+ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
+```
+
+- We get the same result as last time
+- But what if we try it on `pentane.pdb`?
+
+```bash
+% bash middle.sh pentane.pdb
+ATOM      9  H           1       1.324   0.350  -1.332  1.00  0.00
+ATOM     10  H           1       1.271   1.378   0.122  1.00  0.00
+ATOM     11  H           1      -0.074  -0.384   1.288  1.00  0.00
+ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
+ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
+```
+
+- We can now run this program/command on any file we like
+
+### More arguments
+
+- But what if we want to change the range of lines that get returned?
+- We can use special variables `"$2"` and `"$3"` (and so on) to collect the second and third command line arguments
+- Let's use these to specify the line numbers we want to return
+  - So that `middle.sh filename 20 5` will report lines 15 to 20 from `filename`
+- We open `middle.sh` in Nano again
+
+```bash
+% nano middle.sh
+```
+
+```bash
+head -n "$2" "$1" | tail -n "$3"
+```
+
+- Let's run this on `pentane.pdb`
+
+```bash
+% bash middle.sh pentane.pdb 15 5
+ATOM      9  H           1       1.324   0.350  -1.332  1.00  0.00
+ATOM     10  H           1       1.271   1.378   0.122  1.00  0.00
+ATOM     11  H           1      -0.074  -0.384   1.288  1.00  0.00
+ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
+ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
+% bash middle.sh pentane.pdb 20 5
+ATOM     14  H           1      -1.259   1.420   0.112  1.00  0.00
+ATOM     15  H           1      -2.608  -0.407   1.130  1.00  0.00
+ATOM     16  H           1      -2.540  -1.303  -0.404  1.00  0.00
+ATOM     17  H           1      -3.393   0.254  -0.321  1.00  0.00
+TER      18              1
+```
+
+### Commenting a script
+
+- This works, and it's great that we understand what's going on
+- But in six months time we might forget what this script is doing, and a new person might take a while to work it out
+  - So we add comments to our script
+
+```bash
+% nano middle.sh
+```
+
+```bash
+# Select lines from the middle of a file.
+# Usage: bash middle.sh filename end_line num_lines
+head -n "$2" "$1" | tail -n "$3"
+```
+
+- The `#` character means that Bash doesn't read the line as an instruction, but instead just as a comment
+- **It is good practice to leave sufficient comments so that you in the future (and others) can understand your scripts**
+
+### Using wildcard arguments
+
+- Now what if we want to process a lot of files at the same time?
+- Suppose we want to sort all our `.pdb` files by length?
+  - At the terminal we would type:
+
+```bash
+% wc -l *.pdb | sort -n
+       9 methane.pdb
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     107 total
+```
+
+- If we wanted to get all those filenames into the script we couldn't use `$1`, `$2`, and so on because we don't know how many filenames there would be.
+- Instead, we use the special variable `$@` which means "all of the arguments to the script"
+- We'll create a new file called `sorted.sh`
+
+```bash
+% nano middle.sh
+```
+
+```bash
+# Sort files by their length.
+# Usage: bash sorted.sh one_or_more_filenames
+wc -l "$@" | sort -n
+```
+
+- Now we can run this on all the `.pdb` files in the current directory
+
+```bash
+% bash sorted.sh *.pdb
+       9 methane.pdb
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     107 total
+```
+
+- We can also run it on arbitrary collections of files
+
+```bash
+% bash sorted.sh *.pdb ../creatures/*.dat
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     163 ../creatures/basilisk.dat
+     163 ../creatures/minotaur.dat
+     163 ../creatures/unicorn.dat
+     596 total
+```
+
+### Nelle's pipeline script
+
+- Back with Nelle, her supervisor insists - rightly - that her analysis needs to be reproducible and that she should use a script
+- Let's go back to her project and create a new script called `do-stats.sh`
+
+```bash
+% cd ../../north-pacific-gyre
+% nano do-stats.sh
+```
+
+```bash
+# Calculate stats for data files.
+for datafile in "$@"
+do
+    echo $datafile
+    bash goostats.sh $datafile stats-$datafile
+done
+```
+
+- Nelle can now run this script on her files with a single command:
+
+```bash
+% bash do-stats.sh NENE*A.txt NENE*B.txt
+```
+
+## Summary
+
+- We've gone through quite a lot, and it might take some time to digest everything
+- But here's a summary of some of the topics we've been through
+  - running commands at the terminal/command-line prompt
+    - using command line options and arguments
+  - finding the current working directory (`pwd`) and listing its contents (`ls`)
+  - navigating around the filesystem with `cd`
+  - creating, copying, moving, and deleting directories and files with `mkdir`, `cp`, `mv`, `rm`
+  - understanding file extensions
+  - using shell commands `wc`, `sort`, `head`, `tail`
+  - redirecting output with `>` and `>>`
+  - piping program output with `|` and chaining arbitrary commands together
+  - writing loops to automate and iterate analyses over multiple files
+  - combining all of this into shell scripts for reproducibility and flexibility
+
+- **PLEASE WRITE ONE THING YOU LIKED/WE DID WELL ON THE GREEN STICKY; ONE THING WE COULD IMPROVE ON THE RED STICKY**

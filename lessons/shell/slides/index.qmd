@@ -207,3 +207,48 @@ How do you rename it to `statistics.txt`?
 - [`wc -l * | sort -n | head -n 1-3`]{data-explanation="This is incorrect input to head"}
 - [`wc -l * | head -n 3 | sort -n`]{data-explanation="This inverts the order of sort and head"}
 - [`wc -l * | sort -n | head -n 3`]{.correct}
+
+# 6. Loops
+
+## The structure of a loop
+
+```{.bash code-line-numbers="|2|4,6,8|4|8|6"}
+# The word "for" indicates the start of a "For-loop" command
+for thing in list_of_things 
+#The word "do" indicates the start of job execution list
+do 
+    # Indentation within the loop is not required, but aids legibility
+    operation_using/command $thing 
+# The word "done" indicates the end of a loop
+done  
+```
+
+## Challenge (3min)
+
+::: { .panel-tabset }
+
+## Problem
+
+::: { .callout-warning title="Write your own loop"}
+Write a loop that echoes all ten numbers from 0 to 9
+:::
+
+## Solution
+
+::: { .callout-warning title="Write your own loop"}
+Write a loop that echoes all ten numbers from 0 to 9
+:::
+
+::: { .callout-tip title="Solution" }
+```bash
+$ for loop_variable in 0 1 2 3 4 5 6 7 8 9
+> do
+>     echo $loop_variable
+> done
+```
+:::
+
+:::
+
+# 7. Shell Scripts
+
