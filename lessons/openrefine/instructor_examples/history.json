@@ -1,0 +1,148 @@
+[
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "yr",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column yr using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "period",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column period using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "plot",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column plot using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "recordID",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column recordID using expression value.toNumber()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "scientificName",
+    "expression": "value.trim()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column scientificName using expression value.trim()"
+  },
+  {
+    "op": "core/column-split",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "scientificName",
+    "guessCellType": true,
+    "removeOriginalColumn": false,
+    "mode": "separator",
+    "separator": " ",
+    "regex": false,
+    "maxColumns": 0,
+    "description": "Split column scientificName by separator"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "scientificName 1",
+    "newColumnName": "genus",
+    "description": "Rename column scientificName 1 to genus"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "species",
+    "newColumnName": "species_abbreviation",
+    "description": "Rename column species to species_abbreviation"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "scientificName 2",
+    "newColumnName": "species",
+    "description": "Rename column scientificName 2 to species"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "yr",
+    "expression": "join ([coalesce(cells['yr'].value,''),coalesce(cells['mo'].value,''),coalesce(cells['dy'].value,'')],'-')",
+    "onError": "keep-original",
+    "newColumnName": "date",
+    "columnInsertIndex": 8,
+    "description": "Create column date at index 8 based on column yr using expression join ([coalesce(cells['yr'].value,''),coalesce(cells['mo'].value,''),coalesce(cells['dy'].value,'')],'-')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "date",
+    "expression": "value.toDate()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column date using expression value.toDate()"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "scientificName",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ammospermophilus harrisii",
+          "Ammospermophilis harrisi",
+          "Ammospermophilus harrisi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ammospermophilus harrisii"
+      }
+    ],
+    "description": "Mass edit cells in column scientificName"
+  }
+]
