@@ -208,7 +208,7 @@ p
 :::
 
 
-## What is a plot? 5
+## What is a Plot? 5
 
 ::: { .callout-note title="*Data* and *aesthetics* can be defined in a *base* `ggplot` object" }
 - values from the *base* are *inherited* by the other layers
