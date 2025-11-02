@@ -1,0 +1,663 @@
+<h1 id="strathclyde-1.-welcome-to-r-notes">2025-11-04-strathclyde 1.
+Welcome to R notes</h1>
+<p><strong>START THE SLIDES</strong></p>
+<h2 id="summary-and-setup">1. Summary and Setup</h2>
+<ul>
+<li>Whether you’re on a university machine or your own laptop, you’ll
+need to have both <code>R</code> and <code>RStudio</code> installed for
+this part of the course.</li>
+<li><strong>CHECK EVERYONE HAS ACCESS TO R/RSTUDIO</strong></li>
+</ul>
+<hr />
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>Our goals in this course are:</p>
+<ul>
+<li><p>to introduce you to the fundamentals of <code>R</code> and
+<code>RStudio</code>, and of programming</p></li>
+<li><p>how to manage and process your data with an approach known as the
+<code>tidyverse</code></p></li>
+<li><p>how to produce publication-quality data visualisations with the
+<code>ggplot2</code> package</p></li>
+<li><p>and how to combine documentation with analysis and code, using
+<code>RMarkdown</code></p></li>
+<li><p>Working with a programming language (especially if it’s your
+first time) can be intimidating</p>
+<ul>
+<li>But knowing even a little bit about <code>R</code> and how to manage
+and handle your own data is incredibly empowering</li>
+<li>The rewards outweigh any frustrations.</li>
+</ul></li>
+<li><p>It’s not a secret, but even experienced programmers find coding
+difficult and frustrating at times</p>
+<ul>
+<li>I’ve been coding for 40 years and - though I know a bit more than
+when I started - every time a new language or technique turns up that I
+want to try, I’m a beginner all over again and feel like I know
+nothing.</li>
+<li>So don’t let intimidation stop you</li>
+<li>With time and practice it just gets easier and easier to accomplish
+what you want.</li>
+</ul></li>
+<li><p>Learning to code opens up the full possibilities of computing for
+analysing your data and automating your work</p>
+<ul>
+<li>Think of it this way: if you could only do biotechnology using kits
+you bought off Sigma, you could probably get a lot done.</li>
+<li>But - if you don’t understand the biochemistry of the kit - how can
+you tell it’s not working? How can you troubleshoot?</li>
+<li>And how could you do experiments for which there are no kits?</li>
+<li>Knowing a bit of code lets you troubleshoot, and go beyond kits to
+create new analyses</li>
+</ul></li>
+<li><p>R is one of the most widely-used and powerful programming
+languages, and it’s popular in many areas.</p>
+<ul>
+<li>R is specifically a staistical language designed for statistical
+analysis
+<ul>
+<li>It’s got a strong focus on data representation, as you’ll see
+shortly</li>
+<li>Particularly good for the generation of publication-quality graphs
+and figures.</li>
+</ul></li>
+<li>It is a <em>general programming language</em>, though. Most of the
+concepts you will learn apply to Python and other programming languages.
+<ul>
+<li>Once you understand programming concepts in one language, it’s
+easier to move across to other languages.</li>
+</ul></li>
+</ul></li>
+<li><p>However, R is not the easiest-to-learn programming language ever
+created.</p>
+<ul>
+<li>Please don’t get too discouraged! Some bits and concepts
+<em>are</em> just a bit more difficult than others</li>
+<li>Even with the modest amount of R we will cover today and tomorrow,
+you can start using some sophisticated R software packages, have a
+general sense of how to interpret an R script, and be able to get your
+own data into a workable form for more sophisticated exploration.</li>
+</ul></li>
+<li><p>Get through these lessons, and you will be on your way to being
+an accomplished R user!</p></li>
+<li><p>The other big “secret” of programming is that you can only learn
+so much by reading about it. You have to do it - and get things wrong -
+to learn.</p>
+<ul>
+<li>Do the exercises in class, re-do them on your own, and then work on
+your own problems, and you’ll be expert in no time!</li>
+</ul></li>
+<li><p><strong>Let’s get started.</strong></p></li>
+</ul>
+<hr />
+<p>## What is <code>R</code>?</p>
+<ul>
+<li><p><code>R</code> is a <strong>PROGRAMMING LANGUAGE</strong>, and
+the <strong>SOFTWARE</strong> that runs programs written in that
+language.</p></li>
+<li><p><code>R</code> is <strong>AVAILABLE ON ALL MAJOR OPERATING
+SYSTEMS</strong></p></li>
+<li><p>The way <code>R</code> is used when speaking can sometimes be
+confusing - <strong>IF AT ANY POINT I AM UNCLEAR, PLEASE
+ASK!</strong></p></li>
+<li><p><strong>WHY DO WE USE AND TEACH <code>R</code>?</strong></p>
+<ul>
+<li><code>R</code> is <strong>FREE AS IN “FREE SAMPLES AT THE
+SUPERMARKET”</strong>, and very <strong>WIDELY-USED</strong> across a
+range of disciplines.</li>
+<li>There are <strong>MANY USEFUL PACKAGES</strong> or data analysis and
+statistics, <strong>WRITTEN By EXPERTS</strong> at the cutting edge of
+their fields</li>
+<li>It has excellent <strong>GRAPHICS CAPABILITIES</strong></li>
+<li>There is an international, friendly <strong>COMMUNITY</strong>
+across a range of disciplines, so it’s easy to find local and online
+support</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="what-is-rstudio">What is <code>RStudio</code>?</h2>
+<ul>
+<li><p><code>RStudio</code> is an <strong>INTEGRATED DEVELOPMENT
+ENVIRONMENT</strong> - which is to say it’s a very powerful tool for
+writing, using and running <code>R</code>, and programs written in the
+<code>R</code> language.</p>
+<ul>
+<li>It’s available on <strong>ALL MAJOR OPERATING SYSTEMS</strong></li>
+<li>It’s available as a webserver, too.</li>
+</ul></li>
+<li><p>On the left is a screenshot <strong>TAKEN WHILE I WAS WRITING
+THIS PRESENTATION IN RSTUDIO</strong> on a Mac</p></li>
+<li><p>On the right is the Windows version, with an <strong>EXAMPLE
+ANALYSIS AND VISUALISATION</strong></p></li>
+<li><p>You can use it to <strong>INTERACT WITH <code>R</code> DIRECTLY
+TO EXPERIMENT WITH DATA</strong></p></li>
+<li><p>It has a <strong>CODE/SCRIPT EDITOR FOR WRITING
+PROGRAMS</strong></p></li>
+<li><p>It has tools for <strong>VISUALISING DATA</strong></p></li>
+<li><p>It has built-in <strong>GIT INTEGRATION FOR MANAGING YOUR
+PROJECTS</strong></p></li>
+</ul>
+<hr />
+<h2 id="rstudio-overview---interactive-demo"><code>RStudio</code>
+overview - INTERACTIVE DEMO</h2>
+<ul>
+<li><strong>START <code>RStudio</code></strong> (click icon/go into
+start menu and select RStudio/etc.)
+<ul>
+<li><strong>CHECK EVERYONE CAN START <code>RSTUDIO</code></strong></li>
+</ul></li>
+</ul>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<ul>
+<li><p><strong>REMIND PEOPLE THEY CAN USE RED/GREEN STICKIES AT ANY
+TIME</strong></p></li>
+<li><p>You should see <strong>THREE PANELS</strong></p>
+<ul>
+<li>Interactive <code>R</code> console: <strong>you can type here and
+get instant feedback</strong></li>
+<li>Environment/History window</li>
+<li>Files/Plots/Packages/Help/Viewer: <strong>interacting with files on
+the computer, and viewing help and some output</strong></li>
+</ul></li>
+<li><p><strong>REMEMBER THE WINDOWS ARE MOBILE AND PEOPLE COULD HAVE
+THEM IN ANY CONFIGURATION - THE EXACT ARRANGEMENT IS
+UNIMPORTANT</strong></p></li>
+<li><p>We’re going to use <code>R</code> in the interactive console to
+get used to some of the features of the language, and
+<code>RStudio</code>. <strong>DEMO CODE: ASK PEOPLE TO TYPE
+ALONG</strong></p>
+<ul>
+<li><strong>THE RIGHT ANGLED BRACKET IS A PROMPT: <code>R</code> EXPECTS
+INPUT</strong></li>
+<li><strong>TYPE THE CALCULATION, THEN PRESS RETURN</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">101</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">/</span> <span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span></code></pre></div>
+<ul>
+<li><strong>RESULT IS INDICATED WITH A NUMBER <code>[1]</code></strong>
+this indicates the line with output in it</li>
+<li>If you type an <strong>INCOMPLETE COMMAND</strong>, <code>R</code>
+will wait for you to complete it
+<ul>
+<li><strong>DEMO CODE</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span></code></pre></div>
+<ul>
+<li>The <strong>PROMPT CHANGES TO <code>+</code> WHEN <code>R</code>
+EXPECTS MORE INPUT</strong></li>
+<li>You can either complete the line, or use <code>Esc</code>
+(<code>Ctrl-C</code>) to exit</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="dv">6</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">7</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span></span></code></pre></div>
+<ul>
+<li><strong>ARROW KEYS RECOVER OLD COMMANDS</strong></li>
+<li><strong>THE <code>HISTORY</code> TAB SHOWS ALL COMMANDS
+USED</strong></li>
+<li><code>R</code> will report in <strong>SCIENTIFIC NOTATION</strong>
+<ul>
+<li><strong>CHECK THAT EVERYONE KNOWS WHAT SCIENTIFIC NOTATION
+IS</strong></li>
+</ul></li>
+</ul>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.002</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">/</span> <span class="dv">10000</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2e-04</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fl">5e3</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5000</span></span></code></pre></div>
+<ul>
+<li><code>R</code> has many <strong>STANDARD MATHEMATICAL
+FUNCTIONS</strong></li>
+<li><strong>FUNCTION SYNTAX</strong>
+<ul>
+<li>type the function name</li>
+<li>open parentheses</li>
+<li>type input value</li>
+<li>close parentheses</li>
+<li>press return</li>
+<li><strong>DEMO CODE</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sin</span>(<span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.841471</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span></code></pre></div>
+<ul>
+<li>We can do <strong>COMPARISONS</strong> in <code>R</code>
+<ul>
+<li>Comparisons return <code>TRUE</code> or <code>FALSE</code>.
+<strong>DEMO CODE</strong></li>
+<li><strong>NOTE:</strong> when comparing numbers, it’s better to use
+<code>all.equal()</code> (<em>machine numeric tolerance</em>)
+<strong>ASK IF THERE’S ANYONE FROM MATHS/PHYSICS</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">!=</span> <span class="dv">2</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span></code></pre></div>
+<ul>
+<li><strong>THE ORDER/CONSTRUCTION OF MATHEMATICAL OPERATIONS CAN
+MATTER</strong>
+<ul>
+<li>Write somewhere if possible: <span
+class="math inline"><em>a</em> = log (0.01<sup>200</sup>)</span>, <span
+class="math inline"><em>b</em> = 200 × log (0.01)</span></li>
+<li>These two mathematical expressions are exactly equal: <span
+class="math inline"><em>a</em> = <em>b</em></span></li>
+<li>But computers are not mathematicians, they’re machines. Numbers are
+susceptible to this <em>rounding error</em>, so what happens is
+this:</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="fl">0.01</span><span class="sc">^</span><span class="dv">200</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="cn">Inf</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">*</span> <span class="fu">log</span>(<span class="fl">0.01</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="fl">921.034</span></span></code></pre></div>
+<ul>
+<li><strong>COMPUTERS DO WHAT YOU TELL THEM, NOT NECESSARILY WHAT YOU
+WANT</strong></li>
+</ul>
+<hr />
+<p><strong>[SHOW SLIDES]</strong></p>
+<h2 id="variables">Variables</h2>
+<ul>
+<li><strong>VARIABLES</strong> are critical to programming in general,
+and also to working in <code>R</code></li>
+<li>To do interesting and useful things, we need a way to label and
+refer to a piece of data
+<ul>
+<li><strong>We use <em>variables</em> for this</strong></li>
+</ul></li>
+<li>Variables are like <strong>NAMED BOXES</strong>
+<ul>
+<li>Like a box, they <strong>HOLD THINGS</strong></li>
+<li>When we make reference to a box’s name, we <strong>MEAN THE THING
+THE BOX CONTAINS</strong></li>
+</ul></li>
+<li>Here, the box is called <code>Name</code>, and it contains the word
+<code>Samia</code></li>
+<li>When we refer to the box, we call it <code>Name</code>, and we might
+ask questions like:
+<ul>
+<li>“What is the length of <code>Name</code>?”, meaning “What is the
+length of the word in the box called <code>Name</code>?” (answer:
+5)</li>
+</ul></li>
+<li>Like boxes, a variable <strong>CAN BE EMPTY</strong></li>
+<li>We can also take the contents out and replace them with something
+else, but <strong>KEEP THE NAME</strong></li>
+</ul>
+<p><strong>[INTERACTIVE DEMO IN RSTUDIO]</strong></p>
+<ul>
+<li>This is a very important concept, so we’re going to go through some
+practical examples, to reinforce it
+<ul>
+<li>In <code>R</code>, variables are assigned with the
+<strong>ASSIGNMENT OPERATOR</strong> <code>&lt;-</code> (called “left
+arrow”)</li>
+<li>We will assign the value <code>1/40</code> to the variable
+<code>x</code></li>
+<li><strong>DEMO CODE</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">40</span></span></code></pre></div>
+<ul>
+<li>At first, nothing seems to happen, but we can see that the variable
+<code>x</code> now exists, and contains the value <code>0.025</code> - a
+<strong>DECIMAL APPROXMATION</strong> of the fraction
+<code>1/40</code></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.025</span></span></code></pre></div>
+<ul>
+<li>We can also print the output by putting the expression in
+parentheses</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.025</span></span></code></pre></div>
+<ul>
+<li><strong>CLICK ON THE ENVIRONMENT WINDOW</strong>
+<ul>
+<li>You should see that <code>x</code> is now defined there</li>
+<li>The <em>Environment</em> window in <code>RStudio</code> tells you
+the name and content of every variable currently active in your
+<code>R</code> session.</li>
+</ul></li>
+<li>This <strong>VARIABLE CAN BE USED ANYWHERE THAT EXPECTS A
+VALUE</strong></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">+</span> x</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.05</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">*</span> x</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.05</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.000625</span></span></code></pre></div>
+<ul>
+<li>such as an argument to a function</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(x)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="fl">3.688879</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sin</span>(x)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.0249974</span></span></code></pre></div>
+<ul>
+<li>We can <strong>REASSIGN VALUES TO VARIABLES</strong>
+<ul>
+<li><strong>MONITOR THE VALUE OF <code>x</code> IN THE ENVIRONMENT
+WINDOW</strong></li>
+<li>We can also assign a variable to itself, to modify the variable</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">105</span></span></code></pre></div>
+<ul>
+<li>We can assign <strong>ANY KIND OF VALUE</strong> to a variable
+<ul>
+<li>Including <strong>STRINGS</strong> - i.e. sets of characters</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> name <span class="ot">&lt;-</span> <span class="st">&quot;Samia&quot;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> name</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">&quot;Samia&quot;</span></span></code></pre></div>
+<hr />
+<p><strong>[BACK TO SLIDES]</strong></p>
+<p>## Naming Variables</p>
+<ul>
+<li><strong>VARIABLE NAMES ARE DOCUMENTATION</strong>
+<ul>
+<li>they should describe what the data represents
+<ul>
+<li>I expect you can tell, just by reading, what all these variables
+represent</li>
+</ul></li>
+<li><strong>This makes the code more readable</strong> - you can track
+the operations on a specific bit of data</li>
+<li>(“anonymous” variables are also helpful, e.g. <code>x</code> or
+<code>i</code>)</li>
+</ul></li>
+<li>There are some rules and guidelines for allowed and effective
+variable names
+<ul>
+<li>The variable names should be explicit, but not too long</li>
+<li>In <code>R</code> names <strong>cannot</strong> start with a
+digit</li>
+<li><code>R</code> is also case sensitive, so <code>Weight</code> with a
+capital letter is not the same name as <code>weight</code> with a
+lower-case letter</li>
+<li>Problems will arise if you call any variables by the name of an
+existing <code>R</code> function</li>
+<li>You should use consistent styling to handle multiple words</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="functions">Functions</h2>
+<ul>
+<li><p>You’ve already used some <strong>functions</strong>
+(<code>log()</code>, <code>sin()</code>, etc.). These are like “canned
+scripts”</p></li>
+<li><p>Functions have <strong>THREE MAIN PURPOSES</strong></p>
+<ul>
+<li>They <strong>ENCAPSULATE AND AUTOMATE COMPLEX TASKS</strong> - you
+don’t need to worry about how a sine is calculated, just that you give
+the function a value, and it tells you what the sine is.</li>
+<li>They <strong>MAKE CODE MORE READABLE</strong> - by dividing code
+into logical operations, represented by short names that describe an
+action, the code is easier to read</li>
+<li>They also <strong>MAKE CODE MORE REUSABLE</strong> - you don’t need
+to write the routine for finding a square root every time you want one,
+you just need to call the <code>sqrt()</code> function</li>
+</ul></li>
+<li><p>Functions usually <strong>TAKE ARGUMENTS</strong> (input),
+e.g. <code>sqrt(4)</code> - the <code>4</code> is an argument</p></li>
+<li><p>Functions often <strong>RETURN</strong> values (output),
+e.g. <code>sqrt(4)</code> <strong>returns</strong> the value
+<code>2</code></p></li>
+<li><p><strong>ALL THE FUNCTIONS YOU’VE SEEN SO FAR ARE
+BUILT-IN</strong>, the so-called <code>base</code> functions</p></li>
+<li><p><strong>YOU CAN WRITE YOUR OWN FUNCTIONS</strong></p></li>
+<li><p><strong>OTHER FUNCTIONS FOR SPECIFIC TASKS CAN BE BROUGHT IN,
+THROUGH <code>libraries</code></strong></p></li>
+</ul>
+<hr />
+<p>## Getting Help in <code>R</code>: INTERACTIVE DEMO</p>
+<p><strong>[DEMO IN CONSOLE]</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">args</span>(lm)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (formula, data, subset, weights, na.action, <span class="at">method =</span> <span class="st">&quot;qr&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="cn">TRUE</span>, <span class="at">x =</span> <span class="cn">FALSE</span>, <span class="at">y =</span> <span class="cn">FALSE</span>, <span class="at">qr =</span> <span class="cn">TRUE</span>, <span class="at">singular.ok =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">contrasts =</span> <span class="cn">NULL</span>, offset, ...)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ?sqrt</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(sqrt)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ??sqrt</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help.search</span>(<span class="st">&quot;sqrt&quot;</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help.search</span>(<span class="st">&quot;categorical&quot;</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">vignette</span>(two<span class="sc">-</span>table)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">vignette</span>(two <span class="sc">-</span> table) <span class="sc">:</span> object <span class="st">&#39;two&#39;</span> not found</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">vignette</span>(<span class="st">&quot;two-table&quot;</span>)</span></code></pre></div>
+<hr />
+<h2 id="challenge-01">Challenge 01</h2>
+<p>Link: <a
+href="https://strathsci.qualtrics.com/jfe/form/SV_eG17F5atskDqbC6">https://strathsci.qualtrics.com/jfe/form/SV_eG17F5atskDqbC6</a></p>
+<p>Solution:</p>
+<p><code>mass &lt;- 47.5</code> This will give a value of 47.5 for the
+variable mass</p>
+<p><code>age &lt;- 122</code> This will give a value of 122 for the
+variable age</p>
+<p><code>mass &lt;- mass * 2.3</code> This will multiply the existing
+value of 47.5 by 2.3 to give a new value of 109.25 to the variable
+mass.</p>
+<p><code>age &lt;- age - 20</code> This will subtract 20 from the
+existing value of 122 to give a new value of 102 to the variable
+age.</p>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<h2 id="project-management-in-r">3. PROJECT MANAGEMENT IN
+<code>R</code></h2>
+<hr />
+<h2 id="how-projects-tend-to-grow">How Projects Tend To Grow</h2>
+<ul>
+<li><p>I’m sure you all recognise this situation</p></li>
+<li><p>Research tends to be incremental</p>
+<ul>
+<li>Projects start out as random notes here, a bit of code there, some
+data over there</li>
+<li>and eventually a manuscript is written</li>
+</ul></li>
+<li><p>There are many reasons why we should <strong>ALWAYS</strong>
+avoid working in a random manner, and naming files like they do in the
+cartoon.</p>
+<ul>
+<li>Basically, good practice ensures reproducibility and makes
+everyone’s lives easier.</li>
+</ul></li>
+</ul>
+<hr />
+<p>## Good Practice</p>
+<ul>
+<li>There is <strong>NO SINGLE GOOD WAY TO ORGANISE A PROJECT</strong>
+<ul>
+<li>It’s important to find something that <strong>WORKS FOR
+YOU</strong></li>
+<li>But it’s <strong>ALSO IMPORTANT THAT IT WORKS FOR
+COLLABORATORS</strong></li>
+<li>Some <strong>PRINCIPLES MAKE THINGS EASIER FOR
+EVERYONE</strong></li>
+</ul></li>
+<li>Using a <strong>SINGLE WORKING DIRECTORY PER
+PROJECT/ANALYSIS</strong>
+<ul>
+<li><strong>NAME IT AFTER THE PROJECT</strong></li>
+<li><strong>EASY TO PACKAGE UP</strong> the whole directory and move it
+around, or share it - <strong>OR PUBLISH ALONGSIDE YOUR
+PAPER</strong></li>
+<li><strong>NO NEED TO HUNT AROUND THE WHOLE DISK</strong> to find
+relevant or important files.</li>
+<li>You can use <strong>RELATIVE PATHS</strong> that will always work,
+so long as you work within the project directory</li>
+</ul></li>
+<li>Treat your <strong>RAW DATA AS READ-ONLY</strong>
+<ul>
+<li>Establishes <strong>PROVENANCE</strong> and <strong>ENABLES
+REANALYSIS</strong></li>
+<li>Keep raw data in a <strong>SEPARATE SUBFOLDER</strong></li>
+</ul></li>
+<li><strong>CLEAN THE DATA PROGRAMMATICALLY</strong> (part of the
+analysis chain)
+<ul>
+<li>Most of the time, your data will be “dirty” - it won’t be in the
+form necessary for your analysis.</li>
+<li>It is often said that 80% of data analysis is spent on the process
+of cleaning and preparing the data</li>
+<li>Remove/fill in null values, etc. - whatever is appropriate</li>
+<li><strong>KEEP CLEANED DATA SEPARATE FROM RAW</strong> - like food
+hygiene</li>
+</ul></li>
+<li><strong>GENERATED OUTPUT IS DISPOSABLE</strong>
+<ul>
+<li>This means <strong>ANYTHING GENERATED AUTOMATICALLY BY YOUR
+CODE/ANALYSIS</strong></li>
+<li>If a file can be generated by scripts/code in your project, no need
+to put it under version control</li>
+<li>keep in its own subdirectory</li>
+</ul></li>
+</ul>
+<table style="width:8%;">
+<colgroup>
+<col style="width: 8%" />
+</colgroup>
+<tbody>
+<tr>
+<td>## Example Directory Structure</td>
+</tr>
+<tr>
+<td>- This is <strong>ONE OF MANY WAYS TO STRUCTURE YOUR WORKING
+DIRECTORY</strong> - It’s a good starting point, but something else
+might be more appropriate for your own work</td>
+</tr>
+<tr>
+<td>- <strong><code>WORKING DIR/</code></strong> is the <em>root</em>
+directory of the project. - Everything related to the project
+(subdirectories of data, scripts and figures; <code>git</code> files;
+configuration files; notes to yourself; whatever) - Name this after your
+project - <strong><code>data/</code></strong> is a subdirectory for
+storing data - raw data only, or raw and intermediate data? <strong>YOUR
+DECISION</strong> - store data and metadata (data <em>about</em> the
+data) together - <code>data/raw</code>, <code>data/intermediate</code> -
+<strong>USE SUBFOLDERS WHEN SENSIBLE</strong> -
+<strong><code>data_output/</code></strong> could be a place to write the
+analysis output (<code>.csv</code> files etc.) -
+<strong><code>documents/</code></strong> is a place where notes, drafts,
+supporting material, and explanatory text could be stored -
+<strong><code>fig_output/</code></strong> could be a place to write
+graphical output of the analysis (keep separate from tables) -
+<strong><code>scripts</code></strong> might be where you would choose to
+keep the executable code that automates your analysis</td>
+</tr>
+<tr>
+<td>- The important thing is that the structure is <strong>AS
+SELF-EXPLANATORY AS POSSIBLE</strong></td>
+</tr>
+<tr>
+<td>- General rules to keep in mind - <strong>THE PROJECT DETERMINES THE
+STRUCTURE</strong>: you might have more flexibility with small
+investigative projects than with safety-critical code -
+<strong>STRUCTURE IS A MEANS TO AN END</strong>: you can bend and break
+guidelines when it enables robustness, readability, and maintenance -
+<strong>SOME TOOLS CAN HELP</strong>: Linters can make sure your code is
+typo-free and has no syntax errors; cookie-cutter templating can be
+useful - <strong>ADD A README FILE</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-management-in-rstudio">Project Management in
+<code>RStudio</code></h2>
+<ul>
+<li><p><code>RStudio</code> <strong>TRIES TO BE HELPFUL</strong> and
+provides the ‘Project’ concept</p>
+<ul>
+<li>Keeps <strong>ALL PROJECT FILES IN A SINGLE DIRECTORY</strong></li>
+<li><strong>INTEGRATES WITH <code>GIT</code></strong></li>
+<li>Enables switching between projects within <code>RStudio</code></li>
+<li>Keeps project histories</li>
+</ul></li>
+<li><p>We’re going to create a <strong>NEW PROJECT</strong> in
+<code>RStudio</code></p></li>
+<li><p><strong>INTERACTIVE DEMO</strong></p></li>
+<li><p><strong>CREATE PROJECT</strong></p></li>
+<li><p>Click <code>File</code> -&gt; <code>New Project</code></p>
+<ul>
+<li>Options for how we want to create a project: brand new in a new
+working directory; turn an existing directory into a project; or
+checkout a project from <code>GitHub</code> or some other
+repository</li>
+</ul></li>
+<li><p>Click <code>New Directory</code></p>
+<ul>
+<li>Options for various things we can do in <code>RStudio</code>. Here
+we want <code>New Project</code></li>
+</ul></li>
+<li><p>Click <code>New Project</code></p>
+<ul>
+<li>We are asked for a directory name. <strong>ENTER
+<code>ibioic-r-lesson</code></strong></li>
+<li>We are asked for a parent directory. <strong>PUT YOURS ON THE
+DESKTOP; STUDENTS CAN CHOOSE ANYWHERE SENSIBLE</strong></li>
+</ul></li>
+<li><p>Click <code>Create Project</code></p></li>
+<li><p><strong>YOU SHOULD SEE AN EMPTY-ISH <code>RSTUDIO</code>
+WINDOW</strong></p></li>
+<li><p><strong>INSPECT PROJECT ENVIRONMENT</strong></p></li>
+<li><p>First, <strong>NOTE THE WINDOWS</strong>: editor; environment;
+files</p></li>
+<li><p><strong>EDITOR</strong> is empty</p></li>
+<li><p><strong>ENVIRONMENT</strong> is empty</p></li>
+<li><p><strong>FILES</strong> shows</p>
+<ul>
+<li><strong>CURRENT WORKING DIRECTORY</strong> (see breadcrumb trail)
+<ul>
+<li><strong>CHANGE CWD IF NECESSARY</strong></li>
+<li><strong>SHOW TERMINAL</strong></li>
+</ul></li>
+<li><strong>ONE FILE</strong>: <code>*.Rproj</code> - information about
+your project</li>
+</ul></li>
+<li><p><strong>CREATE DIRECTORIES IN PROJECT</strong></p></li>
+<li><p><strong>Create directoris called <code>scripts</code> and
+<code>data</code></strong></p>
+<ul>
+<li>Click on <code>New Folder</code></li>
+<li>Enter directory name (<code>scripts</code>)</li>
+<li>Note that the directory now exists in the <code>Files</code>
+tab</li>
+<li>Do the same for <code>data/</code></li>
+</ul></li>
+<li><p><strong>NOTE THAT WE WILL NOW POPULATE THE
+DIRECTORY</strong></p></li>
+</ul>

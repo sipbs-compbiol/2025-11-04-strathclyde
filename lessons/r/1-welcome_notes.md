@@ -2,7 +2,7 @@
 
 **START THE SLIDES**
 
-## 1. Summary and Setup
+## 1. Summary and Setup
 
 - Whether you're on a university machine or your own laptop, you'll need to have both `R` and `RStudio` installed for this part of the course.
 - **CHECK EVERYONE HAS ACCESS TO R/RSTUDIO**

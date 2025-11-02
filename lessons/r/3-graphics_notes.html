@@ -1,0 +1,1423 @@
+<h1
+id="strathclyde-3.-creating-publication-quality-graphics-instructor-notes">2025-11-04-strathclyde
+3. Creating Publication-Quality Graphics instructor notes</h1>
+<h2 id="packages">Packages</h2>
+<ul>
+<li><p>Packages are <strong>THE FUNDAMENTAL UNIT OF REUSABLE CODE IN
+<code>R</code></strong></p></li>
+<li><p>People write code, and <strong>DISTRIBUTE IT IN
+PACKAGES</strong></p></li>
+<li><p>Packages exist for many <strong>SPECIALIST AND USEFUL
+TOOLS</strong></p></li>
+<li><p>Over 10,000 packages can be found at CRAN - the Comprehensive R
+Archive Network</p></li>
+<li><p>When you write your own code, you can distribute it as a
+package</p></li>
+<li><p><strong>DEMO IN CONSOLE</strong></p>
+<ul>
+<li>You can <strong>SEE INSTALLED PACKAGES</strong> with the function
+<code>installed.packages()</code></li>
+<li>To install a new package, use
+<code>install.packages("packagename")</code> as a string <strong>EXPLAIN
+DEPENDENCIES</strong></li>
+<li><strong>DEMO INSTALLATION IN <code>RStudio</code>:
+<code>Tools</code> <span class="math inline">→</span>
+<code>Install packages...</code></strong></li>
+<li><strong>DEMO PACKAGE UPDATES IN <code>RStudio</code></strong></li>
+<li>You can update your installed packages to the newest version in the
+console with <code>update.packages()</code> <strong>DON’T DO THIS - CAN
+TAKE TIME!</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">installed.packages</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  Package</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>BiocInstaller     <span class="st">&quot;BiocInstaller&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>bit               <span class="st">&quot;bit&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>bit64             <span class="st">&quot;bit64&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data.table        <span class="st">&quot;data.table&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>[...]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Installing package into ‘<span class="sc">/</span>Users<span class="sc">/</span>lpritc<span class="sc">/</span>Library<span class="sc">/</span>R<span class="sc">/</span><span class="fl">3.4</span><span class="sc">/</span>library’</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>(as ‘lib’ is unspecified)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>also installing the dependencies ‘bindrcpp’, ‘glue’, ‘rlang’</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>[...]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">update.packages</span>(<span class="at">ask=</span><span class="cn">FALSE</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(dplyr)</span></code></pre></div>
+<hr />
+<h2 id="challenge-07-5min">Challenge 07 (5min)</h2>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<p>## 8. CREATING PUBLICATION-QUALITY GRAPHICS</p>
+<hr />
+<h2 id="visualisation-is-critical">Visualisation is Critical</h2>
+<ul>
+<li>Visualisation <strong>HELPS US UNDERSTAND OUR DATA</strong></li>
+<li>But <strong>IT’S NOT FOOLPROOF</strong> - people can interpret the
+same visualisation differently</li>
+<li>Good visualisation is <strong>MORE THAN JUST USING A PLOTTING
+TOOL</strong></li>
+</ul>
+<hr />
+<h2 id="the-grammar-of-graphics">The Grammar of Graphics</h2>
+<ul>
+<li>We’ll be using the <code>ggplot2</code> package, which is part of
+the <strong>TIDYVERSE</strong>, created initially by Hadley Wickham.
+<ul>
+<li>The Tidyverse provides <strong>OTHER USEFUL PACKAGES</strong> but
+you can use <code>ggplot2</code> on its own</li>
+</ul></li>
+<li><code>ggplot2</code> implements <strong>A SET OF CONCEPTS CALLED THE
+GRAMMAR OF GRAPHICS</strong>
+<ul>
+<li>This <strong>SEPARATES DATA FROM THE WAY IT’S REPRESENTED</strong>
+and we’ll discuss it in detail</li>
+<li>It’s not the usual way you might have seen to create plots, but it’s
+<strong>highly effective for generating powerful
+visualisations</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="a-basic-scatterplot">A Basic Scatterplot</h2>
+<ul>
+<li>You can use <code>ggplot2</code> in the <strong>SAME WAY YOU’D USE
+BASE GRAPHICS</strong>
+<ul>
+<li>This is not the best way to use all the power of the package</li>
+</ul></li>
+<li><strong>DEMO IN CONSOLE</strong>
+<ul>
+<li><strong>IMPORT LIBRARY</strong></li>
+<li><code>ggplot2</code> has <strong><code>qplot()</code> - the
+equivalent to <code>plot()</code> in base graphics</strong></li>
+<li><code>plot()</code> takes <code>x</code> and <code>y</code> values,
+and will assign colours to <code>factor</code> columns</li>
+<li><code>qplot()</code> takes the name of <code>x</code> and
+<code>y</code> columns, plus the name of the source
+<code>data.frame</code>, and will assign colours to <code>factor</code>
+columns</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(gapminder<span class="sc">$</span>lifeExp, gapminder<span class="sc">$</span>gdpPercap, <span class="at">col=</span>gapminder<span class="sc">$</span>continent)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">qplot</span>(lifeExp, gdpPercap, <span class="at">data=</span>gapminder, <span class="at">colour=</span>continent)</span></code></pre></div>
+<ul>
+<li><strong>COMPARE THE GRAPHS</strong>
+<ul>
+<li>Clearly, both graphs <strong>show the same data</strong></li>
+<li>The <strong>FORMATTING IS QUITE DIFFERENT</strong></li>
+<li>Your preference is your preference - <strong>both methods can be
+heavily restyled</strong></li>
+<li>My view is that <strong><code>ggplot2</code> has nicer default
+styles</strong></li>
+<li><strong><code>ggplot2</code> provides gridlines and legends by
+default, and the labelling is clearer</strong> (no
+<code>gapminder$</code> prefix)</li>
+</ul></li>
+<li><strong>THIS ISN’T WHAT’S POWERFUL ABOUT
+<code>ggplot2</code>!</strong></li>
+</ul>
+<hr />
+<h2 id="what-is-a-plot-aesthetics">What is a Plot?
+<em>aesthetics</em></h2>
+<ul>
+<li><strong>TALK THROUGH THE POINTS</strong></li>
+<li>Each observation in the data is a <em>point</em></li>
+<li>The <em>aesthetics</em> of a point determine how it is rendered in
+the plot
+<ul>
+<li>co-ordinates (x, y values) <strong>ON THE IMAGE</strong></li>
+<li>size</li>
+<li>shape</li>
+<li>colour</li>
+<li>transparency</li>
+</ul></li>
+<li><em>aesthetics</em> can be
+<ul>
+<li><em>constant</em> (e.g. all points the same colour)</li>
+<li><em>mapped to variables</em> (e.g. colour mapped to continent)</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="what-is-a-plot-geoms">What is a Plot? <code>geom</code>s</h2>
+<ul>
+<li>So far <strong>we’ve only defined the data and aesthetics</strong>
+<ul>
+<li><strong>THIS ONLY TELLS US HOW DATA POINTS ARE REPRESENTED, NOT THE
+TYPE OF PLOT</strong></li>
+</ul></li>
+<li><code>geom</code>s (short for <em>geometries</em>) <strong>DEFINE
+THE KIND OF PLOT WE PRODUCE</strong>
+<ul>
+<li>Showing the data <strong>as points</strong> is a
+<em>scatterplot</em></li>
+<li>Showing the data <strong>as lines</strong> is a <em>line
+plot</em></li>
+<li>Showing the data <strong>as bars</strong> is a
+<em>barchart</em></li>
+</ul></li>
+<li>We can use <strong>different <code>geom</code>s with the <em>same
+data and aesthetics</em></strong></li>
+</ul>
+<hr />
+<h2 id="what-is-a-plot-geoms-1">What is a Plot? <code>geom</code>s</h2>
+<ul>
+<li><strong>DEMO IN SCRIPT</strong> (<code>gapminder.R</code>)
+<ul>
+<li>We <strong>create a plot with the <code>ggplot()</code>
+function</strong>.</li>
+<li>We define the <em>data</em> as <code>data</code>, and
+<em>aesthetics</em> with <code>aes</code></li>
+<li><strong>WE PUT THE RESULT IN A VARIABLE FOR
+CONVENIENCE</strong></li>
+<li><em>Data</em> and <em>aesthetics</em> aren’t enough to define a
+plot. <strong>WE NEED A <code>geom</code></strong></li>
+<li>Use <code>geom_point()</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate plot of GDP per capita against life Expectancy</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap, <span class="at">color=</span>continent))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<ul>
+<li><p><strong>WE’VE RECREATED THE SCATTERPLOT WE SAW
+EARLIER</strong></p></li>
+<li><p><strong>What happens if we change the
+<code>geom</code>?</strong></p></li>
+<li><p><strong>DEMO IN THE SCRIPT</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<ul>
+<li>This looks terrible. <strong>CHANGE IT BACK</strong>
+<ul>
+<li>Preparing these plots in a script allows us to explore large and
+small differences in representation easily, and is very flexible</li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="challenge-08-2min">Challenge 08 (2min)</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot life expectancy against time</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>lifeExp, <span class="at">colour=</span>continent))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<h2 id="what-is-a-plot-layers">What is a Plot? <em>layers</em></h2>
+<ul>
+<li>Without drawing attention to it, <strong>WE’VE JUST BEEN USING THE
+LAYERS CONCEPT</strong>
+<ul>
+<li><strong>all <code>ggplot2</code> plots are built as
+layers</strong></li>
+</ul></li>
+<li><strong>ALL LAYERS HAVE TWO COMPONENTS</strong>
+<ul>
+<li><em>data</em> to be shown, and <em>aesthetics</em> for showing
+them</li>
+<li>a <code>geom</code> defining the type of plot</li>
+</ul></li>
+<li><strong>The <code>ggplot</code> object describes a <em>base</em>
+layer, and can contain <em>data</em> and <em>aesthetics</em></strong>
+<ul>
+<li><strong>THESE ARE INHERITED BY THE OTHER LAYERS IN THE
+PLOT</strong></li>
+<li><strong>The values can also be overridden in specified
+layers</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="what-is-a-plot-layers-1">What is a Plot? <em>layers</em></h2>
+<ul>
+<li>In our first plot we defined a <em>base</em> with:
+<ul>
+<li><em>data</em> from <code>gapminder</code></li>
+<li><em>aesthetics</em> with <em>x</em> and <em>y</em> coordinates, and
+colouring by continent</li>
+</ul></li>
+<li>We defined a layer that:
+<ul>
+<li>had a <code>geom_point</code> <code>geom</code></li>
+<li>inherited <em>data</em> and <em>aesthetics</em> from the
+<em>base</em></li>
+</ul></li>
+</ul>
+<p>-*LAYERS ARE ADDED WITH THE <code>+</code> OPERATOR**</p>
+<hr />
+<h2 id="what-is-a-plot-layers-2">What is a Plot? <em>layers</em></h2>
+<ul>
+<li>Now we will <strong>override the base layer
+<em>aesthetics</em></strong></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li>We’ll <strong>change the <code>geom</code></strong> to
+<code>geom_line</code></li>
+<li>We’ll extend the <em>aesthetics</em> to <strong>group datapoints by
+country</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate plot of GDP per capita against life expectancy</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap, <span class="at">color=</span>continent))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>country))</span></code></pre></div>
+<ul>
+<li><strong>RENDER THE PLOT</strong></li>
+</ul>
+<hr />
+<p><strong>SLIDE: What is a Plot? <em>layers</em></strong></p>
+<ul>
+<li>We can <strong>BUILD UP LAYERS OF <code>geom</code>S</strong> to
+produce a more complex plot</li>
+<li>We <strong>ADD A NEW <code>geom_point()</code> LAYER WITH
+<code>+</code></strong>
+<ul>
+<li>We use the layer’s <code>alpha</code> argument to control
+transparency</li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate plot of GDP per capita against life expectancy</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap, <span class="at">color=</span>continent))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>country)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>)</span></code></pre></div>
+<ul>
+<li><strong>RENDER THE PLOT</strong></li>
+</ul>
+<hr />
+<h2 id="challenge-09-5min">Challenge 09 (5min)</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate plot of life expectancy against time</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>lifeExp, <span class="at">color=</span>continent))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>country)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.35</span>)</span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<h2 id="transformations-and-scales">Transformations and
+<code>scale</code>s</h2>
+<ul>
+<li>Another kind of layer is a <em>transformation</em> - handled with
+<code>scale</code> layers</li>
+<li>These map <em>data</em> to new aesthetics on the plot
+<ul>
+<li>new axis scales, e.g. log scale, reverse scale, time scale</li>
+<li>colour scaling (changing palettes)</li>
+<li>shape and size scaling</li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong> (<code>gapminder.R</code>)
+<ul>
+<li>Rescale the plot first</li>
+<li>Then change the colours</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate plot of GDP per capita against life expectancy</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap, <span class="at">color=</span>continent))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>country)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span> <span class="fu">scale_color_grey</span>()</span></code></pre></div>
+<hr />
+<h2 id="statistics-layers">Statistics layers</h2>
+<ul>
+<li>Some <code>geom</code> layers transform the dataset
+<ul>
+<li>Usually this is a data summary (e.g. smoothing or binning)</li>
+<li>The layer <strong>may provide a new summary visual
+object</strong></li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li>This is working towards an informative figure</li>
+<li><strong>Start with a new basic scatterplot</strong></li>
+<li><strong>NOTE:</strong> setting opacity helps see density in the data
+- <strong>looks like two main points of density</strong></li>
+<li><strong>NOTE:</strong> looks like a general trend of GDP and life
+expectancy correlating</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate summary plot of GDP per capita against life expectancy</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<ul>
+<li><strong>ADD A SMOOTHED FIT</strong>
+<ul>
+<li><strong>NOTE:</strong> The correlation is made quite clear</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate summary plot of GDP per capita against life expectancy</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<ul>
+<li><strong>ADD A CONTOUR PLOT OF DENSITY</strong>
+<ul>
+<li><strong>NOTE:</strong> Two populations are clear</li>
+<li><strong>We might speculate that there is a difference in wealth/life
+expectancy across continents</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate summary plot of GDP per capita against life expectancy</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>) <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density_2d</span>(<span class="at">color=</span><span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<ul>
+<li><strong>ADD CONTINENT COLOURING</strong>
+<ul>
+<li><strong>NOTE:</strong> It’s now clear that the two populations are
+centred on Europe (wealthy, long-lived) and Africa (poor, short-lived),
+respectively.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>lifeExp, <span class="at">y=</span>gdpPercap))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="fu">aes</span>(<span class="at">color=</span>continent)) <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density_2d</span>(<span class="at">color=</span><span class="st">&quot;purple&quot;</span>)</span></code></pre></div>
+<hr />
+<h2 id="multi-panel-figures">Multi-panel figures</h2>
+<ul>
+<li>All our plots so far have been single figures, but **multi-panel
+plots can give clearer comparisons
+<ul>
+<li>These are also known as <em>small multiples plots</em></li>
+</ul></li>
+<li>The <strong><code>facet_wrap()</code> layer allows us to make grids
+of plots, SPLIT BY A FACTOR</strong></li>
+<li><strong>DEMO IN THE SCRIPT</strong>
+<ul>
+<li>We set a <strong>default aesthetic grouping by country</strong></li>
+<li>We generate a line plot, with log y axis</li>
+<li><strong>The result is a bit messy.</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare life expectancy over time by country</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>lifeExp, <span class="at">colour=</span>continent, <span class="at">group=</span>country))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span></code></pre></div>
+<ul>
+<li><strong>using <code>facet_wrap()</code> to split by continent is
+clearer</strong>
+<ul>
+<li><strong>NOTE:</strong> the axes are consistent across facets</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>lifeExp, <span class="at">colour=</span>continent, <span class="at">group=</span>country))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">scale_y_log10</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>continent)</span></code></pre></div>
+<hr />
+<h2 id="challenge-10-5min">Challenge 10 (5min)</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrast GDP per capita against population</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>gapminder, <span class="fu">aes</span>(<span class="at">x=</span>pop, <span class="at">y=</span>gdpPercap))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.8</span>, <span class="fu">aes</span>(<span class="at">color=</span>continent))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_log10</span>() <span class="sc">+</span> <span class="fu">scale_x_log10</span>()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_density_2d</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>year)</span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<h2 id="dynamic-reports">4. DYNAMIC REPORTS</h2>
+<hr />
+<h2 id="literate-programming">Literate Programming</h2>
+<ul>
+<li><p>What we’re about to do is an example of <strong>Literate
+Programming</strong>, a concept introduced by Donald Knuth</p></li>
+<li><p>The idea of Literate Programming is that</p>
+<ul>
+<li><strong>The program or analysis is explained in natural
+language</strong></li>
+<li><strong>The code needed to run the program/analysis is embedded in
+the document</strong></li>
+<li><strong>The whole document is executable</strong></li>
+</ul></li>
+<li><p>This makes it possible to share useful documents with people who
+<em>do</em> and <em>do not</em> know about coding</p></li>
+<li><p>Documents can be reproduced/modified easily when data
+changes</p></li>
+<li><p>We can produce these documents in <code>RStudio</code></p></li>
+</ul>
+<hr />
+<h2 id="create-an-r-markdown-file">Create an <code>R Markdown</code>
+file</h2>
+<ul>
+<li>In <code>R</code>, literate programming is **implemented in
+<code>R Markdown</code> files</li>
+<li>To create one: <strong><code>File</code> <span
+class="math inline">→</span> <code>New File</code> <span
+class="math inline">→</span> <code>R Markdown</code></strong>
+<ul>
+<li>There is a dialog box - <strong>enter a title</strong>
+(<code>Literate Programming</code>)</li>
+<li>Save the file (<code>Ctrl-S</code>) - <strong>create new
+subdirectory (<code>markdown</code>)</strong> -
+<code>literate_programming.Rmd</code></li>
+</ul></li>
+<li>The file <strong>gets the extension <code>.Rmd</code></strong>
+<ul>
+<li>The <strong>file is autopopulated with example text</strong></li>
+</ul></li>
+</ul>
+<hr />
+<p>## Components of an <code>R Markdown</code> file</p>
+<ul>
+<li>The <strong>HEADER REGION IS FENCED BY <code>---</code></strong>
+<ul>
+<li><strong>Metadata</strong> (author, title, date)</li>
+<li>Requested <strong>output format</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Literate Programming&quot;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Leighton Pritchard&quot;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;04/11/2025&quot;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> html_document</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<ul>
+<li><p>Natural language is written as plain text, <strong>with some
+extra characters to define formatting</strong></p>
+<ul>
+<li><strong>NOTE THE HASHES <code>#</code>, ASTERISKS <code>*</code> AND
+ANGLED BRACKETS <code>&lt;&gt;</code></strong></li>
+</ul></li>
+<li><p><code>R</code> code runs in the document, and is <strong>fenced
+by backticks</strong></p></li>
+<li><p>We can add elements of a document, e.g</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="an">A list:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>bold with double-asterisks</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>italics with underscores</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>code-type font with backticks</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>A second list:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>bold with double-asterisks</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>italics with underscores</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>code-type font with backticks</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>Or numbered lists</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>bold with double-asterisks</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>italics with underscores</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>code-type font with backticks</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>Even section headers of different sizes</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Title</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main section</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sub-section</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sub-sub section</span></span></code></pre></div>
+<ul>
+<li><strong>CLICK ON <code>KNIT</code></strong>
+<ul>
+<li>A new (pretty) document is produced in a new window</li>
+</ul></li>
+<li><strong>CROSS REFERENCE MARKDOWN TO DOCUMENT</strong>
+<ul>
+<li><strong>Title, Author, Date</strong></li>
+<li><strong>Header</strong></li>
+<li><strong>Link</strong></li>
+<li><strong>Bold</strong></li>
+<li><strong><code>R</code> code and output</strong></li>
+<li><strong>Plots</strong></li>
+</ul></li>
+<li><strong>CLICK ON <code>KNIT TO PDF</code></strong>
+<ul>
+<li>A new <code>.pdf</code> document opens in a new window</li>
+</ul></li>
+<li><strong>CROSS REFERENCE MARKDOWN TO DOCUMENT</strong>
+<ul>
+<li><strong>NOTE:</strong> The formatting isn’t identical</li>
+</ul></li>
+<li><strong>CLICK ON <code>KNIT TO WORD</code></strong>
+<ul>
+<li>A new <code>Word</code> document opens up</li>
+</ul></li>
+<li><strong>CROSS REFERENCE MARKDOWN TO DOCUMENT</strong>
+<ul>
+<li><strong>NOTE:</strong> The formatting isn’t identical</li>
+</ul></li>
+<li><strong>NOTE THE LOCATION OF THE OUTPUT FILES - ALL IN THE SOURCE
+DIRECTORY</strong>
+<ul>
+<li><strong>CLOSE THE OUTPUT</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="creating-a-report">Creating a Report</h2>
+<ul>
+<li><p>We’ll <strong>create a report on the <code>gapminder</code>
+data</strong></p></li>
+<li><p><strong>DELETE THE EXISTING TEXT/CODE CHUNKS</strong>
+(<code>literate_programming.Rmd</code>)</p>
+<ul>
+<li><strong>Change the title</strong>
+(<code>Life Expectancies</code>)</li>
+<li><strong>Define the input data location in the <code>setup</code>
+section</strong>
+<ul>
+<li>Code in the <code>setup</code> section is run, but not shown
+(<strong>knit to demo</strong>)</li>
+<li><code>include = FALSE</code></li>
+</ul></li>
+<li><strong>Write introduction and KNIT</strong>
+<ul>
+<li>Header notation with the hash <code>#</code></li>
+<li>Inline <code>R</code> to name the data used</li>
+<li><strong>We can define the location of the data in one place, and
+reuse the variable/have it propagate when we update the
+data</strong></li>
+<li>Import the data in <code>setup</code></li>
+</ul></li>
+<li><strong>Write next section</strong>
+(<code>Life expectancy in countries</code>)
+<ul>
+<li><code>Source</code> the <code>functions.R</code> file to get our
+solution to Challenge 23 (<code>plotLifeExp</code>)</li>
+<li>Use the imported function</li>
+<li><code>{r echo=FALSE}</code> shows output but not the code</li>
+</ul></li>
+<li><strong>Change the letters</strong>
+<ul>
+<li>Change the letters to something else</li>
+<li>Re-run the document</li>
+</ul></li>
+<li><strong>Add Numbered Table of Contents (where possible)</strong>
+<ul>
+<li>Make the required changes in the header</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Life Expectancies&quot;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Leighton Pritchard&quot;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;04/11/2025&quot;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  pdf_document<span class="sc">:</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    number_sections<span class="sc">:</span> true</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    toc_float<span class="sc">:</span> true</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    number_sections<span class="sc">:</span> true</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  word_document<span class="sc">:</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r setup, include=FALSE}</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="at">knitr::opts_chunk$set(echo = TRUE)</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="at"># Path to gapminder data</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="at">datapath &lt;- &quot;../data/gapminder-FiveYearData.csv&quot;</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="at"># Letters to report on</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="at">az &lt;- c(&#39;G&#39;, &#39;Y&#39;, &#39;R&#39;)</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="at"># Load gapminder data</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="at">gapminder &lt;- read.csv(datapath, sep=&quot;,&quot;, header=TRUE)</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="at"># Source functions from earlier lesson</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="at">source(&quot;../scripts/functions.R&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Introduction</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>We will present the life expectancies over time <span class="cf">in</span> a set of countries, using the gapminder data <span class="cf">in</span> the file <span class="st">`</span><span class="at">r datapath</span><span class="st">`</span>.</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>We will specifically focus on countries beginning with the letters<span class="sc">:</span> <span class="st">`</span><span class="at">r az</span><span class="st">`</span>.</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Life expectancy in `r az` countries</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>In countries starting with these letters, the life expectancy is as plotted below.</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>We use the code from our earlier challenge solution</span></code></pre></div>
+<p><code>{r plot_function} plotLifeExp &lt;- function(data, letter=letters, wrap=FALSE) {     starts.with &lt;- substr(data$country, start=1, stop=1)     az.countries &lt;- data[starts.woth %in% letter,]     p &lt;- ggplot(az.countries, aes(x=year, y=lifeExp, colour=country))     p &lt;- p + geom_line()     if (wrap) {         p &lt;-p + facet_wrap(~country)&gt;     }     return(p) }</code></p>
+<p><code>{r echo=FALSE} plotLifeExp(gapminder, az, wrap=TRUE)</code></p>
+<ul>
+<li><strong>CHANGE LETTERS IN <code>az</code></strong>
+<ul>
+<li>If our boss or PI comes over and says, “we need plots for countries
+starting with G, I and R” - it’s a simple task to modify the value in
+the variable <code>az</code> and rerun the document</li>
+</ul></li>
+<li><strong>KNIT DOCUMENT</strong></li>
+</ul>
+<hr />
+<h2 id="conclusion">12. CONCLUSION</h2>
+<hr />
+<h2 id="you-have-learned">You have learned</h2>
+<ul>
+<li>About <code>R</code>, <code>RStudio</code> and how to set up a
+project</li>
+<li>How to load data into <code>R</code> and produce summary statistics
+and plots with <em>base</em> tools</li>
+<li>All the data types in <code>R</code>, the most important data
+structures</li>
+<li>How to install and use packages</li>
+<li>How to use the Tidyverse to manipulate and plot data</li>
+<li>How to create dynamic reports in <code>R</code></li>
+</ul>
+<hr />
+<p>## The End Is The Beginning</p>
+<ul>
+<li>You’ve learned a lot in the last couple of days
+<ul>
+<li>More than enough to be productive and save yourself a lot of
+time</li>
+<li>More than enough to make your analyses reproducible and
+rerunnable</li>
+</ul></li>
+<li>There’s a whole lot more you can do with <code>R</code>,
+<code>OpenRefine</code> and the shell
+<ul>
+<li>This is just the beginning of a whole world opening up where you can
+make computers do exactly what you want, in service of your
+research</li>
+</ul></li>
+</ul>
+<hr />
+<h1 id="bonus.-programming-in-r">BONUS. PROGRAMMING IN
+<code>R</code></h1>
+<hr />
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li><p>What we’ve covered so far will <strong>get you a long way with
+your analyses</strong></p>
+<ul>
+<li>As you saw with the Unix Shell, the real power of using computers is
+putting all the pieces together into larger pieces of code - scripts and
+programs - that can automate complex tasks in a reusable way</li>
+</ul></li>
+<li><p>To help you with this, we’re going to cover some programming in
+<code>R</code></p></li>
+<li><p>In this short section, you’ll learn how to <strong>perform
+actions depending on values of data</strong> in <code>R</code></p></li>
+<li><p>You’ll also learn how to <strong>repeat operations, using
+<code>for()</code> loops</strong></p>
+<ul>
+<li><strong>These are very important general concepts, that recur in
+many programming languages</strong> - you’ll have seen loops in the
+shell lesson</li>
+<li>Much of the time, you can avoid using them in <code>R</code> data
+analyses, because <code>dplyr</code> exists, and because <code>R</code>
+is <strong>vectorised</strong></li>
+<li>But there are times when you do need them</li>
+</ul></li>
+<li><p>We’ll also cover how to write <em>functions</em>, which let you
+package up your code into reusable chunks that you can apply again and
+again to different datasets.</p></li>
+</ul>
+<h2 id="if-else"><code>if()</code> … <code>else</code></h2>
+<ul>
+<li><p>We <strong>often want to run a piece of code, or take an action,
+dependent on whether some data has a particular value (is true or false,
+say</strong></p></li>
+<li><p>When this is the case, we can use the general <code>if()</code> …
+<code>else</code> structure, which is common to most programming
+languages</p></li>
+<li><p><strong>DEMO IN SCRIPT</strong></p></li>
+<li><p><strong>CREATE NEW SCRIPT</strong>
+(<code>flow_control.R</code>)</p>
+<ul>
+<li>Let’s say that we want to print a message if some value is greater
+than 10</li>
+<li><strong>NOTE AUTOCOMPLETION/BRACKETS ETC.</strong></li>
+<li><strong>THE CODE TO BE RUN GOES IN CURLY BRACES</strong></li>
+<li><code>Source</code> the file</li>
+<li><strong>NOTHING HAPPENS</strong> (<code>x &gt; 10</code> is
+<code>FALSE</code>)</li>
+<li>The <code>if()</code> block executes <strong>if the value in the
+parentheses evaluates to <code>TRUE</code></strong></li>
+</ul></li>
+<li><p><strong>MAKE <code>x</code> 11 FIRST TO
+DEMONSTRATE</strong></p></li>
+<li><p><strong>THEN MAKE <code>x</code> 8</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A data point</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example if statement</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 10&quot;</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>MODIFY THE SCRIPT</strong>
+<ul>
+<li>Add the <code>else</code> block</li>
+<li><code>Source</code> the code: <strong>we get a message</strong></li>
+<li><strong>BUT IS THE MESSAGE TRUE?</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example if statement</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 10&quot;</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is less than 10&quot;</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>SET <code>x &lt;- 10</code> AND TRY AGAIN</strong></li>
+<li><strong>MODIFY THE SCRIPT WITH <code>else if()</code>
+STATEMENT</strong>
+<ul>
+<li><code>Source</code> the script: <strong>NO OUTPUT</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A data point</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example if statement</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 10&quot;</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is less than 10&quot;</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>MODIFY THE SCRIPT WITH A FINAL <code>else</code>
+STATEMENT</strong>
+<ul>
+<li><code>Source</code> the script: <strong>EQUALS</strong> output</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A data point</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example if statement</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is greater than 10&quot;</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is less than 10&quot;</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;x is equal to 10&quot;</span>)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="challenge-14-2min">Challenge 14 (2min)</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Are there any records for a year</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">2002</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(gapminder<span class="sc">$</span>year <span class="sc">==</span> year)){</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">print</span>(<span class="st">&quot;Record(s) for this year found.&quot;</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<h2 id="for-loops"><code>for()</code> loops</h2>
+<ul>
+<li><p>If you want to iterate over a set of values, then
+<code>for()</code> loops can be used</p></li>
+<li><p><code>for()</code> loops are <strong>a very common programming
+construct</strong></p></li>
+<li><p>They express the idea: <strong>FOR EACH ITEM IN A GROUP, DO
+SOMETHING (WITH THAT ITEM)</strong></p></li>
+<li><p><strong>DEMO IN SCRIPT</strong> (<code>flow_control.R</code>)</p>
+<ul>
+<li>Say we have a <em>vector</em> <code>c(1,2,3)</code>, and we want to
+print each item</li>
+<li>We can <strong>loop over all the items</strong> and print them</li>
+</ul></li>
+<li><p><strong>The loop structure is</strong></p>
+<ul>
+<li><code>for()</code>, where the argument names a variable
+(<code>i</code>) - the <em>iterator</em>, and a set of values:
+<strong><code>for(i in c('a', 'b', 'c'))</code></strong></li>
+<li>A <strong>CODE BLOCK</strong> defined by curly braces (**note
+automated completion)</li>
+<li>The <strong>contents of the code block are executed for each value
+of the iterator</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic for loop</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>)){</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>Loops can (but shouldn’t always) be nested</strong></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li>The outer loop is executed and, <strong>for each value in the outer
+loop, the inner loop is executed to completion</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nested loop example</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>)) {</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(i, j))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>The simplest way to capture output is to add a new item to a vector
+each iteration of the loop</li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li><strong>REMIND:</strong> using <code>c()</code> to append to a
+vector</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Capture loop output</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)) {</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    output <span class="ot">&lt;-</span> <span class="fu">c</span>(output, <span class="fu">paste</span>(i, j))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>(output)</span></code></pre></div>
+<ul>
+<li><strong>GROWING OUTPUT FROM LOOPS IS COMPUTATIONALLY VERY
+EXPENSIVE</strong>
+<ul>
+<li>Better to define the empty output container first (<strong>if you
+know the dimensions</strong>)</li>
+<li><strong>OR USE VECTORISATION (COMING UP)</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="while-loops"><code>while()</code> loops</h2>
+<ul>
+<li>Sometimes you need to perform some action <strong>WHILE A CONDITION
+IS TRUE</strong>
+<ul>
+<li>This isn’t as common as a <code>for()</code> loop</li>
+<li>It’s a <strong>general programming construct</strong></li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li>We’ll <strong>generate random numbers until one falls below a
+threshold</strong></li>
+<li><code>runif()</code> generates random numbers from a uniform
+distribution</li>
+<li>We print random numbers until one is less than 0.1</li>
+</ul></li>
+<li><strong>run a couple of times to show the output is
+random</strong></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example while loop</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(z <span class="sc">&gt;</span> <span class="fl">0.1</span>){</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(z)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="challenge-15-2min">Challenge 15 (2min)</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Challenge solution</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>vowels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;e&#39;</span>, <span class="st">&#39;i&#39;</span>, <span class="st">&#39;o&#39;</span>, <span class="st">&#39;u&#39;</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (l <span class="cf">in</span> letters) {</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (l <span class="sc">%in%</span> vowels) {</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(l, <span class="st">&quot;is a vowel&quot;</span>))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(l, <span class="st">&quot;is not a vowel&quot;</span>))</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<p>## Vectorisation</p>
+<ul>
+<li>Although <code>for()</code> and <code>while()</code> loops can be
+useful, they are <strong>rarely the most efficient way to work in
+<code>R</code></strong></li>
+<li><strong>MOST FUNCTIONS IN <code>R</code> ARE VECTORISED</strong>
+<ul>
+<li><strong>When applied to a vector, they work on all elements in the
+vector</strong></li>
+<li>So no need to use a loop.</li>
+</ul></li>
+<li><strong>DEMO IN CONSOLE</strong>
+<ul>
+<li><strong>Operators</strong> are vectorised</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span> <span class="dv">4</span> <span class="dv">6</span> <span class="dv">8</span></span></code></pre></div>
+<ul>
+<li><strong>You can operate on vectors together</strong></li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span> <span class="dv">9</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">+</span> y</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">7</span>  <span class="dv">9</span> <span class="dv">11</span> <span class="dv">13</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">*</span> y</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">6</span> <span class="dv">14</span> <span class="dv">24</span> <span class="dv">36</span></span></code></pre></div>
+<ul>
+<li><strong>Comparison operators are vectorised</strong></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span>  <span class="cn">TRUE</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="sc">&lt;</span> <span class="dv">7</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span> <span class="cn">FALSE</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">any</span>(y <span class="sc">&lt;</span> <span class="dv">7</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">all</span>(y <span class="sc">&lt;</span> <span class="dv">7</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code></pre></div>
+<ul>
+<li><strong>Functions working on vectors</strong></li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(x)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.0000000</span> <span class="fl">0.6931472</span> <span class="fl">1.0986123</span> <span class="fl">1.3862944</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">4</span>  <span class="dv">9</span> <span class="dv">16</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sin</span>(x)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">0.8414710</span>  <span class="fl">0.9092974</span>  <span class="fl">0.1411200</span> <span class="sc">-</span><span class="fl">0.7568025</span></span></code></pre></div>
+<hr />
+<p>## Challenge 16 (2min)</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>(v<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sum</span>(v)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">1.644834</span></span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
+<h2 id="functions">FUNCTIONS</h2>
+<hr />
+<h2 id="why-functions">Why Functions?</h2>
+<ul>
+<li><p>Functions let us <strong>run a complex series of logically- or
+functionally-RELATED commands in one go</strong></p></li>
+<li><p>It helps when functions have <strong>descriptive and memorable
+names</strong>, as this makes code <strong>READABLE AND
+UNDERSTANDABLE</strong></p></li>
+<li><p>We invoke functions with their name</p></li>
+<li><p>We <strong>expect functions to have A DEFINED SET OF INPUTS AND
+OUTPUTS</strong> - aids clarity and understanding</p></li>
+<li><p><strong>FUNCTIONS ARE THE BUILDING BLOCKS OF
+PROGRAMMING</strong></p></li>
+<li><p>As a <strong>rule of thumb</strong> it is good to write small
+functions with one obvious, clearly-defined task.</p>
+<ul>
+<li>As you will see <strong>we can chain smaller functions together to
+manage complexity</strong></li>
+</ul></li>
+</ul>
+<hr />
+<h2 id="defining-a-function">Defining a Function</h2>
+<ul>
+<li>Functions have a <strong>STANDARD FORM</strong>
+<ul>
+<li>We <strong>declare a
+<code>&lt;function_name&gt;</code></strong></li>
+<li>We use the <code>function</code> <em>function</em>/keyword to assign
+the function to <code>&lt;function_name&gt;</code></li>
+<li>Inputs (<em>arguments</em>) to a function are defined in
+parentheses: <strong>These are defined as variables for use within the
+function AND DO NOT EXIST OUTSIDE THE FUNCTION</strong></li>
+<li>The code block (<strong>curly braces</strong>) encloses the function
+code, the <em>function body</em>.</li>
+<li><strong>NOTE THE INDENTATION</strong> - <em>Easier to read, but does
+not affect execution</em></li>
+<li>The code <code>&lt;does_something&gt;</code></li>
+<li>The <code>return()</code> function returns the value, when the
+function is called</li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li><strong>Create new script <code>functions.R</code></strong></li>
+<li>Write and <code>Source</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example function</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>my_sum <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  the_sum <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(the_sum)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">my_sum</span>(<span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> a</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">&#39;a&#39;</span> not found</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> b</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">&#39;b&#39;</span> not found</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li>Let’s define another function: convert temperature from fahrenheit
+to Kelvin</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fahrenheit to Kelvin</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>fahr_to_kelvin <span class="ot">&lt;-</span> <span class="cf">function</span>(temp) {</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  kelvin <span class="ot">&lt;-</span> ((temp <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> (<span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span>)) <span class="sc">+</span> <span class="fl">273.15</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(kelvin)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN SCRIPT</strong></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_kelvin</span>(<span class="dv">32</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">273.15</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_kelvin</span>(<span class="sc">-</span><span class="dv">40</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">233.15</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_kelvin</span>(<span class="dv">212</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">373.15</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> temp</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">&#39;temp&#39;</span> not found</span></code></pre></div>
+<ul>
+<li><strong>LET’S MAKE ANOTHER FUNCTION CONVERTING KELVIN TO
+CELSIUS</strong></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li><code>Source</code> the script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kelvin to Celsius</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>kelvin_to_celsius <span class="ot">&lt;-</span> <span class="cf">function</span>(temp) {</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> temp <span class="sc">-</span> <span class="fl">273.15</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong></li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">kelvin_to_celsius</span>(<span class="fl">273.15</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">kelvin_to_celsius</span>(<span class="fl">233.15</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">40</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">kelvin_to_celsius</span>(<span class="fl">373.15</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span></code></pre></div>
+<ul>
+<li><strong>WE COULD DEFINE A NEW FUNCTION TO CONVERT FAHRENHEIT TO
+CELSIUS</strong>
+<ul>
+<li><strong>But it’s easier to combine the two functions we’ve already
+written</strong></li>
+<li>This is what I mean about functions being “building blocks” of
+programs</li>
+</ul></li>
+<li><strong>DEMO IN CONSOLE</strong></li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_kelvin</span>(<span class="dv">212</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">373.15</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">kelvin_to_celsius</span>(<span class="fu">fahr_to_kelvin</span>(<span class="dv">212</span>))</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span></code></pre></div>
+<ul>
+<li><strong>DEMO IN SCRIPT</strong></li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fahrenheit to Celsius</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>fahr_to_celsius <span class="ot">&lt;-</span> <span class="cf">function</span>(temp) {</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> <span class="fu">kelvin_to_celsius</span>(<span class="fu">fahr_to_kelvin</span>(temp))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong>
+<ul>
+<li><strong>NOTE: AUTOMATICALLY TAKES ADVANTAGE OF <code>R</code>’s
+VECTORISATION</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_celsius</span>(<span class="dv">212</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">100</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_celsius</span>(<span class="dv">32</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">0</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_celsius</span>(<span class="sc">-</span><span class="dv">40</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">40</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">fahr_to_celsius</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">40</span>, <span class="dv">32</span>, <span class="dv">212</span>))</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="dv">40</span>   <span class="dv">0</span> <span class="dv">100</span></span></code></pre></div>
+<hr />
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><p>It’s important to have well-named functions (this is itself a
+form of documentation)</p></li>
+<li><p>But it’s <strong>not a detailed explanation</strong></p></li>
+<li><p>You’ve found <code>R</code>’s help useful, but it doesn’t exist
+for your functions until you write it</p></li>
+<li><p><strong>YOUR FUTURE SELF WILL THANK YOU FOR DOING
+IT!</strong></p></li>
+<li><p><strong>SOME GOOD PRINCIPLES TO FOLLOW WHEN WRITING DOCUMENTATION
+ARE:</strong></p>
+<ul>
+<li>Say what the code does (and why) - <em>more important than
+<strong>how</strong> </em></li>
+<li>Define your inputs and outputs</li>
+<li>Provide an example</li>
+</ul></li>
+<li><p><strong>DEMO IN CONSOLE</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ?fahr_to_celsius</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>No documentation <span class="cf">for</span> ‘fahr_to_celsius’ <span class="cf">in</span> specified packages and libraries<span class="sc">:</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>you could try ‘??fahr_to_celsius’</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ??fahr_to_celsius</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li>We add documentation as comment strings in the function</li>
+<li><strong>SOURCE</strong> the script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fahrenheit to Celsius</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>fahr_to_celsius <span class="ot">&lt;-</span> <span class="cf">function</span>(temp) {</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert input temperature from fahrenheit to celsius scale</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># temp        - numeric</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &gt; fahr_to_celsius(c(-40, 32, 212))</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># [1] -40   0 100</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> <span class="fu">kelvin_to_celsius</span>(<span class="fu">fahr_to_kelvin</span>(temp))</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong>
+<ul>
+<li>We read the documentation by providing the function name
+<strong>only</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fahr_to_celsius</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(temp) {</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert input temperature from fahrenheit to celsius scale</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># temp        - numeric</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &gt; fahr_to_celsius(c(-40, 32, 212))</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># [1] -40   0 100</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  celsius <span class="ot">&lt;-</span> <span class="fu">kelvin_to_celsius</span>(<span class="fu">fahr_to_kelvin</span>(temp))</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(celsius)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<p>## Function Arguments</p>
+<ul>
+<li><strong>DEMO IN SCRIPT</strong> (<code>functions.R</code>)
+<ul>
+<li><code>Source</code> script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total GDP in gapminder data</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>calcGDP <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Returns dataset with additional column of total GDP</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data            - gapminder dataframe</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gapminderGDP &lt;- calcGDP(gapminder)</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>  gdp <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gdp=</span>pop <span class="sc">*</span> gdpPercap)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gdp)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong></li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">calcGDP</span>(gapminder)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> gapminder <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gdp =</span> pop <span class="sc">*</span> gdpPercap) <span class="sc">:</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  could not find <span class="cf">function</span> <span class="st">&quot;%&gt;%&quot;</span></span></code></pre></div>
+<ul>
+<li><strong>WHAT HAPPENED?</strong>
+<ul>
+<li><strong>The code in the <code>functions.R</code> file doesn’t know
+about <code>dplyr</code></strong></li>
+<li>We need to <strong>import the module in our script</strong> so it
+can be used</li>
+<li>Use the <code>require()</code> function</li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong> (<code>functions.R</code>)
+<ul>
+<li>Place <code>require()</code> calls at the top of your script</li>
+<li><code>Source</code> script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong>
+<ul>
+<li>The new column has been added</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp gdpPercap         gdp</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">1952</span>  <span class="dv">8425333</span>      Asia  <span class="fl">28.801</span>  <span class="fl">779.4453</span>  <span class="dv">6567086330</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Afghanistan <span class="dv">1957</span>  <span class="dv">9240934</span>      Asia  <span class="fl">30.332</span>  <span class="fl">820.8530</span>  <span class="dv">7585448670</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Afghanistan <span class="dv">1962</span> <span class="dv">10267083</span>      Asia  <span class="fl">31.997</span>  <span class="fl">853.1007</span>  <span class="dv">8758855797</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Afghanistan <span class="dv">1967</span> <span class="dv">11537966</span>      Asia  <span class="fl">34.020</span>  <span class="fl">836.1971</span>  <span class="dv">9648014150</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Afghanistan <span class="dv">1972</span> <span class="dv">13079460</span>      Asia  <span class="fl">36.088</span>  <span class="fl">739.9811</span>  <span class="dv">9678553274</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Afghanistan <span class="dv">1977</span> <span class="dv">14880372</span>      Asia  <span class="fl">38.438</span>  <span class="fl">786.1134</span> <span class="dv">11697659231</span></span></code></pre></div>
+<ul>
+<li><strong>So, that’s <em>all</em> the <code>gapminder</code> data -
+but what if we want to get the data by year?</strong></li>
+<li><strong>DEMO IN SCRIPT</strong> (<code>functions.R</code>)
+<ul>
+<li><code>Source</code> script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total GDP in gapminder data</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>calcGDP <span class="ot">&lt;-</span> <span class="cf">function</span>(data, year_in) {</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Returns the gapminder data with additional column of total GDP</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data            - gapminder dataframe</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># year_in         - year(s) to report data</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gapminderGDP &lt;- calcGDP(gapminder)</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  gdp <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">gdp=</span>(pop <span class="sc">*</span> gdpPercap)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">%in%</span> year_in)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gdp)</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">&#39;~/Desktop/swc-r-lesson/scripts/functions.R&#39;</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="dv">2002</span>))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp  gdpPercap          gdp</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">2002</span> <span class="dv">25268405</span>      Asia  <span class="fl">42.129</span>   <span class="fl">726.7341</span>  <span class="dv">18363410424</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     Albania <span class="dv">2002</span>  <span class="dv">3508512</span>    Europe  <span class="fl">75.651</span>  <span class="fl">4604.2117</span>  <span class="dv">16153932130</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Algeria <span class="dv">2002</span> <span class="dv">31287142</span>    Africa  <span class="fl">70.994</span>  <span class="fl">5288.0404</span> <span class="dv">165447670333</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>      Angola <span class="dv">2002</span> <span class="dv">10866106</span>    Africa  <span class="fl">41.003</span>  <span class="fl">2773.2873</span>  <span class="dv">30134833901</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   Argentina <span class="dv">2002</span> <span class="dv">38331121</span>  Americas  <span class="fl">74.340</span>  <span class="fl">8797.6407</span> <span class="dv">337223430800</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   Australia <span class="dv">2002</span> <span class="dv">19546792</span>   Oceania  <span class="fl">80.370</span> <span class="fl">30687.7547</span> <span class="dv">599847158654</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="fu">c</span>(<span class="dv">1997</span>, <span class="dv">2002</span>)))</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp gdpPercap          gdp</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">1997</span> <span class="dv">22227415</span>      Asia  <span class="fl">41.763</span>  <span class="fl">635.3414</span>  <span class="dv">14121995875</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Afghanistan <span class="dv">2002</span> <span class="dv">25268405</span>      Asia  <span class="fl">42.129</span>  <span class="fl">726.7341</span>  <span class="dv">18363410424</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Albania <span class="dv">1997</span>  <span class="dv">3428038</span>    Europe  <span class="fl">72.950</span> <span class="fl">3193.0546</span>  <span class="dv">10945912519</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>     Albania <span class="dv">2002</span>  <span class="dv">3508512</span>    Europe  <span class="fl">75.651</span> <span class="fl">4604.2117</span>  <span class="dv">16153932130</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>     Algeria <span class="dv">1997</span> <span class="dv">29072015</span>    Africa  <span class="fl">69.152</span> <span class="fl">4797.2951</span> <span class="dv">139467033682</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>     Algeria <span class="dv">2002</span> <span class="dv">31287142</span>    Africa  <span class="fl">70.994</span> <span class="fl">5288.0404</span> <span class="dv">165447670333</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder))</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a> Show Traceback</span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a> Rerun with Debug</span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a> Error <span class="cf">in</span> <span class="fu">filter_impl</span>(.data, quo) <span class="sc">:</span></span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>  Evaluation error<span class="sc">:</span> argument <span class="st">&quot;year_in&quot;</span> is missing, with no default.</span></code></pre></div>
+<ul>
+<li><strong>Now we have an issue - NO YEAR PROVIDED MEANS NO
+OUTPUT</strong>
+<ul>
+<li>We need to handle this</li>
+<li>1 - <strong>PROVIDE A DEFAULT VALUE</strong>
+(<code>NULL</code>)</li>
+<li>2 - <strong>TEST FOR VALUE AND TAKE ALTERNATIVE
+ACTIONS</strong></li>
+</ul></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li><code>Source</code> script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total GDP in gapminder data</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>calcGDP <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">year_in=</span><span class="cn">NULL</span>) {</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Returns the gapminder data with additional column of total GDP</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data            - gapminder dataframe</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># year_in         - year(s) to report data</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gapminderGDP &lt;- calcGDP(gapminder)</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  gdp <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gdp=</span>(pop <span class="sc">*</span> gdpPercap))</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(year_in)) {</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    gdp <span class="ot">&lt;-</span> gdp <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">%in%</span> year_in)</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gdp)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong></li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">&#39;~/Desktop/swc-r-lesson/scripts/functions.R&#39;</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder))</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] country   year      pop       continent lifeExp   gdpPercap gdp</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="dv">0</span> rows<span class="sc">&gt;</span> (or <span class="dv">0</span><span class="sc">-</span>length row.names)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder))</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp gdpPercap         gdp</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">1952</span>  <span class="dv">8425333</span>      Asia  <span class="fl">28.801</span>  <span class="fl">779.4453</span>  <span class="dv">6567086330</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Afghanistan <span class="dv">1957</span>  <span class="dv">9240934</span>      Asia  <span class="fl">30.332</span>  <span class="fl">820.8530</span>  <span class="dv">7585448670</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Afghanistan <span class="dv">1962</span> <span class="dv">10267083</span>      Asia  <span class="fl">31.997</span>  <span class="fl">853.1007</span>  <span class="dv">8758855797</span></span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Afghanistan <span class="dv">1967</span> <span class="dv">11537966</span>      Asia  <span class="fl">34.020</span>  <span class="fl">836.1971</span>  <span class="dv">9648014150</span></span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Afghanistan <span class="dv">1972</span> <span class="dv">13079460</span>      Asia  <span class="fl">36.088</span>  <span class="fl">739.9811</span>  <span class="dv">9678553274</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Afghanistan <span class="dv">1977</span> <span class="dv">14880372</span>      Asia  <span class="fl">38.438</span>  <span class="fl">786.1134</span> <span class="dv">11697659231</span></span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="at">year_in=</span><span class="dv">2002</span>))</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp  gdpPercap          gdp</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">2002</span> <span class="dv">25268405</span>      Asia  <span class="fl">42.129</span>   <span class="fl">726.7341</span>  <span class="dv">18363410424</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     Albania <span class="dv">2002</span>  <span class="dv">3508512</span>    Europe  <span class="fl">75.651</span>  <span class="fl">4604.2117</span>  <span class="dv">16153932130</span></span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Algeria <span class="dv">2002</span> <span class="dv">31287142</span>    Africa  <span class="fl">70.994</span>  <span class="fl">5288.0404</span> <span class="dv">165447670333</span></span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>      Angola <span class="dv">2002</span> <span class="dv">10866106</span>    Africa  <span class="fl">41.003</span>  <span class="fl">2773.2873</span>  <span class="dv">30134833901</span></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   Argentina <span class="dv">2002</span> <span class="dv">38331121</span>  Americas  <span class="fl">74.340</span>  <span class="fl">8797.6407</span> <span class="dv">337223430800</span></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   Australia <span class="dv">2002</span> <span class="dv">19546792</span>   Oceania  <span class="fl">80.370</span> <span class="fl">30687.7547</span> <span class="dv">599847158654</span></span></code></pre></div>
+<ul>
+<li><strong>Now let’s do the same for country</strong></li>
+<li><strong>DEMO IN SCRIPT</strong>
+<ul>
+<li><code>Source</code> script</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate total GDP in gapminder data</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>calcGDP <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">year_in=</span><span class="cn">NULL</span>, <span class="at">country_in=</span><span class="cn">NULL</span>) {</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Returns the gapminder data with additional column of total GDP</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data            - gapminder dataframe</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># year_in         - year(s) to report data</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># gapminderGDP &lt;- calcGDP(gapminder)</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  gdp <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gdp=</span>(pop <span class="sc">*</span> gdpPercap))</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(year_in)) {</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>    gdp <span class="ot">&lt;-</span> gdp <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">%in%</span> year_in)</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(country_in)) {</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    gdp <span class="ot">&lt;-</span> gdp <span class="sc">%&gt;%</span> <span class="fu">filter</span>(country <span class="sc">%in%</span> country_in)</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gdp)</span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li><strong>DEMO IN CONSOLE</strong></li>
+</ul>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">&#39;~/Desktop/swc-r-lesson/scripts/functions.R&#39;</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder))</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp gdpPercap         gdp</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">1952</span>  <span class="dv">8425333</span>      Asia  <span class="fl">28.801</span>  <span class="fl">779.4453</span>  <span class="dv">6567086330</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Afghanistan <span class="dv">1957</span>  <span class="dv">9240934</span>      Asia  <span class="fl">30.332</span>  <span class="fl">820.8530</span>  <span class="dv">7585448670</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Afghanistan <span class="dv">1962</span> <span class="dv">10267083</span>      Asia  <span class="fl">31.997</span>  <span class="fl">853.1007</span>  <span class="dv">8758855797</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Afghanistan <span class="dv">1967</span> <span class="dv">11537966</span>      Asia  <span class="fl">34.020</span>  <span class="fl">836.1971</span>  <span class="dv">9648014150</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Afghanistan <span class="dv">1972</span> <span class="dv">13079460</span>      Asia  <span class="fl">36.088</span>  <span class="fl">739.9811</span>  <span class="dv">9678553274</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> Afghanistan <span class="dv">1977</span> <span class="dv">14880372</span>      Asia  <span class="fl">38.438</span>  <span class="fl">786.1134</span> <span class="dv">11697659231</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="dv">1957</span>))</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>      country year      pop continent lifeExp gdpPercap          gdp</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Afghanistan <span class="dv">1957</span>  <span class="dv">9240934</span>      Asia  <span class="fl">30.332</span>   <span class="fl">820.853</span>   <span class="dv">7585448670</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>     Albania <span class="dv">1957</span>  <span class="dv">1476505</span>    Europe  <span class="fl">59.280</span>  <span class="fl">1942.284</span>   <span class="dv">2867792398</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>     Algeria <span class="dv">1957</span> <span class="dv">10270856</span>    Africa  <span class="fl">45.685</span>  <span class="fl">3013.976</span>  <span class="dv">30956113720</span></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>      Angola <span class="dv">1957</span>  <span class="dv">4561361</span>    Africa  <span class="fl">31.999</span>  <span class="fl">3827.940</span>  <span class="dv">17460618347</span></span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   Argentina <span class="dv">1957</span> <span class="dv">19610538</span>  Americas  <span class="fl">64.399</span>  <span class="fl">6856.856</span> <span class="dv">134466639306</span></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   Australia <span class="dv">1957</span>  <span class="dv">9712569</span>   Oceania  <span class="fl">70.330</span> <span class="fl">10949.650</span> <span class="dv">106349227169</span></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="dv">1957</span>, <span class="st">&quot;Egypt&quot;</span>))</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>  country year      pop continent lifeExp gdpPercap         gdp</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Egypt <span class="dv">1957</span> <span class="dv">25009741</span>    Africa  <span class="fl">44.444</span>  <span class="fl">1458.915</span> <span class="dv">36487093094</span></span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="st">&quot;Egypt&quot;</span>))</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] country   year      pop       continent lifeExp   gdpPercap gdp</span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span><span class="dv">0</span> rows<span class="sc">&gt;</span> (or <span class="dv">0</span><span class="sc">-</span>length row.names)</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(<span class="fu">calcGDP</span>(gapminder, <span class="at">country_in=</span><span class="st">&quot;Egypt&quot;</span>))</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>  country year      pop continent lifeExp gdpPercap          gdp</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   Egypt <span class="dv">1952</span> <span class="dv">22223309</span>    Africa  <span class="fl">41.893</span>  <span class="fl">1418.822</span>  <span class="dv">31530929611</span></span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   Egypt <span class="dv">1957</span> <span class="dv">25009741</span>    Africa  <span class="fl">44.444</span>  <span class="fl">1458.915</span>  <span class="dv">36487093094</span></span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   Egypt <span class="dv">1962</span> <span class="dv">28173309</span>    Africa  <span class="fl">46.992</span>  <span class="fl">1693.336</span>  <span class="dv">47706874227</span></span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   Egypt <span class="dv">1967</span> <span class="dv">31681188</span>    Africa  <span class="fl">49.293</span>  <span class="fl">1814.881</span>  <span class="dv">57497577541</span></span>
+<span id="cb57-30"><a href="#cb57-30" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   Egypt <span class="dv">1972</span> <span class="dv">34807417</span>    Africa  <span class="fl">51.137</span>  <span class="fl">2024.008</span>  <span class="dv">70450495584</span></span>
+<span id="cb57-31"><a href="#cb57-31" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   Egypt <span class="dv">1977</span> <span class="dv">38783863</span>    Africa  <span class="fl">53.319</span>  <span class="fl">2785.494</span> <span class="dv">108032201472</span></span></code></pre></div>
+<hr />
+<p>## Challenge 17 (10min)</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot grid of country life expectancy</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plotLifeExp <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">letter=</span>letters, <span class="at">wrap=</span><span class="cn">FALSE</span>) {</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return ggplot2 chart of life expectancy against year</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data          - gapminder dataframe</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># letter        - start letters for countries</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># wrap          - logical: wrap graphs by country</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Example:</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &gt; plotLifeExp(gapminder, c(&#39;A&#39;, &#39;Z&#39;), wrap=TRUE)</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  starts.with <span class="ot">&lt;-</span> <span class="fu">substr</span>(data<span class="sc">$</span>country, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">stop =</span> <span class="dv">1</span>)</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>  az.countries <span class="ot">&lt;-</span> data[starts.with <span class="sc">%in%</span> letter, ]</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(az.countries, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>lifeExp, <span class="at">colour=</span>country))</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (wrap) {</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>country)</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<figure>
+<img src="images/red_green_sticky.png"
+alt="images/red_green_sticky.png" />
+<figcaption aria-hidden="true">images/red_green_sticky.png</figcaption>
+</figure>
+<hr />
