@@ -1,4 +1,4 @@
-# 2025-11-04-strathclyde Data Structures and Data Frames instructor notes
+# 2025-11-04-strathclyde 2. Data Structures and Data Frames instructor notes
 
 ## Preflight
 
