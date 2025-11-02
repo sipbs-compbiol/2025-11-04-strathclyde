@@ -256,7 +256,7 @@ p + geom_line(aes(group=country)) + geom_point(alpha=0.4)
 ::: { .callout-important title="INTERACTIVE DEMO" }
 :::
 
-## (5min)
+## Challenge (5min)
 
 ::: { .panel-tabset }
 
@@ -321,7 +321,11 @@ p + facet_wrap(~continent)
 ```
 :::
 
-## Challenge 10 (5min)
+## Challenge (5min)
+
+::: { .panel-tabset }
+
+## Problem
 
 ::: { .callout-warning title="Create a scatterplot and contour densities of GDP per capita against population size" }
 - Fill datapoint colour by continent?
@@ -330,3 +334,132 @@ p + facet_wrap(~continent)
 ::: { .callout-caution title="ADVANCED CHALLENGE" }
 Transform the *x* axis to better visualise data spread, and use facets to panel density plots by year.
 :::
+
+## Solution
+
+```R
+p <- ggplot(data=gapminder, aes(x=pop, y=gdpPercap))
+p <- p + geom_point(alpha=0.8, aes(color=continent))
+p <- p + scale_y_log10() + scale_x_log10()
+p + geom_density_2d(alpha=0.5) + facet_wrap(~year)
+```
+
+:::
+
+# 4. Dynamic Reports
+
+## Literate Programming
+
+::: { .callout-tip title="What is literate programming?" }
+- A *programming paradigm* introduced by Donald Knuth
+- The program (or analysis) is explained in natural language
+  - The *source code* is interspersed
+- The whole document is *executable*
+:::
+
+::: { .footer }
+- Literate Programming, by Donald Knuth: <http://www.literateprogramming.com/knuthweb.pdf>
+:::
+
+
+## R Markdown
+
+::: { .callout-tip title="R Markdown files embody Literate Programming" }
+- `File` $\rightarrow$ `New File` $\rightarrow$ `R Markdown`
+- Enter a title
+- Save the file (gets the extension `.Rmd`)
+:::
+
+:::: { .columns }
+
+::: { .column width="50%" }
+![R Markdown dialogue box](images/rmarkdown_dialog.png){#fig-rmarkdown-dialog width="60%"}
+:::
+
+::: { .column width="50%" }
+![Starting an R Markdown file](images/rmarkdown_start.png){#fig-rmarkdown-start width="70%" }
+:::
+
+::::
+
+## Components of `R Markdown` 1
+
+::: { .callout-tip title="Header information" }
+- File _metadata_
+- Header is _fenced_ by `---`
+
+```R
+---
+title: "Literate Programming"
+author: "Leighton Pritchard"
+date: "04/11/2025"
+output: html_document
+---
+```
+::: 
+
+::: { .callout-tip title="Natural language" }
+- Natural language is written as plain text
+
+```R
+This is an R Markdown document. Markdown is a simple formatting syntax
+```
+:::
+
+## Components of `R Markdown` 2
+
+::: { .callout-tip title="Executable `R` code" }
+
+- Executable `R` code is *fenced* by *backticks* (```)
+:::
+
+::: { .callout-important title="**Click on `Knit`**" }
+:::
+
+## Creating a Report
+
+::: { .callout-important title="**INTERACTIVE DEMO**" }
+* We're going to create an `R Markdown` report on the `gapminder` data
+:::
+
+![R Markdown output](images/rmarkdown_final.png){#fig-rmarkdown-final}
+
+::: { .footer }
+- `R Markdown` documentation: <http://rmarkdown.rstudio.com/>
+- `R Markdown` cheat sheet: <http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+- Getting started with `R Markdown`: <https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/>
+- Reproducible reporting: <https://www.rstudio.com/resources/webinars/reproducible-reporting/>
+:::
+
+
+# 12. Conclusion
+
+## You have learned:
+
+- About `R`, `RStudio` and how to set up a project
+- How to load data into `R` and produce summary statistics and plots with *base* tools
+- All the data types in `R`, the most important data structures
+- How to install and use packages
+- How to use the Tidyverse to manipulate and plot data
+- How to create dynamic reports in `R`
+
+::: { .callout-tip title="**WELL DONE!!**" }
+:::
+
+## The End Is The Beginning
+
+:::: { .columns }
+
+::: { .column width="50%" }
+![The journey is long, but you're making progress](images/long_way_to_go.jpg){#fig-long-way-to-go}
+:::
+
+::: { .column width="50%" }
+![Experience is no way to avoid failure](images/new_programmers_experienced_programmers.jpg){#fig-new-vs-experienced width="65%"}
+:::
+
+::::
+
+## Where Next?
+
+![R is a rollercoaster](images/impostor_syndrome_r_learning.jpg){#fig-impostor-syndrome}
