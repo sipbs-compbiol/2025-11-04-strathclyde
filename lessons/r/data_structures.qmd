@@ -30,6 +30,23 @@ library(tidyverse)
 
 :::
 
+## Software and files
+
+:::: { .columns }
+
+::: { .column width="50%" }
+
+- We will need the gapminder dataset
+  - [https://swcarpentry.github.io/r-novice-gapminder/data/gapminder_data.csv](https://swcarpentry.github.io/r-novice-gapminder/data/gapminder_data.csv)
+
+:::
+
+::: { .column width="50%"}
+![Link to download gapminder data](images/gapminder-qr-code.png){#fig-gapminder-qr}
+:::
+
+::::
+
 ## Learning Questions
 
 - How can I read data in `R`?

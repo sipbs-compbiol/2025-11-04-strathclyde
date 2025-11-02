@@ -1,0 +1,332 @@
+---
+title: "Creating Publication-Quality Graphics in R"
+format:
+  revealjs:
+    slide-number: true
+    controls: true
+    preview-links: true
+    footer: "IBioIC Carpentries Workshop"
+    logo: "images/carpentries_logo.png"
+    theme: [default, ./includes/custom.scss]
+    width: 1280
+    height: 720
+    self-contained: true
+revealjs-plugins:
+  - quiz
+---
+
+```{r}
+#| label: setup
+
+library(kableExtra)
+library(tidyverse)
+```
+
+# 1. Summary and Setup
+
+## Software and files
+
+:::: { .columns }
+
+::: { .column width="50%" }
+
+- We will need the gapminder dataset
+  - [https://swcarpentry.github.io/r-novice-gapminder/data/gapminder_data.csv](https://swcarpentry.github.io/r-novice-gapminder/data/gapminder_data.csv)
+
+:::
+
+::: { .column width="50%"}
+![Link to download gapminder data](images/gapminder-qr-code.png){#fig-gapminder-qr}
+:::
+
+::::
+
+# 2. Packages
+
+## Packages
+
+::: { .callout-tip title="R packages" }
+- a collection (or *library*) of reusable code
+- many useful and specialist tools are distributed as packages
+- over 10,000 packages are available at `CRAN`
+- you can distribute your own code as a package
+:::
+
+::: { .callout-important }
+## INTERACTIVE DEMO
+
+```R
+installed.packages()               # see installed packages
+install.packages("packagename")    # install a new package
+update.packages()                  # update installed packages
+library(packagename)               # import a package for use in your code
+```
+:::
+
+::: {.footer}
+CRAN - the Comprehensive `R` Archive Network: <https://cran.r-project.org/>
+:::
+
+
+## Challenge (2min)
+
+::: { .callout-warning title="Check if the following packages are installed on your system, and install them if necessary."}
+
+```R
+dplyr
+ggplot2
+knitr
+```
+:::
+
+# 3. Creating publication-quality graphics in R
+
+## Visualisation is Critical!
+
+![How scientists see the same data may vary by field](images/how_scientists_see_data.jpg){#fig-scientists-see-data}
+
+
+## The Grammar of Graphics
+
+::: { .callout-tip title="What is `ggplot2`?" }
+- part of the *Tidyverse*, a collection of packages for data science
+  - `ggplot2` is the graphics package
+- **Implements the "Grammar of Graphics"**
+  - Separates data from its representation
+  - Helps iteratively update/refine plots
+  - Helps build complex, effective visualisations from simple elements
+:::
+
+::: { .callout-important title="Four pillars of `ggplot2`" }
+- *data*
+- *aesthetics*
+- `geom`s
+- *layers*
+:::
+
+::: { .footer }
+- Tidyverse: <https://www.tidyverse.org/>
+:::
+
+## A Basic Scatterplot
+
+::: { .callout-tip title="You can use `ggplot2` like `R`'s base graphics" }
+
+`qplot()` ≈ `plot()`
+:::
+
+::: { .callout-important title="INTERACTIVE DEMO"}
+```R
+library(ggplot2)
+plot(gapminder$lifeExp, gapminder$gdpPercap, col=gapminder$continent)
+qplot(lifeExp, gdpPercap, data=gapminder, colour=continent)
+```
+:::: { .columns }
+::: { .column width="50%" }
+![Scatterplot using base graphics](images/plot_scatterplot.png){#fig-base-scatter width="70%"}
+:::
+::: { .column width="50%" }
+![Scatterplot using `ggplot2`](images/qplot_scatterplot.png){#fig-ggplot-scatter width="70%"}
+:::
+::::
+
+:::
+
+## What is a Plot? 1
+
+:::: { .columns }
+
+::: { .column width="60%" }
+
+::: { .callout-tip title="Plot aesthetics" }
+- Each observation in the *data* is a point
+- A point's *aesthetics* determine how it is rendered
+  - co-ordinates on the image; size; shape; colour
+- *aesthetics* can be constant or mapped to variables
+- **Many different plots can be generated from the same data by changing *aesthetics***
+:::
+
+:::
+::: { .column width="40%" }
+
+![Scatterplot generated with `qplot()`](images/qplot_scatterplot.png){#fig-qplot-scatter}
+:::
+
+::::
+
+## What is a Plot? 2
+
+::: { .callout-tip title="Plot `geom`s" }
+- `geom` (short for *geometry*) defines the "type" of representation
+  - If data are drawn as points: **scatterplot**
+  - If data are drawn as lines: **line plot**
+  - If data are drawn as bars: **bar chart** 
+:::
+
+![Some `ggplot2` `geom` types](images/geom_types.png){#fig-geom-types}
+
+## What is a Plot? 3
+
+::: { .callout-important title="INTERACTIVE DEMO" }
+
+`ggplot2` offers several different `geom` types
+
+```R
+# Generate plot of GDP per capita against life Expectancy
+p <- ggplot(data=gapminder, aes(x=lifeExp, y=gdpPercap, color=continent))
+p + geom_point()
+p + geom_line()
+```
+:::
+
+
+## Challenge (2min)
+
+::: { .panel-tabset }
+
+## Problem
+
+::: { .callout-warning title="Create a scatterplot showing how *life expectancy* changes as a function of *time*"}
+:::
+
+## Solution
+
+```R
+p <- ggplot(data=gapminder, aes(y=lifeExp, x=year, color=continent))
+p
+```
+
+:::
+
+## What is a Plot? 4
+
+::: { .callout-tip title="We've just used another Grammar of Graphics concept: *layers*" }
+- `ggplot2` plots are built as *layers*
+- All *layers* have two components
+  1. *data* and *aesthetics*
+  2. a `geom`
+:::
+
+
+## What is a plot? 5
+
+::: { .callout-note title="*Data* and *aesthetics* can be defined in a *base* `ggplot` object" }
+- values from the *base* are *inherited* by the other layers
+- the *base* defaults can be overridden in other layers
+:::
+
+```R
+p <- ggplot(data=gapminder, aes(x=lifeExp, y=gdpPercap, colour=continent))
+p + geom_point()
+```
+
+![Defining aesthetics in a `ggplot2` base layer](images/ggplot_layers_1.png){#fig-geom-layers-1}
+
+
+## What is a Plot? 6
+
+::: { .callout-note title="*Data* and *aesthetics* can be defined in a *base* `ggplot` object" }
+- values from the *base* are *inherited* by the other layers
+- the *base* defaults can be overridden in other layers
+:::
+
+```{r, eval=FALSE}
+p <- ggplot(data=gapminder, aes(x=lifeExp, y=gdpPercap, colour=continent))
+p + geom_line(aes(group=country))
+```
+
+![Overriding aesthetics of a `ggplot2` base layer](images/ggplot_layers_2.png){#fig-geom-layers-2}
+
+::: { .callout-important title="INTERACTIVE DEMO" }
+:::
+
+## What is a Plot? 7
+
+::: { .callout-note title="We use several layers of `geom`s to build up a plot" }
+- `alpha` controls *opacity* for a layer
+:::
+
+```R
+p <- ggplot(data=gapminder, aes(x=lifeExp, y=gdpPercap, color=continent))
+p + geom_line(aes(group=country)) + geom_point(alpha=0.4)
+```
+
+![`ggplot2` figures are built by adding layers](images/ggplot_layers_3.png){#fig-goem-layers-3}
+
+::: { .callout-important title="INTERACTIVE DEMO" }
+:::
+
+## (5min)
+
+::: { .panel-tabset }
+
+## Problem
+
+::: { .callout-warning title="Create a figure showing how *life expectancy* changes as a function of *time*" }
+- Colour datapoints by continent, and use two layers:
+  - a line plot, grouping points by country
+  - a scatterplot showing each data point, with 35% opacity
+:::
+
+## Solution
+
+```R
+p <- ggplot(data=gapminder, aes(x=year, y=lifeExp, color=continent))
+p + geom_line(aes(group=country)) + geom_point(alpha=0.35)
+```
+
+:::
+
+## Transformations and `scale`s
+
+::: { .callout-tip title="Data transformations are handled with `scale` layers" }
+- axis scaling (log scales)
+- colour scaling (changing palettes)
+:::
+
+![Axis scales, palette scales, etc. are added as layers](images/ggplot_layers_4.png){#fig-geom-layers-4}
+
+::: { .callout-important title="**INTERACTIVE DEMO**" }
+:::
+
+## Statistics layers
+
+::: { .callout-tip title="Some `geom` layers transform the dataset" }
+- Usually this is a data summary (e.g. smoothing or binning, or fitting a model)
+:::
+
+![Statistical transformations are also added as layers](images/ggplot_layers_5.png){#fig-ggplot-layers-5}
+
+::: { .callout-important title="**INTERACTIVE DEMO**" }
+:::
+
+
+## Multi-panel figures
+
+::: { .callout-tip title="Comparisons can be clearer with multiple panels" }
+- *facets*
+- "small multiples plots"
+
+Use the `facet_wrap()` layer to generate grids of plots
+:::
+    
+::: { .callout-important title="**INTERACTIVE DEMO**" }
+
+```R
+# Compare life expectancy over time by continent
+p <- ggplot(data=gapminder, aes(x=year, y=lifeExp, colour=continent,
+                                group=country))
+p <- p + geom_line() + scale_y_log10()
+p + facet_wrap(~continent)
+```
+:::
+
+## Challenge 10 (5min)
+
+::: { .callout-warning title="Create a scatterplot and contour densities of GDP per capita against population size" }
+- Fill datapoint colour by continent?
+:::
+
+::: { .callout-caution title="ADVANCED CHALLENGE" }
+Transform the *x* axis to better visualise data spread, and use facets to panel density plots by year.
+:::
