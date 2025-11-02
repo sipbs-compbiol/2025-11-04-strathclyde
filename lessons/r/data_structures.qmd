@@ -504,8 +504,11 @@ eurodata <- gapminder %>%
 
 ## Challenge (5min)
 
-::: { .callout-caution }
-## Challenge
+::: { .panel-tabset }
+
+## Problem
+
+::: { .callout-caution title="Challenge"}
 
 Can you write a single line (which may span multiple lines in your script by including pipes) to produce a dataframe from `gapminder` containing:
 
@@ -513,6 +516,19 @@ Can you write a single line (which may span multiple lines in your script by inc
 - only for African nations
 
 - How many rows does the dataframe have?
+:::
+
+## Solution
+
+```R
+# Select life expectancy by country and year, only for Africa
+> afrodata <- gapminder %>%
+  filter(continent == "Africa") %>%
+  select(year, country, lifeExp)
+> nrow(afrodata)
+[1] 624
+```
+
 :::
 
 ## `group_by()`
@@ -565,11 +581,28 @@ gapminder %>% group_by(continent) %>%
 
 ## Challenge (5min)
 
-::: { .callout-caution }
-## Challenge
+::: { .panel-tabset }
 
+## Problem
+
+::: { .callout-caution  title="Challenge" }
 - Can you calculate the average life expectancy per *country* in the `gapminder` data?
 - Which nation has longest life expectancy, and which the shortest?
+:::
+
+## Solution
+
+```R
+# Find average life expectancy by nation
+avg_lifexp_country <- gapminder %>%
+  group_by(country) %>%
+  summarize(meanlifeExp=mean(lifeExp))
+  
+avg_lifexp_country %>% filter(meanlifeExp == min(meanlifeExp))
+
+avg_lifexp_country %>% filter(meanlifeExp == max(meanlifeExp))
+```
+
 :::
 
 ## `count()` and `n()`
@@ -748,24 +781,19 @@ kable(df1)
 - **OBSERVATIONS**: values measured across all variables for the same individual/unit/group: person, reactor, religion, company, etc.
 :::
 
-## Challenge (2min)
+## Challenge (2min) {.quiz-question .smaller}
 
-::: { .callout-warning }
-## In the table below, what are the rows and columns?
-:::
-
+::: { .callout-warning title="In the table below, what are the rows and columns?"}
 ```{r, echo=FALSE}
 kable(df1)
 ```
 
-::: { .callout-note }
-## USE CHALLENGE SECTION ON ETHERPAD
-
-- Rows=OBERVATIONS, Columns=VARIABLES
-- Rows=OBERVATIONS, Columns=NEITHER
-- Rows=NEITHER, Columns=VARIABLES
-- Rows=NEITHER, Columns=NEITHER
 :::
+
+- [Rows=OBERVATIONS, Columns=VARIABLES]{data-explanation="A person's name cannot vary so it is not a variable, and treatment here is not a collection of values measured across all variables"}
+- [Rows=OBERVATIONS, Columns=NEITHER]{data-explanation="Treatment here is not a collection of values measured across all variables"}
+- [Rows=NEITHER, Columns=VARIABLES]{data-explanation="A person's name cannot vary so it is not a variable"}
+- [Rows=NEITHER, Columns=NEITHER]{.correct}
 
 ## A Tidy Dataset (1)
 
@@ -972,11 +1000,22 @@ gap_normal <- gap_long %>%
 
 ## Challenge (5min)
 
-::: { .callout-caution }
-## Challenge
+::: { .panel-tabset }
 
+## Problem
+
+::: { .callout-caution title="Challenge"}
 Using the `gap_long` dataset, calculate the mean life expectancy, population, and GDP per capita for each continent.
 
 Hint: use the `group_by()` and `summarize()` functions we learned in the `dplyr` episode.
+:::
+
+## Solution
+
+```R
+gap_long %>% group_by(continent, obs_type) %>%
+   summarize(means=mean(obs_values))
+```
+
 :::
 
