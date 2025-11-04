@@ -1223,8 +1223,75 @@ Figure 1: Link to download gapminder data
 </ul>
 </section></section>
 <section>
+<section id="packages" class="title-slide slide level1 center">
+<h1>1. Packages</h1>
+
+</section>
+<section id="packages-1" class="slide level2">
+<h2>Packages</h2>
+<div title="R packages">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>R packages</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>a collection (or <em>library</em>) of reusable code</li>
+<li>many useful and specialist tools are distributed as packages</li>
+<li>over 10,000 packages are available at <code>CRAN</code></li>
+<li>you can distribute your own code as a package</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>INTERACTIVE DEMO</strong></p>
+</div>
+<div class="callout-content">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href></a><span class="fu">installed.packages</span>()               <span class="co"># see installed packages</span></span>
+<span id="cb1-2"><a href></a><span class="fu">install.packages</span>(<span class="st">&quot;packagename&quot;</span>)    <span class="co"># install a new package</span></span>
+<span id="cb1-3"><a href></a><span class="fu">update.packages</span>()                  <span class="co"># update installed packages</span></span>
+<span id="cb1-4"><a href></a><span class="fu">library</span>(packagename)               <span class="co"># import a package for use in your code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>CRAN - the Comprehensive <code>R</code> Archive Network: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></p>
+</div>
+</section>
+<section id="challenge-2min" class="slide level2">
+<h2>Challenge (2min)</h2>
+<div title="Check if the following packages are installed on your system, and install them if necessary.">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Check if the following packages are installed on your system, and install them if necessary.</strong></p>
+</div>
+<div class="callout-content">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a>dplyr</span>
+<span id="cb2-2"><a href></a>ggplot2</span>
+<span id="cb2-3"><a href></a>knitr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
 <section id="data-types" class="title-slide slide level1 center">
-<h1>1. Data Types</h1>
+<h1>2. Data Types</h1>
 <div class="footer">
 <p><a href="https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1.html">Episode 4: Data Structures Part 1</a></p>
 </div>
@@ -1257,9 +1324,9 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-1-2">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href></a>cats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">coat =</span> <span class="fu">c</span>(<span class="st">&quot;calico&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;tabby&quot;</span>),</span>
-<span id="cb1-2"><a href></a>                   <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">5.0</span>, <span class="fl">3.2</span>),</span>
-<span id="cb1-3"><a href></a>                   <span class="at">likes_catnip =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href></a>cats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">coat =</span> <span class="fu">c</span>(<span class="st">&quot;calico&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;tabby&quot;</span>),</span>
+<span id="cb3-2"><a href></a>                   <span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">2.1</span>, <span class="fl">5.0</span>, <span class="fl">3.2</span>),</span>
+<span id="cb3-3"><a href></a>                   <span class="at">likes_catnip =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1338,12 +1405,12 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-2-2">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(<span class="dv">1</span>L)</span>
-<span id="cb2-2"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span></span>
-<span id="cb2-3"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(cats<span class="sc">$</span>coat)</span>
-<span id="cb2-4"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;character&quot;</span></span>
-<span id="cb2-5"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(<span class="st">&quot;Irn Bru&quot;</span>)</span>
-<span id="cb2-6"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;character&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(<span class="dv">1</span>L)</span>
+<span id="cb4-2"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;integer&quot;</span></span>
+<span id="cb4-3"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(cats<span class="sc">$</span>coat)</span>
+<span id="cb4-4"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;character&quot;</span></span>
+<span id="cb4-5"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(<span class="st">&quot;Irn Bru&quot;</span>)</span>
+<span id="cb4-6"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;character&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1387,18 +1454,18 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-3-2">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href></a><span class="sc">&gt;</span> <span class="fu">str</span>(cats2)</span>
-<span id="cb3-2"><a href></a><span class="st">&#39;data.frame&#39;</span><span class="sc">:</span>   <span class="dv">4</span> obs. of  <span class="dv">3</span> variables<span class="sc">:</span></span>
-<span id="cb3-3"><a href></a> <span class="er">$</span> coat        <span class="sc">:</span> chr  <span class="st">&quot;calico&quot;</span> <span class="st">&quot;black&quot;</span> <span class="st">&quot;tabby&quot;</span> <span class="st">&quot;tabby&quot;</span></span>
-<span id="cb3-4"><a href></a> <span class="sc">$</span> weight      <span class="sc">:</span> chr  <span class="st">&quot;2.1&quot;</span> <span class="st">&quot;5&quot;</span> <span class="st">&quot;3.2&quot;</span> <span class="st">&quot;2.3 or 2.4&quot;</span></span>
-<span id="cb3-5"><a href></a> <span class="sc">$</span> likes_catnip<span class="sc">:</span> num  <span class="dv">1</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href></a><span class="sc">&gt;</span> <span class="fu">str</span>(cats2)</span>
+<span id="cb5-2"><a href></a><span class="st">&#39;data.frame&#39;</span><span class="sc">:</span>   <span class="dv">4</span> obs. of  <span class="dv">3</span> variables<span class="sc">:</span></span>
+<span id="cb5-3"><a href></a> <span class="er">$</span> coat        <span class="sc">:</span> chr  <span class="st">&quot;calico&quot;</span> <span class="st">&quot;black&quot;</span> <span class="st">&quot;tabby&quot;</span> <span class="st">&quot;tabby&quot;</span></span>
+<span id="cb5-4"><a href></a> <span class="sc">$</span> weight      <span class="sc">:</span> chr  <span class="st">&quot;2.1&quot;</span> <span class="st">&quot;5&quot;</span> <span class="st">&quot;3.2&quot;</span> <span class="st">&quot;2.3 or 2.4&quot;</span></span>
+<span id="cb5-5"><a href></a> <span class="sc">$</span> likes_catnip<span class="sc">:</span> num  <span class="dv">1</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section></section>
 <section>
 <section id="data-structures" class="title-slide slide level1 center">
-<h1>2. Data Structures</h1>
+<h1>3. Data Structures</h1>
 <div class="footer">
 <p><a href="https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1.html">Episode 4: Data Structures Part 1</a></p>
 </div>
@@ -1431,9 +1498,9 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-4-2">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">45</span>, <span class="dv">33</span>)</span>
-<span id="cb4-2"><a href></a><span class="sc">&gt;</span> x</span>
-<span id="cb4-3"><a href></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">12</span> <span class="dv">45</span> <span class="dv">33</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">45</span>, <span class="dv">33</span>)</span>
+<span id="cb6-2"><a href></a><span class="sc">&gt;</span> x</span>
+<span id="cb6-3"><a href></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">12</span> <span class="dv">45</span> <span class="dv">33</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1461,8 +1528,8 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-5-2">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href></a><span class="sc">&gt;</span> quiz_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">6</span>,<span class="st">&#39;3&#39;</span>)</span>
-<span id="cb5-2"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(quiz_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href></a><span class="sc">&gt;</span> quiz_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">6</span>,<span class="st">&#39;3&#39;</span>)</span>
+<span id="cb7-2"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(quiz_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1501,9 +1568,9 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-6-2">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href></a><span class="sc">&gt;</span> coercion_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb6-2"><a href></a><span class="sc">&gt;</span> coercion_vector</span>
-<span id="cb6-3"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span>    <span class="st">&quot;TRUE&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href></a><span class="sc">&gt;</span> coercion_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href></a><span class="sc">&gt;</span> coercion_vector</span>
+<span id="cb8-3"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;a&quot;</span>    <span class="st">&quot;TRUE&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1558,11 +1625,11 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-7-2">
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">12</span> <span class="dv">45</span> <span class="dv">33</span></span>
-<span id="cb7-2"><a href></a><span class="sc">&gt;</span> <span class="fu">as.character</span>(x)</span>
-<span id="cb7-3"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;10&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;45&quot;</span> <span class="st">&quot;33&quot;</span></span>
-<span id="cb7-4"><a href></a><span class="sc">&gt;</span> <span class="fu">as.complex</span>(x)</span>
-<span id="cb7-5"><a href></a>[<span class="dv">1</span>] <span class="dv">10</span><span class="sc">+</span><span class="dv">0</span>i <span class="dv">12</span><span class="sc">+</span><span class="dv">0</span>i <span class="dv">45</span><span class="sc">+</span><span class="dv">0</span>i <span class="dv">33</span><span class="sc">+</span><span class="dv">0</span>i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href></a>[<span class="dv">1</span>] <span class="dv">10</span> <span class="dv">12</span> <span class="dv">45</span> <span class="dv">33</span></span>
+<span id="cb9-2"><a href></a><span class="sc">&gt;</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb9-3"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;10&quot;</span> <span class="st">&quot;12&quot;</span> <span class="st">&quot;45&quot;</span> <span class="st">&quot;33&quot;</span></span>
+<span id="cb9-4"><a href></a><span class="sc">&gt;</span> <span class="fu">as.complex</span>(x)</span>
+<span id="cb9-5"><a href></a>[<span class="dv">1</span>] <span class="dv">10</span><span class="sc">+</span><span class="dv">0</span>i <span class="dv">12</span><span class="sc">+</span><span class="dv">0</span>i <span class="dv">45</span><span class="sc">+</span><span class="dv">0</span>i <span class="dv">33</span><span class="sc">+</span><span class="dv">0</span>i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1593,7 +1660,7 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-8-2">
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="st">&#39;a&#39;</span>, <span class="cn">TRUE</span>, <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="st">&#39;a&#39;</span>, <span class="cn">TRUE</span>, <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1613,7 +1680,7 @@ Figure 1: Link to download gapminder data
 </section></section>
 <section>
 <section id="data-frames" class="title-slide slide level1 center">
-<h1>3. Data Frames</h1>
+<h1>4. Data Frames</h1>
 <div class="footer">
 <p><a href="https://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2.html">Episode 5: Data Structures Part 2</a></p>
 </div>
@@ -1644,10 +1711,10 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-9-2">
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(cats)</span>
-<span id="cb9-2"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></span>
-<span id="cb9-3"><a href></a><span class="sc">&gt;</span> cats[[<span class="dv">2</span>]]</span>
-<span id="cb9-4"><a href></a>[<span class="dv">1</span>] <span class="fl">2.1</span> <span class="fl">5.0</span> <span class="fl">3.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(cats)</span>
+<span id="cb11-2"><a href></a>[<span class="dv">1</span>] <span class="st">&quot;list&quot;</span></span>
+<span id="cb11-3"><a href></a><span class="sc">&gt;</span> cats[[<span class="dv">2</span>]]</span>
+<span id="cb11-4"><a href></a>[<span class="dv">1</span>] <span class="fl">2.1</span> <span class="fl">5.0</span> <span class="fl">3.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1721,7 +1788,7 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-10-2">
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href></a>gapminder <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/gapminder_data.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href></a>gapminder <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/gapminder_data.csv&quot;</span>, <span class="at">sep=</span><span class="st">&quot;,&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1751,22 +1818,22 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-11-2">
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href></a><span class="fu">str</span>(gapminder)              <span class="co"># structure of the data.frame</span></span>
-<span id="cb11-2"><a href></a><span class="fu">typeof</span>(gapminder<span class="sc">$</span>year)      <span class="co"># data type of a column</span></span>
-<span id="cb11-3"><a href></a><span class="fu">length</span>(gapminder)           <span class="co"># length of the data.frame</span></span>
-<span id="cb11-4"><a href></a><span class="fu">nrow</span>(gapminder)             <span class="co"># number of rows in data.frame</span></span>
-<span id="cb11-5"><a href></a><span class="fu">ncol</span>(gapminder)             <span class="co"># number of columns in data.frame</span></span>
-<span id="cb11-6"><a href></a><span class="fu">dim</span>(gapminder)              <span class="co"># number of rows and columns in data.frame</span></span>
-<span id="cb11-7"><a href></a><span class="fu">colnames</span>(gapminder)         <span class="co"># column names from data.frame</span></span>
-<span id="cb11-8"><a href></a><span class="fu">head</span>(gapminder)             <span class="co"># first few rows of dataframe</span></span>
-<span id="cb11-9"><a href></a><span class="fu">summary</span>(gapminder)          <span class="co"># summary of data in data.frame columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href></a><span class="fu">str</span>(gapminder)              <span class="co"># structure of the data.frame</span></span>
+<span id="cb13-2"><a href></a><span class="fu">typeof</span>(gapminder<span class="sc">$</span>year)      <span class="co"># data type of a column</span></span>
+<span id="cb13-3"><a href></a><span class="fu">length</span>(gapminder)           <span class="co"># length of the data.frame</span></span>
+<span id="cb13-4"><a href></a><span class="fu">nrow</span>(gapminder)             <span class="co"># number of rows in data.frame</span></span>
+<span id="cb13-5"><a href></a><span class="fu">ncol</span>(gapminder)             <span class="co"># number of columns in data.frame</span></span>
+<span id="cb13-6"><a href></a><span class="fu">dim</span>(gapminder)              <span class="co"># number of rows and columns in data.frame</span></span>
+<span id="cb13-7"><a href></a><span class="fu">colnames</span>(gapminder)         <span class="co"># column names from data.frame</span></span>
+<span id="cb13-8"><a href></a><span class="fu">head</span>(gapminder)             <span class="co"># first few rows of dataframe</span></span>
+<span id="cb13-9"><a href></a><span class="fu">summary</span>(gapminder)          <span class="co"># summary of data in data.frame columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section></section>
 <section>
 <section id="data-frame-manipulation-with-dplyr" class="title-slide slide level1 center">
-<h1>4. Data Frame Manipulation With <code>dplyr</code></h1>
+<h1>5. Data Frame Manipulation With <code>dplyr</code></h1>
 <div class="footer">
 <p><a href="https://swcarpentry.github.io/r-novice-gapminder/12-dplyr.html">Episode 12: Data Frame Manipulation with <code>dplyr</code></a></p>
 </div>
@@ -1855,8 +1922,8 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-12-2">
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href></a><span class="fu">head</span>(<span class="fu">select</span>(gapminder, year, country, gdpPercap))</span>
-<span id="cb12-2"><a href></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">select</span>(year, country, gdpPercap) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href></a><span class="fu">head</span>(<span class="fu">select</span>(gapminder, year, country, gdpPercap))</span>
+<span id="cb14-2"><a href></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">select</span>(year, country, gdpPercap) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1897,12 +1964,12 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-13-2">
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href></a><span class="fu">filter</span>(gapminder, continent<span class="sc">==</span><span class="st">&quot;Europe&quot;</span>)</span>
-<span id="cb13-2"><a href></a></span>
-<span id="cb13-3"><a href></a><span class="co"># Select gdpPercap by country and year, only for Europe</span></span>
-<span id="cb13-4"><a href></a>eurodata <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb13-5"><a href></a>              <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-6"><a href></a>              <span class="fu">select</span>(year, country, gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href></a><span class="fu">filter</span>(gapminder, continent<span class="sc">==</span><span class="st">&quot;Europe&quot;</span>)</span>
+<span id="cb15-2"><a href></a></span>
+<span id="cb15-3"><a href></a><span class="co"># Select gdpPercap by country and year, only for Europe</span></span>
+<span id="cb15-4"><a href></a>eurodata <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href></a>              <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Europe&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href></a>              <span class="fu">select</span>(year, country, gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1935,12 +2002,12 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-14-2">
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href></a><span class="co"># Select life expectancy by country and year, only for Africa</span></span>
-<span id="cb14-2"><a href></a><span class="sc">&gt;</span> afrodata <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href></a>  <span class="fu">select</span>(year, country, lifeExp)</span>
-<span id="cb14-5"><a href></a><span class="sc">&gt;</span> <span class="fu">nrow</span>(afrodata)</span>
-<span id="cb14-6"><a href></a>[<span class="dv">1</span>] <span class="dv">624</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href></a><span class="co"># Select life expectancy by country and year, only for Africa</span></span>
+<span id="cb16-2"><a href></a><span class="sc">&gt;</span> afrodata <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href></a>  <span class="fu">select</span>(year, country, lifeExp)</span>
+<span id="cb16-5"><a href></a><span class="sc">&gt;</span> <span class="fu">nrow</span>(afrodata)</span>
+<span id="cb16-6"><a href></a>[<span class="dv">1</span>] <span class="dv">624</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1969,8 +2036,8 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-15-2">
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href></a><span class="fu">group_by</span>(gapminder, continent)</span>
-<span id="cb15-2"><a href></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href></a><span class="fu">group_by</span>(gapminder, continent)</span>
+<span id="cb17-2"><a href></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1999,9 +2066,9 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-16-2">
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href></a><span class="co"># Produce table of mean GDP by continent</span></span>
-<span id="cb16-2"><a href></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href></a>              <span class="fu">summarize</span>(<span class="at">meangdpPercap=</span><span class="fu">mean</span>(gdpPercap))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href></a><span class="co"># Produce table of mean GDP by continent</span></span>
+<span id="cb18-2"><a href></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href></a>              <span class="fu">summarize</span>(<span class="at">meangdpPercap=</span><span class="fu">mean</span>(gdpPercap))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2032,14 +2099,14 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-17-2">
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href></a><span class="co"># Find average life expectancy by nation</span></span>
-<span id="cb17-2"><a href></a>avg_lifexp_country <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb17-4"><a href></a>  <span class="fu">summarize</span>(<span class="at">meanlifeExp=</span><span class="fu">mean</span>(lifeExp))</span>
-<span id="cb17-5"><a href></a>  </span>
-<span id="cb17-6"><a href></a>avg_lifexp_country <span class="sc">%&gt;%</span> <span class="fu">filter</span>(meanlifeExp <span class="sc">==</span> <span class="fu">min</span>(meanlifeExp))</span>
-<span id="cb17-7"><a href></a></span>
-<span id="cb17-8"><a href></a>avg_lifexp_country <span class="sc">%&gt;%</span> <span class="fu">filter</span>(meanlifeExp <span class="sc">==</span> <span class="fu">max</span>(meanlifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href></a><span class="co"># Find average life expectancy by nation</span></span>
+<span id="cb19-2"><a href></a>avg_lifexp_country <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href></a>  <span class="fu">summarize</span>(<span class="at">meanlifeExp=</span><span class="fu">mean</span>(lifeExp))</span>
+<span id="cb19-5"><a href></a>  </span>
+<span id="cb19-6"><a href></a>avg_lifexp_country <span class="sc">%&gt;%</span> <span class="fu">filter</span>(meanlifeExp <span class="sc">==</span> <span class="fu">min</span>(meanlifeExp))</span>
+<span id="cb19-7"><a href></a></span>
+<span id="cb19-8"><a href></a>avg_lifexp_country <span class="sc">%&gt;%</span> <span class="fu">filter</span>(meanlifeExp <span class="sc">==</span> <span class="fu">max</span>(meanlifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2084,13 +2151,13 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-18-2">
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href></a>  <span class="fu">count</span>(continent, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb18-4"><a href></a></span>
-<span id="cb18-5"><a href></a>gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb18-6"><a href></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
-<span id="cb18-7"><a href></a>  <span class="fu">summarize</span>(<span class="at">se_lifeExp =</span> <span class="fu">sd</span>(lifeExp)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href></a>  <span class="fu">count</span>(continent, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-4"><a href></a></span>
+<span id="cb20-5"><a href></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb20-7"><a href></a>  <span class="fu">summarize</span>(<span class="at">se_lifeExp =</span> <span class="fu">sd</span>(lifeExp)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2131,17 +2198,17 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-19-2">
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href></a><span class="co"># Calculate GDP in $billion</span></span>
-<span id="cb19-2"><a href></a>gdp_bill <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href></a>  <span class="fu">mutate</span>(<span class="at">gdp_billion =</span> gdpPercap <span class="sc">*</span> pop <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>)</span>
-<span id="cb19-4"><a href></a></span>
-<span id="cb19-5"><a href></a><span class="co"># Calculate total/sd of GDP by continent and year</span></span>
-<span id="cb19-6"><a href></a>gdp_bycontinents_byyear <span class="ot">&lt;-</span> gdp_bill <span class="sc">%&gt;%</span></span>
-<span id="cb19-7"><a href></a>    <span class="fu">group_by</span>(continent,year) <span class="sc">%&gt;%</span></span>
-<span id="cb19-8"><a href></a>    <span class="fu">summarize</span>(<span class="at">mean_gdpPercap=</span><span class="fu">mean</span>(gdpPercap),</span>
-<span id="cb19-9"><a href></a>              <span class="at">sd_gdpPercap=</span><span class="fu">sd</span>(gdpPercap),</span>
-<span id="cb19-10"><a href></a>              <span class="at">mean_gdp_billion=</span><span class="fu">mean</span>(gdp_billion),</span>
-<span id="cb19-11"><a href></a>              <span class="at">sd_gdp_billion=</span><span class="fu">sd</span>(gdp_billion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href></a><span class="co"># Calculate GDP in $billion</span></span>
+<span id="cb21-2"><a href></a>gdp_bill <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href></a>  <span class="fu">mutate</span>(<span class="at">gdp_billion =</span> gdpPercap <span class="sc">*</span> pop <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>)</span>
+<span id="cb21-4"><a href></a></span>
+<span id="cb21-5"><a href></a><span class="co"># Calculate total/sd of GDP by continent and year</span></span>
+<span id="cb21-6"><a href></a>gdp_bycontinents_byyear <span class="ot">&lt;-</span> gdp_bill <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href></a>    <span class="fu">group_by</span>(continent,year) <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href></a>    <span class="fu">summarize</span>(<span class="at">mean_gdpPercap=</span><span class="fu">mean</span>(gdpPercap),</span>
+<span id="cb21-9"><a href></a>              <span class="at">sd_gdpPercap=</span><span class="fu">sd</span>(gdpPercap),</span>
+<span id="cb21-10"><a href></a>              <span class="at">mean_gdp_billion=</span><span class="fu">mean</span>(gdp_billion),</span>
+<span id="cb21-11"><a href></a>              <span class="at">sd_gdp_billion=</span><span class="fu">sd</span>(gdp_billion))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2185,17 +2252,17 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-20-2">
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href></a>gdp_billion_large_countries <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">gdp_billion_large =</span> <span class="fu">ifelse</span>(pop <span class="sc">&gt;</span> <span class="fl">10e6</span>, </span>
-<span id="cb20-3"><a href></a>                                    gdpPercap <span class="sc">*</span> pop <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>,</span>
-<span id="cb20-4"><a href></a>                                    <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href></a>gdp_billion_large_countries <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">gdp_billion_large =</span> <span class="fu">ifelse</span>(pop <span class="sc">&gt;</span> <span class="fl">10e6</span>, </span>
+<span id="cb22-3"><a href></a>                                    gdpPercap <span class="sc">*</span> pop <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>,</span>
+<span id="cb22-4"><a href></a>                                    <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section></section>
 <section>
 <section id="tidy-data" class="title-slide slide level1 center">
-<h1>5. Tidy Data</h1>
+<h1>6. Tidy Data</h1>
 <div class="footer">
 <p><a href="https://swcarpentry.github.io/r-novice-gapminder/13-tidyr.html">Episode 13: Data Frame Manipulation with <code>tidyr</code></a></p>
 </div>
@@ -2388,7 +2455,7 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 </section>
-<section id="challenge-2min" class="slide level2 quiz-question smaller">
+<section id="challenge-2min-1" class="slide level2 quiz-question smaller">
 <h2>Challenge (2min)</h2>
 <div title="In the table below, what are the rows and columns?">
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -2590,7 +2657,7 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-21-2">
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href></a><span class="fu">head</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href></a><span class="fu">head</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2662,8 +2729,8 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-22-2">
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href></a>gap_wide <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/gapminder_wide.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb22-2"><a href></a><span class="fu">str</span>(gap_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href></a>gap_wide <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/gapminder_wide.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-2"><a href></a><span class="fu">str</span>(gap_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2692,12 +2759,12 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-23-2">
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href></a>gap_long <span class="ot">&lt;-</span> gap_wide <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb23-3"><a href></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">starts_with</span>(<span class="st">&#39;pop&#39;</span>), <span class="fu">starts_with</span>(<span class="st">&#39;lifeExp&#39;</span>),</span>
-<span id="cb23-4"><a href></a>             <span class="fu">starts_with</span>(<span class="st">&#39;gdpPercap&#39;</span>)),</span>
-<span id="cb23-5"><a href></a>    <span class="at">names_to =</span> <span class="st">&quot;obstype_year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;obs_values&quot;</span></span>
-<span id="cb23-6"><a href></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href></a>gap_long <span class="ot">&lt;-</span> gap_wide <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb25-3"><a href></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">starts_with</span>(<span class="st">&#39;pop&#39;</span>), <span class="fu">starts_with</span>(<span class="st">&#39;lifeExp&#39;</span>),</span>
+<span id="cb25-4"><a href></a>             <span class="fu">starts_with</span>(<span class="st">&#39;gdpPercap&#39;</span>)),</span>
+<span id="cb25-5"><a href></a>    <span class="at">names_to =</span> <span class="st">&quot;obstype_year&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;obs_values&quot;</span></span>
+<span id="cb25-6"><a href></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2741,9 +2808,9 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-24-2">
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href></a>gap_long <span class="sc">%&gt;%</span> <span class="fu">separate</span>(obstype_year,</span>
-<span id="cb24-2"><a href></a>                      <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&#39;obs_type&#39;</span>, <span class="st">&#39;year&#39;</span>),</span>
-<span id="cb24-3"><a href></a>                      <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href></a>gap_long <span class="sc">%&gt;%</span> <span class="fu">separate</span>(obstype_year,</span>
+<span id="cb26-2"><a href></a>                      <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&#39;obs_type&#39;</span>, <span class="st">&#39;year&#39;</span>),</span>
+<span id="cb26-3"><a href></a>                      <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2772,9 +2839,9 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-25-2">
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href></a>gap_normal <span class="ot">&lt;-</span> gap_long <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> obs_type,</span>
-<span id="cb25-3"><a href></a>              <span class="at">values_from =</span> obs_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href></a>gap_normal <span class="ot">&lt;-</span> gap_long <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> obs_type,</span>
+<span id="cb27-3"><a href></a>              <span class="at">values_from =</span> obs_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -2803,8 +2870,8 @@ Figure 1: Link to download gapminder data
 </div>
 </div>
 <div id="tabset-26-2">
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href></a>gap_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(continent, obs_type) <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href></a>   <span class="fu">summarize</span>(<span class="at">means=</span><span class="fu">mean</span>(obs_values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href></a>gap_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(continent, obs_type) <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href></a>   <span class="fu">summarize</span>(<span class="at">means=</span><span class="fu">mean</span>(obs_values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

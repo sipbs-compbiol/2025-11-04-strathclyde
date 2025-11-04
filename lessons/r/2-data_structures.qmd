@@ -66,7 +66,46 @@ library(tidyverse)
 - To be able to use the six main data frame manipulation ‘verbs’ with pipes in `dplyr`.
 - To understand the concepts of ‘longer’ and ‘wider’ data frame formats and be able to convert between them with `tidyr`.
 
-# 1. Data Types
+# 1. Packages
+
+## Packages
+
+::: { .callout-tip title="R packages" }
+- a collection (or *library*) of reusable code
+- many useful and specialist tools are distributed as packages
+- over 10,000 packages are available at `CRAN`
+- you can distribute your own code as a package
+:::
+
+::: { .callout-important }
+## INTERACTIVE DEMO
+
+```R
+installed.packages()               # see installed packages
+install.packages("packagename")    # install a new package
+update.packages()                  # update installed packages
+library(packagename)               # import a package for use in your code
+```
+:::
+
+::: {.footer}
+CRAN - the Comprehensive `R` Archive Network: <https://cran.r-project.org/>
+:::
+
+
+## Challenge (2min)
+
+::: { .callout-warning title="Check if the following packages are installed on your system, and install them if necessary."}
+
+```R
+dplyr
+ggplot2
+knitr
+```
+:::
+
+
+# 2. Data Types
 
 ::: footer
 
@@ -182,7 +221,7 @@ Add your suggestions of data types at:
 
 :::
 
-# 2. Data Structures
+# 3. Data Structures
 
 ::: footer
 
@@ -327,7 +366,7 @@ l <- list(1, 'a', TRUE, seq(2, 5))
 *elements* in a `list` are denoted by `[[]]` and individual elements can also be named
 :::
 
-# 3. Data Frames
+# 4. Data Frames
 
 ::: footer
 
@@ -430,7 +469,7 @@ summary(gapminder)          # summary of data in data.frame columns
 
 :::
 
-# 4. Data Frame Manipulation With `dplyr`
+# 5. Data Frame Manipulation With `dplyr`
 
 ::: footer
 
@@ -723,7 +762,7 @@ gdp_billion_large_countries <- gapminder %>%
 
 :::
 
-# 5. Tidy Data
+# 6. Tidy Data
 
 ::: footer
 
