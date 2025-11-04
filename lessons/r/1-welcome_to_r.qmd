@@ -1,5 +1,9 @@
 ---
 title: "Welcome to R and RStudio"
+author:
+  - name: "Leighton Pritchard"
+    affiliation: "University of Strathclyde"
+date: "2025-11-04"
 format:
   revealjs:
     slide-number: true
