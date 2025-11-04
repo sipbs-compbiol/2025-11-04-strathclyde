@@ -46,6 +46,10 @@ revealjs-plugins:
 
 ::::
 
+::: { .footer }
+[https://carpentries.github.io/workshop-template/install_instructions/](https://carpentries.github.io/workshop-template/install_instructions/)
+:::
+
 # 2. Nelle's pipeline
 
 ## Nelle's project
@@ -58,14 +62,15 @@ revealjs-plugins:
 
 ## Nelle's pipeline
 
-- You'll need to know how to:
-  - *navigate to* a file/directory
-  - *create* a file/directory
-  - *check the length of a file*
-  - *chain commands* together
-  - *retrieve* a set of files
-  - *iterate* over files
-  - *run a shell script containing your pipeline*
+::: { .callout-caution title="Nelle will need to know how to:" }
+- *navigate to* a file/directory
+- *create* a file/directory
+- *check the length of a file*
+- *chain commands* together
+- *retrieve* a set of files
+- *iterate* over files
+- *run a shell script containing her pipeline*
+:::
   
 # 3. Navigating files and directories
 
@@ -94,12 +99,12 @@ revealjs-plugins:
 ::: { .callout-warning title="Starting from `/Users/nelle/data` how can you navigate to Nelle's home directory?"}
 :::
 
-- [`cd .`]{data-explanation="`cd .` stays in the same directory"}
-- [`cd /`]{data-explanation="`cd /` moves to the filesystem root"}
-- [`cd ~`]{.correct}
-- [`cd home`]{data-explanation="There is no `home` directory"}
-- [`cd`]{.correct}
-- [`cd ..`]{.correct}
+- [cd .]{data-explanation="`cd .` stays in the same directory"}
+- [cd /]{data-explanation="`cd /` moves to the filesystem root"}
+- [cd ~]{.correct}
+- [cd home]{data-explanation="There is no `home` directory"}
+- [cd]{.correct}
+- [cd ..]{.correct}
 
 ## Challenge (1min) {.quiz-question .smaller}
 
@@ -121,9 +126,9 @@ revealjs-plugins:
 
 :::: 
 
-- [`ls pwd`]{data-explanation="There is no `pwd` directory"}
-- [`ls -r -F`]{.correct}
-- [`ls -r -F /Users/backup`]{.correct}
+- [ls pwd]{data-explanation="There is no `pwd` directory"}
+- [ls -r -F]{.correct}
+- [ls -r -F /Users/backup]{.correct}
 
 # 4. Shell command syntax
 
@@ -173,13 +178,13 @@ Changing a file extension does not change the file content
 ## Challenge (1min) {.quiz-question}
 
 ::: { .callout-warning title="You accidentally called your file `statstics.txt`"}
-How do you rename it to `statistics.txt`?
+How can you rename it to `statistics.txt`?
 :::
 
-- [`cp statstics.txt statistics.txt`]{data-explanation="This copies the file, so the original would need to be deleted"}
-- [`mv statstics.txt statistics.txt`]{.correct}
-- [`cp statstics.txt .`]{data-explanation="This would attempt to copy the file to its own current location"}
-- [`mv statstics.txt .`]{data-explanation="This would attempt to move the file to its own current location"}
+- [cp statstics.txt statistics.txt]{data-explanation="This copies the file, so the original would need to be deleted"}
+- [mv statstics.txt statistics.txt]{.correct}
+- [cp statstics.txt .]{data-explanation="This would attempt to copy the file to its own current location"}
+- [mv statstics.txt .]{data-explanation="This would attempt to move the file to its own current location"}
 
 ## Challenge (1min) {.quiz-question}
 
@@ -187,10 +192,10 @@ How do you rename it to `statistics.txt`?
 `alkanes/ethane.pdb alkanes/methane.pdb`
 :::
 
-- [`ls alkanes/*t*ane.pdb`]{data-explanation="`alkanes/ethane.pdb   alkanes/methane.pdb  alkanes/octane.pdb   alkanes/pentane.pdb`"}
-- [`ls alkanes/*t?ne.*`]{data-explanation="`alkanes/octane.pdb   alkanes/pentane.pdb`"}
-- [`ls alkanes/*t??ne.pdb`]{.correct}
-- [`ls alkanes/ethane.*`]{data-explanation="`alkanes/ethane.pdb`"}
+- [ls alkanes/\*t\*ane.pdb]{data-explanation="`alkanes/ethane.pdb   alkanes/methane.pdb  alkanes/octane.pdb   alkanes/pentane.pdb`"}
+- [ls alkanes/\*t?ne.\*]{data-explanation="`alkanes/octane.pdb   alkanes/pentane.pdb`"}
+- [ls alkanes/\*t??ne.pdb]{.correct}
+- [ls alkanes/ethane.\*]{data-explanation="`alkanes/ethane.pdb`"}
 
 # 5. Pipes and Filters
 
@@ -203,10 +208,10 @@ How do you rename it to `statistics.txt`?
 ::: { .callout-warning title="Which command shows the three files with fewest lines?"}
 :::
 
-- [`wc -l * > sort -n > head -n 3`]{data-explanation="This attempts redirection to a file called sort"}
-- [`wc -l * | sort -n | head -n 1-3`]{data-explanation="This is incorrect input to head"}
-- [`wc -l * | head -n 3 | sort -n`]{data-explanation="This inverts the order of sort and head"}
-- [`wc -l * | sort -n | head -n 3`]{.correct}
+- [wc -l \* > sort -n > head -n 3]{data-explanation="This attempts redirection to a file called sort"}
+- [wc -l \* | sort -n | head -n 1-3]{data-explanation="This is incorrect input to head"}
+- [wc -l \* | head -n 3 | sort -n]{data-explanation="This inverts the order of sort and head"}
+- [wc -l \* | sort -n | head -n 3]{.correct}
 
 # 6. Loops
 
@@ -230,13 +235,13 @@ done
 ## Problem
 
 ::: { .callout-warning title="Write your own loop"}
-Write a loop that echoes all ten numbers from 0 to 9
+Write a loop that `echo`es all ten numbers from 0 to 9 on screen
 :::
 
 ## Solution
 
 ::: { .callout-warning title="Write your own loop"}
-Write a loop that echoes all ten numbers from 0 to 9
+Write a loop that `echo`es all ten numbers from 0 to 9 on screen
 :::
 
 ::: { .callout-tip title="Solution" }
