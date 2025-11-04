@@ -52,7 +52,7 @@ revealjs-plugins:
 
 > Nelle Nemo, a marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch.
 >
-> She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins. >
+> She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins.
 >
 > She needs to run these 1520 files through an imaginary program called `goostats.sh`. In addition to this huge task, she has to write up results by the end of the month, so her paper can appear in a special issue of _Aquatic Goo Letters_.
 
