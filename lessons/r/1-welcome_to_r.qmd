@@ -56,6 +56,10 @@ library(tidyverse)
 
 ::::
 
+::: { .footer }
+[https://carpentries.github.io/workshop-template/install_instructions/](https://carpentries.github.io/workshop-template/install_instructions/)
+:::
+
 ## Learning Objectives
 
 - Fundamentals of `R` and `RStudio`
