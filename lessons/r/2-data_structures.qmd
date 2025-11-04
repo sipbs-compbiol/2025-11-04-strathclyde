@@ -733,7 +733,7 @@ gdp_billion_large_countries <- gapminder %>%
 
 ## Why Tidy Data?
 
-> "Tidy datasets are all alike, but every messy dataset is messy in its own way"
+> "Tidy datasets are all alike, but every messy dataset is messy in its own way" - *not Tolstoy*
 
 ::: { .callout-caution }
 ## Data Cleaning is not just a first step
