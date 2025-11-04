@@ -1,0 +1,86 @@
+---
+title: "IBioIC Carpentries 2025-11-04/05"
+author:
+  - name: "Leighton Pritchard"
+    affiliation: "University of Strathclyde"
+date: "2025-11-04"
+format:
+  revealjs:
+    slide-number: true
+    controls: true
+    preview-links: true
+    footer: "IBioIC Carpentries Workshop"
+    logo: "images/carpentries_logo.png"
+    theme: [default, ./includes/custom.scss]
+    width: 1280
+    height: 720
+    self-contained: true
+---
+
+# 1. Welcome
+
+## Staff
+
+- Tutor: Leighton Pritchard
+- Helpers: Lewis Kelly, William Kerr
+
+::: { .callout-tip title="Sticky note status indicators" }
+- Use the **RED** sticky note to indicate that an issue/you want to talk to a helper
+- Use the **ORANGE** sticky note to indicate that things are good/you've finished an exercise
+
+![Use red/green (ORANGE!) sticky notes as status indicators](images/red_green_sticky.png){#fig-sticky-notes}
+:::
+
+# 2. The Carpentries
+
+## What is/are The Carpentries?
+
+::: { .callout-tip title="Non-profit organisation teaching foundational coding and data science skills to researchers" }
+These skills are often not included in research training, for many disciplines
+:::
+
+::: { .callout-note title="A global community" }
+- Open-source, collaboratively-built lessons
+- Evidence-based pedagogy
+- Live coding, "learn-by-doing"
+- Supportive culture ([code of conduct](https://docs.carpentries.org/policies/coc/))
+:::
+
+
+::: { .callout-caution title="Advocacy for open source, reproducible research software and data practices" }
+:::
+
+::: { .footer }
+[https://carpentries.org/about-us/](https://carpentries.org/about-us/)
+:::
+
+## Carpentries timeline
+
+![The Carpentries organisational timeline](images/carpentries_timeline.png){#fig-carpentries-timeline}
+
+# 3. Schedule
+
+## Schedule
+
+| Day | Session | Topic |
+| :-- | :------ | :---- |
+| Tuesday | AM | Shell |
+| Tuesday | PM | R part 1 |
+| Wednesday | AM | OpenRefine |
+| Wednesday | PM | R part 2 |
+
+::: { .callout-tip title="Breaks"}
+- Morning coffee/pastries: 0930-1000
+- Morning break: 1100-1115
+- Lunch: 1215-1300
+- Afternoon tea/coffee: 1430-1450
+:::
+
+::: { .callout-important title="Fire alarm test Tuesday morning" }
+:::
+
+::: { .footer }
+[https://sipbs-compbiol.github.io/2025-11-04-strathclyde/](https://sipbs-compbiol.github.io/2025-11-04-strathclyde/)
+:::
+
+# 4. Questions?

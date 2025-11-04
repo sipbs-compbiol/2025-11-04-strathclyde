@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>instructor_notes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="2025-11-04-strathclyde-shell-lesson-instructor-notes">2025-11-04-strathclyde Shell lesson instructor notes</h1>
+<h2 id="summary-and-setup">Summary and Setup</h2>
+<p><strong>[SLIDE HERE: Links/QR codes]</strong></p>
+<ul>
+<li>Lesson site: <a href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a></li>
+</ul>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>
+<p>The Unix shell has been around longer than most users, including me, have been alive</p>
+</li>
+<li>
+<p>It has survived and adapted, <em>unlike flares, glam rock, Madchester, and the comedy reputation of Friends</em>, because it is a <strong>very powerful tool for controlling a computer</strong>.</p>
+</li>
+<li>
+<p>With the shell you can carry out extremely powerful tasks, often with only a few keystrokes or lines of code.</p>
+</li>
+<li>
+<p>You can use it to <strong>automate repetitive tasks</strong> and <strong>combine smaller tasks</strong> into larger, even more powerful <strong>workflows</strong>.</p>
+</li>
+<li>
+<p>Importantly for us as scientists, it allows us to easily record what we did (<strong>reproducibility</strong>) and share the methodology (<strong>repeatability</strong>)</p>
+</li>
+<li>
+<p>If you want to use high-performance computing (such as ARCHIE-West, here at Strathclyde) in your work - and this is becoming much more necessary as the volumes of biological data increase - you will need to use the shell.</p>
+</li>
+<li>
+<p>We'll be working through the filesystem and the shell.</p>
+</li>
+<li>
+<p>If you have ever saved files on a computer and know the difference between a &quot;file&quot; and a &quot;directory&quot;/&quot;folder&quot;, then you are ready for this lesson.</p>
+</li>
+</ul>
+<h3 id="setup">Setup</h3>
+<ul>
+<li>
+<p>Please ensure that you have access to the Unix shell on your machine</p>
+<ul>
+<li>University machine: please use Git bash (access via the Start menu)</li>
+<li>Download/installation instructions: <a href="https://carpentries.github.io/workshop-template/install_instructions/#shell">https://carpentries.github.io/workshop-template/install_instructions/#shell</a></li>
+</ul>
+</li>
+<li>
+<p>You will need to download some files to follow this lesson</p>
+</li>
+<li>
+<p><strong>Please see the EtherPad page for a link</strong></p>
+<ul>
+<li><a href="https://pad.carpentries.org/2025-10-04-strathclyde">https://pad.carpentries.org/2025-10-04-strathclyde</a></li>
+<li>Download this file to your <code>Desktop</code></li>
+<li>Unzip/uncompress the file
+<ul>
+<li><strong>NOTE: do not assume that your filesystem has unzipped the file; Windows will navigate into the compressed file using the explorer, without unzipping it!</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>[PAUSE: ensure that all learners have access to a bash shell]</strong></p>
+<ul>
+<li>Open a new instance of the shell on your computer</li>
+</ul>
+<p><strong>[PAUSE: ensure that all learners can start a bash shell]</strong></p>
+<h2 id="introducing-the-shell">Introducing the shell</h2>
+<ul>
+<li>
+<p>There are many ways to interact with a computer. You'll probably be used to methods like:</p>
+<ul>
+<li>using a <strong>touchscreen</strong></li>
+<li><strong>keyboard and mouse</strong></li>
+<li>maybe even voice interaction/<strong>speech recognition</strong></li>
+</ul>
+</li>
+<li>
+<p>The most common method, still, is via a <strong>GUI</strong> (Graphical User Interface), clicking with a mouse through a series of menu interactions</p>
+</li>
+<li>
+<p>The GUI approach is <strong>easy to learn</strong>, and it <strong>may be intuitive</strong></p>
+</li>
+<li>
+<p>Unfortunately, <strong>it does not scale well</strong>. What do we mean by that?</p>
+<ul>
+<li>Suppose you're carrying out a literature search.</li>
+<li>Imagine you need to copy the affiliations for every author in 1000 papers to a single file, for analysis.</li>
+<li>You could open each file, copy the affiliations, and paste them into an ever-growing file.</li>
+<li>But this would take a long time.</li>
+<li>It would also be prone to error - it's easy to <strong>miss a character</strong> when copy/pasting. You might even <strong>miss an entire affiliation</strong>, or <strong>accidentally skip one or more files</strong>. And <strong>how would you know</strong> if you'd done that? That would be a lot of finicky manual checking, and you'd possibly even <strong>overlook some mistakes</strong>.</li>
+</ul>
+</li>
+<li>
+<p>This is where the CLI (Command-Line Interface) approach is especially powerful.</p>
+<ul>
+<li>These <strong>repetitive tasks can be automated</strong> for a single file, <strong>and applied automatically across many files</strong> - an arbitrary number - extremely quickly.</li>
+</ul>
+</li>
+<li>
+<p>You could spend hours manually copy/pasting and checking, or you could spend a minute writing a shell script, and get the job done in seconds.</p>
+</li>
+</ul>
+<h3 id="the-shell">The Shell</h3>
+<p><strong>[OPEN THE SHELL ON-SCREEN]</strong></p>
+<ul>
+<li>
+<p>So <strong>what is the shell</strong>?</p>
+</li>
+<li>
+<p>The shell is <strong>a program that runs on your computer</strong>.</p>
+</li>
+<li>
+<p>Users, like you and me, can <strong>type commands into the shell</strong>, and the computer will run them.</p>
+</li>
+<li>
+<p>We can <strong>use the shell to start other programs</strong>, like modelling software for metabolism or industrial processes, protein structure prediction, or sequence analysis tools.</p>
+</li>
+<li>
+<p>The most common shell is called bash (Bourne-Again SHell) and is the default on many systems.</p>
+<ul>
+<li><em>On a Mac, you may see the Z Shell (<code>zsh</code>) instead. This works just like bash.</em></li>
+</ul>
+</li>
+<li>
+<p>The big difference between a GUI and the shell is that <strong>a GUI usually shows you what options/commands are available</strong>.</p>
+<ul>
+<li><strong>The shell does not</strong>.</li>
+</ul>
+</li>
+<li>
+<p>It can take some time and effort to learn how to use the shell well.</p>
+<ul>
+<li><strong>But you can get a long way with only a few commands - the ones we'll learn today.</strong></li>
+</ul>
+</li>
+<li>
+<p>In the shell, you can easily:</p>
+<ul>
+<li><strong>combine existing tools and programs into pipelines and workflows</strong>, for automation</li>
+<li><strong>combine sequences of commands into <em>scripts</em></strong>, for reproducilty</li>
+<li><strong>interact with powerful remote computing resources</strong>, like ARCHIE-West (this is an increasingly important skill in modern biology)</li>
+</ul>
+</li>
+</ul>
+<h3 id="lets-get-started">Let's get started</h3>
+<ul>
+<li>When you open the shell, you will see the <strong>prompt</strong>, which tells you the shell is waiting for your input:</li>
+</ul>
+<pre class="hljs"><code><div>(base) lpritc@Rodan-2 shell %
+</div></code></pre>
+<ul>
+<li>
+<p><strong>Your shell will look different to mine</strong>.</p>
+<ul>
+<li>The CLI prompt is customisable, and I have some extra information in my shell because it's useful for me in my day-to-day work.</li>
+<li>The variation does not matter for the purpose of this lesson.</li>
+<li><strong>The important part for this lesson is the <code>%</code> or <code>$</code> symbol</strong></li>
+<li>You should also see a <strong>cursor</strong>, just after the prompt.
+<ul>
+<li>This might be a flashing block, a static block, an underscore, or something else. The visual appearance can vary depending on which system you are using.</li>
+</ul>
+</li>
+<li>If you can see this symbol, everything is fine.</li>
+</ul>
+</li>
+<li>
+<p>The shell is waiting for you to type a command.</p>
+</li>
+<li>
+<p>Once you have typed a command at the prompt, you execute it using the <code>enter</code> or <code>return</code> key.</p>
+</li>
+<li>
+<p><strong>Let's try our first command</strong>L <code>ls</code>, short for &quot;listing&quot;, which lists the current directory contents.</p>
+<ul>
+<li>Type <code>ls</code> and press the <code>enter</code>/<code>return</code> key</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>(base) lpritc@Rodan-2 shell % ls
+instructor_examples/ instructor_notes.md
+(base) lpritc@Rodan-2 shell %
+</div></code></pre>
+<ul>
+<li>Notice that once the command completes, you are presented with a new shell prompt, ready for the next command.</li>
+</ul>
+<h2 id="nelles-pipeline">Nelle's Pipeline</h2>
+<p><strong>[SLIDE HERE: Nelle's Pipeline outline]</strong></p>
+<ul>
+<li>
+<p>For the lesson we're going to pretend to be a marine biologist called Nelle</p>
+</li>
+<li>
+<p>Nelle, i.e. you, has/have just returned from a six-month long survey of the North Pacific Gyre, where you were sampling marine life in the Great Pacific Garbage Patch</p>
+<ul>
+<li>You have <strong>1520 samples</strong> that you ran through a mass spec to gather the relative abundances of 300 different proteins</li>
+<li>You need to <strong>run these samples through an analysis tool</strong> called <code>goostats.sh</code></li>
+<li>You also need to <strong>write up your results by a deadline</strong> at the end of the month.</li>
+</ul>
+</li>
+<li>
+<p>If you were to carry out this analysis by hand i<strong>n a GUI, you'd have to select and open a file 1520 times</strong></p>
+<ul>
+<li>If <code>goostats.sh</code> takes <strong>30s to analyse a file, that's 12 hours of your time</strong> just pointing and clicking.</li>
+<li><strong>With the shell you can get the computer to handle all the boring stuff</strong> while you crack on with the paper introduction.</li>
+</ul>
+</li>
+<li>
+<p>What you're going to do is:</p>
+<ul>
+<li><strong>use the shell to run <code>goostats.sh</code></strong></li>
+<li><strong>use loops</strong> to automate running <code>goostats.sh</code> on many different files</li>
+</ul>
+</li>
+<li>
+<p>As a bonus, <strong>once this pipeline is up and running, you can use it again on new data</strong>, whenever you collect it - saving you even more time.</p>
+</li>
+</ul>
+<p><strong>[SLIDE HERE: Nelle's Pipeline details]</strong></p>
+<ul>
+<li>Specifically, you're going to:
+<ul>
+<li>navigate to a file/directory</li>
+<li>create a file/directory</li>
+<li>check the length of a file</li>
+<li>chain commands together</li>
+<li>retrieve a set of files</li>
+<li>iterate over files</li>
+<li>run a shell script containing your pipeline</li>
+</ul>
+</li>
+</ul>
+<h2 id="navigating-files-and-directories-ls">Navigating files and directories: <code>ls</code></h2>
+<ul>
+<li>
+<p><strong>[SLIDE HERE: Title Slide]</strong></p>
+</li>
+<li>
+<p>Let's start by seeing how to</p>
+<ul>
+<li><strong>move around</strong> on your computer</li>
+<li><strong>see what files and directories</strong> you have</li>
+<li><strong>specify the location of a file or directory</strong> on your computer</li>
+</ul>
+</li>
+<li>
+<p><strong>[SLIDES HERE: Filesystem Structure]</strong></p>
+</li>
+<li>
+<p>The part of the operating system responsible for managing files and directories is called <strong>the file system</strong>. It organizes our data into:</p>
+<ul>
+<li><strong>files, which hold information</strong></li>
+<li><strong>directories (also called ‘folders’), which hold files or other directories.</strong></li>
+</ul>
+</li>
+<li>
+<p>Note that <strong>your filesystem will not look exactly like that in the examples</strong>, or like mine.</p>
+<ul>
+<li><strong>You will sometimes need to modify the commands on screen so that they work on <em>your</em> computer</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Let's look at Nelle's home directory (on the slide)</p>
+<ul>
+<li>The filesystem on Nelle's machine is that shown on screen</li>
+<li>Notice that it's a hierarchy that <strong>looks like a family tree, or phylogenetic tree</strong> - with the root at the top</li>
+<li><strong>The very top directory is the <em>root directory</em></strong> and has the symbol <code>/</code> - this directory holds all of the other directories.</li>
+<li>This directory is the leading slash in <code>/Users/lpritc</code></li>
+</ul>
+</li>
+<li>
+<p>In Nelle's <em>root directory</em> there are <code>bin</code>, <code>data</code>, <code>Users</code> and <code>tmp</code> directories.</p>
+<ul>
+<li>We know that Nelle's working directory <code>/Users/nelle</code> is stored inside the <code>/Users</code> directory (this is the first part of the name returned by <code>pwd</code>)</li>
+</ul>
+</li>
+<li>
+<p>There are several commands for creating, inspecting, and deleting files and directories.</p>
+</li>
+<li>
+<p>Let’s find out where we are - ourselves - by running a command called pwd (which stands for ‘print working directory’).</p>
+<ul>
+<li>Directories are like <em>places</em></li>
+<li>At any time while we are using the shell, we can be in exactly one place at any time (though we can move from one directory/place to another)</li>
+<li>The place we are in is called our current working directory.</li>
+<li>Commands mostly read and write files in the current working directory, i.e. ‘here’, so knowing where you are before running a command is important.</li>
+</ul>
+</li>
+<li>
+<p><strong>[NEXT SLIDE: User Directories]</strong></p>
+</li>
+<li>
+<p>In the <code>/Users</code> directory, we find one directory for each user account on that machine (just like I have <code>lpritc</code> as my home directory)</p>
+<ul>
+<li>Nelle, Imhotep, and Larry</li>
+<li>Nelle's home directory is <code>/Users/nelle</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Generally, when you open a new shell, you start in your home directory</strong></p>
+</li>
+<li>
+<p>We can see what's in our home directory by using the <code>ls</code> command</p>
+</li>
+</ul>
+<p><strong>[OPEN SHELL IN HOME DIRECTORY]</strong></p>
+<ul>
+<li>The <code>pwd</code> (print working directory) command in the shell shows you where you are</li>
+</ul>
+<pre class="hljs"><code><div>(base) lpritc@Rodan-2 lpritc % <span class="hljs-built_in">pwd</span>
+/Users/lpritc
+(base) lpritc@Rodan-2 lpritc %
+</div></code></pre>
+<ul>
+<li>Here the response is <code>/Users/lpritc</code> - which is my <strong>home directory</strong> on this machine
+<ul>
+<li>On Linux, your home directory may look like <code>/home/nelle</code>, and on Windows, it might be similar to <code>C:\Documents and Settings\nelle</code> or <code>C:\Users\nelle</code> - this is normal and reflects the differences between operating systems</li>
+</ul>
+</li>
+<li>Let's see what's in the home directory:</li>
+</ul>
+<pre class="hljs"><code><div>(base) lpritc@Rodan-2 lpritc % ls
+Applications/
+Applications (Parallels)/
+bin/
+Calibre Library/
+Desktop/
+Documents/
+Downloads/
+Dropbox (Dropbox-Work)/
+Google Drive@
+iCloud Drive (Archive)/
+iCloud Drive (Archive) - 1/
+Library/
+Movies/
+Music/
+nltk_data/
+opt/
+Parallels/
+Pictures/
+Public/
+seaborn-data/
+Zotero/
+</div></code></pre>
+<ul>
+<li><strong>Your results will be different - this is normal</strong>.</li>
+<li>My shell has colours that differentiate between directories and files - your shell might not do this by default.
+<ul>
+<li>If you'd like to see the colours, use <code>ls -F</code>:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% ls -F
+</div></code></pre>
+<h3 id="command-line-options">Command-line options</h3>
+<ul>
+<li>You'll see here that we have provided an <strong>option</strong> to <code>ls</code>, which tells it in more detail how it should present the contents of the directory
+<ul>
+<li><em>Options</em> change the behaviour of commands.</li>
+</ul>
+</li>
+<li>Many commands have additional <strong>options</strong> and <strong>arguments</strong> that you can use to control their behaviour, and there are two standard ways to find out what these are, in the terminal
+<ul>
+<li>add the <code>--help</code> or <code>-h</code> option</li>
+<li>use the <code>man</code> manual system</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># ls --help doesn't work on macOS, but should on Linux and Git Bash</span>
+% ls --<span class="hljs-built_in">help</span>
+ls: unrecognized option `--<span class="hljs-built_in">help</span><span class="hljs-string">'
+usage: ls [-@ABCFGHILOPRSTUWXabcdefghiklmnopqrstuvwxy1%,] [--color=when] [-D format] [file ...]
+</span></div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># man ls does work on macOS</span>
+% man ls
+</div></code></pre>
+<ul>
+<li>
+<p>You'll see that there are long and short options that are equivalent, like <code>-h</code> and <code>--help</code> - <strong>it makes no difference to functionality which you use</strong></p>
+<ul>
+<li>But, if you're <strong>writing a script it can be more legible/reproducible to use the long form</strong> of an option.</li>
+</ul>
+</li>
+<li>
+<p><strong>[SLIDE HERE: <code>ls</code> challenge (reverse chronological)]</strong></p>
+</li>
+</ul>
+<h3 id="exploring-other-directories">Exploring other directories</h3>
+<ul>
+<li>
+<p>We can use <code>ls</code> to list the contents of the current directory, and <strong>we can also use it to list the contents of a different directory</strong></p>
+</li>
+<li>
+<p>Let's take a look at the contents of the desktop using <code>ls -F Desktop</code> - we tell <code>ls</code> the <em>path</em> to the location we want to list contents for</p>
+<ul>
+<li>This should show all the files and directories on your desktop (assuming you are in your home directory)</li>
+<li>In amongst these should be the <code>shell-lesson-data</code> directory that you downloaded</li>
+</ul>
+</li>
+<li>
+<p><strong>[SHOW SHELL]</strong></p>
+</li>
+</ul>
+<pre class="hljs"><code><div>% ls -F Desktop
+[...]
+shell-lesson-data/
+[...]
+</div></code></pre>
+<ul>
+<li>We can use the same strategy to look <em>inside</em> the <code>shell-lesson-data</code> directory, with <code>ls -F Desktop/shell-lesson-data</code>
+<ul>
+<li>We see the two directories: <code>exercise-data</code> and <code>north-pacific-gyre</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% ls -F Desktop/shell-lesson-data
+exercise-data/      north-pacific-gyre/
+</div></code></pre>
+<ul>
+<li>We are currently located in our home directories, but we want to be in the <code>exercise-data</code> directory, so we can progress with the lesson.</li>
+<li>To do this we use the <code>cd</code> (change directory) command, telling it which directory we want to move to
+<ul>
+<li>We can do this three times, stepping first into <code>Desktop</code>, then <code>shell-lesson-data</code>, and then to <code>exercise-data</code> confirm the move with <code>pwd</code>:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> Desktop
+% <span class="hljs-built_in">cd</span> shell-lesson-data
+% <span class="hljs-built_in">cd</span> exercise-data
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data/exercise-data
+</div></code></pre>
+<ul>
+<li>Now we can see the contents of the folder with <code>ls -F</code></li>
+</ul>
+<pre class="hljs"><code><div>% ls -F                                                                                                                                                  [1:33:18]
+alkanes/       animal-counts/ creatures/     numbers.txt    writing/
+</div></code></pre>
+<ul>
+<li>We've moved <em>down</em> in the directory tree, but <strong>how do we move up?</strong>
+<ul>
+<li>We can't use <code>cd shell-lesson-data</code> because we can only &quot;see&quot; the current contents of the directory</li>
+<li>But there is <strong>a special shortcut to move up one directory level</strong>: <code>..</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ..
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data
+</div></code></pre>
+<h3 id="other-shortcuts">Other shortcuts</h3>
+<ul>
+<li>We can always return to our home directory using the shortcut <code>~</code>, which stands for &quot;home directory&quot;</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ~
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc
+</div></code></pre>
+<ul>
+<li>You can <code>cd</code> directly to a location by using its &quot;absolute path&quot; (starting with <code>/</code> at the root)</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> /Users/lpritc/Desktop/shell-lesson-data
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data
+</div></code></pre>
+<ul>
+<li>And you can use <code>~</code> to indicate your home directory as a starting point</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ~/Desktop/shell-lesson-data/exercise-data
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data/exercise-data
+</div></code></pre>
+<ul>
+<li>If you use <code>ls -a</code> - the option to list all files and directories, you will see two directory shortcuts:</li>
+</ul>
+<pre class="hljs"><code><div>% ls -a
+./             ../            alkanes/       animal-counts/ creatures/     numbers.txt    writing/
+</div></code></pre>
+<ul>
+<li>You've seen <code>..</code> which means &quot;the directory above this one&quot;
+<ul>
+<li>The <code>.</code> shortcut means &quot;this current directory</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> .
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data/exercise-data
+</div></code></pre>
+<p><strong>[SLIDE HERE: Challenge (absolute vs relative paths)]</strong></p>
+<p><strong>[SLIDE HERE: Challenge (relative path resolution)]</strong></p>
+<h2 id="syntax-of-shell-commands">Syntax of shell commands</h2>
+<ul>
+<li>Now that we know something about the <code>ls</code> command, and how to move around the filesystem, let's talk about how the commands are put together
+<ul>
+<li>Let's think about the command <code>ls -F /</code>, which lists the contents of the filesystem's root directory.</li>
+</ul>
+</li>
+</ul>
+<p><strong>[SLIDE HERE: shell command syntax]</strong></p>
+<ul>
+<li>
+<p><code>ls</code> is the <em>command</em> - this tells the computer what program runs, or what action to take</p>
+</li>
+<li>
+<p><code>-F</code> is an <em>option</em> - this changes the behaviour of the command in a particular way</p>
+<ul>
+<li>options can start with a single dash <code>-</code> (short option) or double-dash <code>--</code> (long option)</li>
+</ul>
+</li>
+<li>
+<p><code>/</code> is an <em>argument</em> - it tells the command what it should operate on (usually a file or directory)</p>
+</li>
+<li>
+<p><strong>Commands may take zero, one, or more arguments, and zero, one or more options</strong></p>
+</li>
+<li>
+<p>Each part of the command is separated by a space character.</p>
+<ul>
+<li>If you miss out the space between <code>ls</code> and <code>-F</code>, the computer would look for a command called <code>ls-F</code>, which doesn't exist</li>
+<li><strong>This is why you should never use spaces in filenames</strong> - the computer will misinterpret them</li>
+</ul>
+</li>
+<li>
+<p>Note that upper and lower case are different, and this matters</p>
+</li>
+</ul>
+<p><strong>[SHOW SHELL]</strong></p>
+<pre class="hljs"><code><div>% ls -s  <span class="hljs-comment"># displays the size of a file/directory</span>
+total 8
+0 alkanes/       0 animal-counts/ 0 creatures/     8 numbers.txt    0 writing/
+% ls -S  <span class="hljs-comment"># sorts files/directories by size</span>
+alkanes/       creatures/     writing/       animal-counts/ numbers.txt
+</div></code></pre>
+<h2 id="working-with-files-and-directories">Working With Files and Directories</h2>
+<ul>
+<li>We know how to explore files and directories, but how do we <em>create</em> them?</li>
+<li>Before we start, let's make sure we're in the <code>shell-lesson-data</code> directory</li>
+</ul>
+<p><strong>NAVIGATE TO <code>shell-lesson-data</code></strong></p>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data
+</div></code></pre>
+<ul>
+<li>Now we'll navigate to the <code>exercise/writing</code> directory and see what's in it</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> exercise-data/writing
+% ls -F
+haiku.txt        LittleWomen.txt
+</div></code></pre>
+<h3 id="creating-directories">Creating directories</h3>
+<ul>
+<li>Nelle wants to write her thesis, so let's create a directory to write in</li>
+<li>The command for this is <code>mkdir</code> (make directory)</li>
+<li>We can confirm that this created using <code>ls -F</code>, and also that there's nothing in it to begin with</li>
+</ul>
+<pre class="hljs"><code><div>% mkdir thesis
+% ls -F
+haiku.txt        LittleWomen.txt  thesis/
+% ls -F thesis
+</div></code></pre>
+<ul>
+<li>We don't have to create only one directory at a time, and we don't have to create a directory only in our current location</li>
+<li>With the <code>-p</code> option to mkdir we can create nested subdirectories in a neighbouring directory called <code>project</code></li>
+<li>We can then check the contents of <code>project</code> with <code>ls -FR</code></li>
+</ul>
+<pre class="hljs"><code><div>% mkdir -p ../project/data ../project/results
+% ls -FR ../project
+data/    results/
+
+../project/data:
+
+../project/results:
+</div></code></pre>
+<p><strong>[SHOW SLIDE: Names for files and directories]</strong></p>
+<ul>
+<li>Use descriptive filenames so that you don't need to look inside a file to know what it contains</li>
+<li>Stick to lower-case letters, numbers, and these special characters (<code>,</code> <code>-</code> <code>_</code>) so you avoid clashes with some special instructions
+<ul>
+<li>Some filesystems can be case-insensitive so don't distinguish between <code>thesis</code> and <code>Thesis</code></li>
+</ul>
+</li>
+<li>Don't use spaces</li>
+<li>Don't start a name with a dash/hyphen</li>
+</ul>
+<h3 id="create-a-text-file">Create a text file</h3>
+<ul>
+<li>Let's create a text file</li>
+</ul>
+<p><strong>[SHOW SHELL]</strong></p>
+<ul>
+<li>We'll move our <em>working directory</em> to <code>thesis</code> and then run a text editor called <code>Nano</code> to create a file called <code>draft.txt</code></li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> thesis
+% nano draft.txt
+</div></code></pre>
+<ul>
+<li>On my machine this starts an editor called <code>Pico</code> - but it's essentially the same thing</li>
+<li>We can type in a couple of lines of text</li>
+</ul>
+<pre class="hljs"><code><div>It's not &quot;publish or perish&quot; any more,
+it's &quot;share and thrive&quot;
+</div></code></pre>
+<ul>
+<li>
+<p>To save the text, we use the <code>WriteOut</code> command in <code>Nano</code></p>
+<ul>
+<li>Hold down the <code>Ctrl</code> key, and press <code>O</code></li>
+<li>We're asked what file name to write the text to - and it's suggesting <code>draft.txt</code></li>
+<li>Press <code>Return</code> to accept this default name</li>
+</ul>
+</li>
+<li>
+<p>Once the file is saved, use the <code>Exit</code> command to return to the shell</p>
+<ul>
+<li>Hold down the <code>Ctrl</code> key, and press <code>X</code></li>
+</ul>
+</li>
+<li>
+<p>We can see that we've saved a file, with <code>ls</code></p>
+</li>
+</ul>
+<pre class="hljs"><code><div>% ls
+draft.txt
+</div></code></pre>
+<p><strong>[SHOW SLIDE: File extensions]</strong></p>
+<ul>
+<li>You'll probably have noticed that all of Nelle's files - and most files in general - are called &quot;something dot something&quot;
+<ul>
+<li>This is just a conventions, we can actually use any name we like</li>
+</ul>
+</li>
+<li>By convention, file extensions indicate the type of data in the file
+<ul>
+<li><code>.txt</code> indicates a plain text file</li>
+<li><code>.png</code> indicates a PNG image</li>
+</ul>
+</li>
+<li>But this is <strong>only a convention</strong> - the extension might be misleading
+<ul>
+<li><strong>And you cannot change file content type by changing the extension</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="moving-files-and-directories">Moving files and directories</h3>
+<ul>
+<li>Let's go back to the <code>writing</code> directory</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data/exercise-data/writing/thesis
+% <span class="hljs-built_in">cd</span> ..
+</div></code></pre>
+<ul>
+<li>We might consider that the file we just created has an inappropriate name
+<ul>
+<li><code>draft</code> is ambiguous, and as it's a collection of quotes, <code>quotes.txt</code> might be better</li>
+<li>So we want to rename <code>draft.txt</code> to <code>quotes.txt</code></li>
+</ul>
+</li>
+<li>To rename a file, we actually need to <strong>move</strong> it, with the command <code>mv</code> (short for &quot;move&quot;)
+<ul>
+<li>We need to say what file we're moving, and where we're moving it to</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% mv thesis/draft.txt thesis/quotes.txt
+% ls thesis
+quotes.txt
+</div></code></pre>
+<ul>
+<li>We have to be careful when doing this because <code>mv</code> will <strong>silently</strong> overwrite the target file, if it exists</li>
+<li>Suppose we decide that we want to put the <code>quotes.txt</code> file in the current director?
+<ul>
+<li>We use the <code>mv</code> (move) command again, but specify the directory we want to move the file to</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% mv thesis/quotes.txt .
+% ls thesis
+% ls
+haiku.txt        LittleWomen.txt  quotes.txt       thesis/
+</div></code></pre>
+<h2 id="copying-files-and-directories">Copying files and directories</h2>
+<ul>
+<li>The <code>cp</code> command (short for &quot;copy&quot;) works just like the <code>mv</code> command, except it <em>copies</em> a file rather than moving it
+<ul>
+<li>Let's copy the <code>quotes.txt</code> file to <code>thesis/quotations.txt</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% cp quotes.txt thesis/quotations.txt
+% ls quotes.txt thesis/quotations.txt
+quotes.txt             thesis/quotations.txt
+</div></code></pre>
+<ul>
+<li>To copy an entire directory and its contents we need to use the <code>-r</code> argument (which stands for &quot;recursive&quot;)
+<ul>
+<li>To back up the thesis directory</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% cp -r thesis thesis_backup
+% ls thesis thesis_backup
+thesis:
+quotations.txt
+
+thesis_backup:
+quotations.txt
+</div></code></pre>
+<p><strong>[SLIDE HERE: Challenge (renaming files)]</strong></p>
+<h2 id="removing-files-and-directories">Removing files and directories</h2>
+<p><strong>[SHOW SHELL]</strong></p>
+<ul>
+<li>We like the <code>quotations.txt</code> file being where it is, so we want to get rid of the redundant <code>quotes.txt</code> file</li>
+<li>To do this, we use the <code>rm</code> (remove) command</li>
+</ul>
+<pre class="hljs"><code><div>% rm quotes.txt
+% ls quotes.txt
+ls: quotes.txt: No such file or directory
+</div></code></pre>
+<ul>
+<li>We need to be careful when using <code>rm</code>: <strong>There is no trash bin or recovery of deleted files - they're gone forever</strong></li>
+<li>We can introduce a kind of protection by using the <code>-i</code> (&quot;interactive&quot;) option, which asks us if we really want to delete a file</li>
+</ul>
+<pre class="hljs"><code><div>% rm -i thesis/quotations.txt
+remove thesis/quotations.txt? n
+</div></code></pre>
+<ul>
+<li>We cannot remove directories using <code>rm</code> unless we use the <code>-r</code> (recursive) option</li>
+</ul>
+<pre class="hljs"><code><div>% rm thesis
+rm: thesis: is a directory
+</div></code></pre>
+<h2 id="operations-with-multiple-files-and-directories">Operations with multiple files and directories</h2>
+<ul>
+<li>You've already seen how to give a command multiple filenames, with things like</li>
+</ul>
+<pre class="hljs"><code><div>% ls haiku.txt thesis/quotations.txt
+haiku.txt              thesis/quotations.txt
+</div></code></pre>
+<ul>
+<li>Let's move up a directory level to <code>exercise-data</code> and look into the <code>creatures</code> directory</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ..
+% <span class="hljs-built_in">pwd</span>
+/Users/lpritc/Desktop/shell-lesson-data/exercise-data
+% ls creatures
+basilisk.dat  minotaur.dat  unicorn.dat
+</div></code></pre>
+<ul>
+<li>We're going to try to copy two of those <code>.dat</code> files to a new directory called <code>backup</code></li>
+</ul>
+<pre class="hljs"><code><div>% mkdir backup
+% cp creatures/minotaur.dat creatures/unicorn.dat backup/
+% ls backup
+minotaur.dat  unicorn.dat
+</div></code></pre>
+<ul>
+<li>It's a bit of a pain to write out the filenames in full, so we use <strong>wildcards</strong> - special symbols that represent other characters.</li>
+<li>Let's look at the <code>alkanes</code> directory</li>
+</ul>
+<pre class="hljs"><code><div>% ls alkanes
+cubane.pdb   ethane.pdb   methane.pdb  octane.pdb   pentane.pdb  propane.pdb
+</div></code></pre>
+<ul>
+<li>It has six files in it, all ending in <code>.pdb</code></li>
+<li>We can use the <code>*</code> wildcard to representa any sequence of characters - <strong>including an empty string</strong>
+<ul>
+<li>The string <code>*.pdb</code> represents &quot;any filename ending in <code>.pdb</code></li>
+<li>But the string <code>p*.pdb</code> represents &quot;any filename starting with <code>p</code> and ending with <code>.pdb</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% ls alkanes/*.pdb
+alkanes/cubane.pdb   alkanes/ethane.pdb   alkanes/methane.pdb  alkanes/octane.pdb   alkanes/pentane.pdb  alkanes/propane.pdb
+% ls alkanes/p*.pdb
+alkanes/pentane.pdb  alkanes/propane.pdb
+</div></code></pre>
+<ul>
+<li>The <code>?</code> wildcard represents <strong>a single character</strong></li>
+</ul>
+<pre class="hljs"><code><div>% ls alkanes/?ethane.pdb
+alkanes/methane.pdb
+% ls alkanes/*ethane.pdb
+alkanes/ethane.pdb   alkanes/methane.pdb
+% ls alkanes/???ane.pdb
+alkanes/cubane.pdb  alkanes/ethane.pdb  alkanes/octane.pdb
+</div></code></pre>
+<p><strong>[SHOW SLIDES: Challenge (pattern matching)]</strong></p>
+<h2 id="pipes-and-filters">Pipes and Filters</h2>
+<ul>
+<li>Now you know how to move around and manipulate the filesystem, we can look at <strong>how to combine existing programs in new ways</strong></li>
+<li>We'll do this in the <code>alkanes</code> directory</li>
+</ul>
+<p><strong>[SHOW SHELL]</strong></p>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> alkanes
+% ls
+cubane.pdb   ethane.pdb   methane.pdb  octane.pdb   pentane.pdb  propane.pdb
+</div></code></pre>
+<ul>
+<li>Let's run an example command: <code>wc</code> (&quot;word count&quot;)</li>
+</ul>
+<pre class="hljs"><code><div>% wc cubane.pdb
+      20     156    1158 cubane.pdb
+</div></code></pre>
+<ul>
+<li>This reports the number of <em>lines</em> (20), <em>words</em> (156), and <em>characters</em> (1158) in a file.</li>
+<li>You can use the <code>*</code> wildcard to see this information for all files in the directory</li>
+</ul>
+<pre class="hljs"><code><div>% wc *.pdb
+      20     156    1158 cubane.pdb
+      12      84     622 ethane.pdb
+       9      57     422 methane.pdb
+      30     246    1828 octane.pdb
+      21     165    1226 pentane.pdb
+      15     111     825 propane.pdb
+     107     819    6081 total
+</div></code></pre>
+<ul>
+<li>We can change the behaviour of <code>wc</code> with an option like <code>-l</code> to report only the number of lines</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.pdb
+      20 cubane.pdb
+      12 ethane.pdb
+       9 methane.pdb
+      30 octane.pdb
+      21 pentane.pdb
+      15 propane.pdb
+     107 total
+</div></code></pre>
+<ul>
+<li>Suppose we wanted to know which file was the shortest, in that it contained the fewest lines of text?</li>
+<li>We can see easily enough here with six files (it's <code>methane.pdb</code>), but with 6000 that would be more difficult</li>
+<li><strong>Let's build a tool to do this for us</strong></li>
+</ul>
+<h3 id="capturing-output-from-commands">Capturing output from commands</h3>
+<ul>
+<li>We'll start by <strong>redirecting</strong> the output of <code>wc</code> to a file, using the <code>&gt;</code> redirection symbol
+<ul>
+<li>This shows no output on screen because we redirect it to a file</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.pdb &gt; lengths.txt
+% ls lengths.txt
+lengths.txt
+</div></code></pre>
+<ul>
+<li>We can inspect the contents of a file using the <code>cat</code> (concatenate) command</li>
+</ul>
+<pre class="hljs"><code><div>% cat lengths.txt
+      20 cubane.pdb
+      12 ethane.pdb
+       9 methane.pdb
+      30 octane.pdb
+      21 pentane.pdb
+      15 propane.pdb
+     107 total
+</div></code></pre>
+<h3 id="filtering-output">Filtering output</h3>
+<ul>
+<li>There is a command called <code>sort</code> that sorts the contents of a file</li>
+<li>We can test this out with the <code>numbers.txt</code> file in the directory above <code>alkanes</code></li>
+</ul>
+<pre class="hljs"><code><div>% cat ../numbers.txt
+10
+2
+19
+22
+6
+% sort ../numbers.txt
+10
+19
+2
+22
+6
+</div></code></pre>
+<ul>
+<li>Why do you think the output looks like this?
+<ul>
+<li>Unless told otherwise, <code>sort</code> treats all file data as alphanumerical character strings - i.e. it treats numbers like letters</li>
+</ul>
+</li>
+<li>To sort numerical data in numerical order, we need to use the <code>-n</code> option with <code>sort</code></li>
+</ul>
+<pre class="hljs"><code><div>% sort -n ../numbers.txt
+2
+6
+10
+19
+22
+</div></code></pre>
+<ul>
+<li>Let's do this with our <code>lengths.txt</code> file:</li>
+</ul>
+<pre class="hljs"><code><div>% sort -n lengths.txt
+       9 methane.pdb
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     107 total
+</div></code></pre>
+<ul>
+<li>We can put the sorted list into a new temporary file called <code>sorted-lengths.txt</code> using <strong>redirection</strong>
+<ul>
+<li>Then we can use the <code>head</code> command to see only the first line of the file, which gives us the name of the shortest file</li>
+<li>The <code>-n 1</code> option tells <code>head</code> that we only want to see one line from the file (<code>-n 5</code> would show the first five lines)</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% sort -n lengths.txt &gt; sorted-lengths.txt
+% head -n 1 sorted-lengths.txt
+       9 methane.pdb
+</div></code></pre>
+<h3 id="passing-output-to-another-command">Passing output to another command</h3>
+<ul>
+<li>To do this so far, we've had to use two intermediate files: <code>lengths.txt</code> and <code>sorted-lengths.txt</code>
+<ul>
+<li>This is an inefficient way to work, and would quickly fill up our filesystem with intermediate files that we'd never use again</li>
+</ul>
+</li>
+<li>Instead of writing intermediate files, we can <strong>pipe</strong> commands together so that the output of one command becomes the input to the next
+<ul>
+<li>We do this with the <strong>pipe symbol</strong> <code>|</code></li>
+</ul>
+</li>
+<li>For instance, to <code>sort</code> the contents of <code>lengths.txt</code> and use the sorted output as the input to <code>head -n 1</code>:</li>
+</ul>
+<pre class="hljs"><code><div>% sort -n lengths.txt | head -n 1
+       9 methane.pdb
+</div></code></pre>
+<ul>
+<li>Similarly, we could count the words in all our <code>.pdb</code> files and pipe this to <code>sort</code>:</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.pdb | sort -n
+       9 methane.pdb
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     107 total
+</div></code></pre>
+<h3 id="combining-multiple-commands">Combining multiple commands</h3>
+<ul>
+<li>The magic starts to happen when we realise we don't need to restrict ourselves to only two commands.</li>
+<li>We can chain multiple commands together using pipes:</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.pdb | sort -n | head -n 1
+       9 methane.pdb
+</div></code></pre>
+<p><strong>[SHOW SLIDES: Combining multiple commands AND challenge]</strong>*</p>
+<ul>
+<li>This way of linking programs together is one reason why Unix is so successful
+<ul>
+<li>We don't need to make huge programs that do lots of slightly different things</li>
+<li>Instead we make tools that do one job well, but that can link well with other small programs</li>
+</ul>
+</li>
+<li><strong>You can, and should, write your programs so that they play nicely with existing Unix tools</strong></li>
+</ul>
+<h3 id="nelles-pipeline-checking-files">Nelle's Pipeline: Checking Files</h3>
+<ul>
+<li>Let's get back to Nelle's pipeline</li>
+<li>She's run her samples through the assay machines and has 17 files in the <code>north-pacific-gyre</code> directory
+<ul>
+<li>We'll change directories to see this</li>
+</ul>
+</li>
+</ul>
+<p><strong>[SHOW SHELL]</strong></p>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ../../north-pacific-gyre
+% ls
+goodiff.sh      NENE01729A.txt  NENE01736A.txt  NENE01751B.txt  NENE01843A.txt  NENE01971Z.txt  NENE01978B.txt  NENE02040A.txt  NENE02040Z.txt  NENE02043B.txt
+goostats.sh     NENE01729B.txt  NENE01751A.txt  NENE01812A.txt  NENE01843B.txt  NENE01978A.txt  NENE02018B.txt  NENE02040B.txt  NENE02043A.txt
+</div></code></pre>
+<ul>
+<li>We'll use <code>wc</code> on the <code>.txt</code> file data to see how large the files are</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.txt
+     300 NENE01729A.txt
+     300 NENE01729B.txt
+     300 NENE01736A.txt
+     300 NENE01751A.txt
+     300 NENE01751B.txt
+     300 NENE01812A.txt
+     300 NENE01843A.txt
+     300 NENE01843B.txt
+     300 NENE01971Z.txt
+     300 NENE01978A.txt
+     300 NENE01978B.txt
+     240 NENE02018B.txt
+     300 NENE02040A.txt
+     300 NENE02040B.txt
+     300 NENE02040Z.txt
+     300 NENE02043A.txt
+     300 NENE02043B.txt
+    5040 total
+% wc -l *.txt | sort -n | head -n 5
+     240 NENE02018B.txt
+     300 NENE01729A.txt
+     300 NENE01729B.txt
+     300 NENE01736A.txt
+     300 NENE01751A.txt
+</div></code></pre>
+<ul>
+<li><strong>We can see there's an issue: one of these files is shorter than all the others</strong></li>
+<li>When Nelle double-checks the file, she sees that she did the assay first thing on a Monday, and it's possible the machine hadn't been reset.</li>
+<li>Just to be safe, Nelle looks to see if any files are a bit too large</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.txt | sort -n | tail -n 5
+     300 NENE02040B.txt
+     300 NENE02040Z.txt
+     300 NENE02043A.txt
+     300 NENE02043B.txt
+    5040 total
+</div></code></pre>
+<ul>
+<li>Now the sizes are fine, but one of the files appears to have a <code>Z</code> in it, which is unexpected
+<ul>
+<li>Her lab has a convention, though - samples with missing information are labelled with a <code>Z</code></li>
+<li>So she checks for more of them</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% ls *Z.txt
+NENE01971Z.txt  NENE02040Z.txt
+</div></code></pre>
+<ul>
+<li>When Nelle checks the logs, she sees that no depth information was recorded for these files, so they would need to be excluded from her analysis</li>
+</ul>
+<h2 id="loops">Loops</h2>
+<ul>
+<li>
+<p>Nelle wants to run the <code>goostats.sh</code> program on her data files, but it will take her a long time to do so if she has to type the command in each time.</p>
+<ul>
+<li>All that typing is also prone to error - it's easy to become bored or distracted</li>
+</ul>
+</li>
+<li>
+<p>She can solve this problem if she knows about <strong>loops</strong></p>
+<ul>
+<li><strong>Loops</strong> let us repeat a command, or set of commands, on multiple inputs - and they are key to automating analyses</li>
+</ul>
+</li>
+<li>
+<p>Let's move to the <code>exercise-data/creatures</code> directory:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ../exercise-data/creatures
+% ls
+basilisk.dat  minotaur.dat  unicorn.dat
+</div></code></pre>
+<ul>
+<li>There are a set of <code>.dat</code> files.</li>
+<li>Let's look at their contents with <code>head</code></li>
+</ul>
+<pre class="hljs"><code><div>% head -n 5 *.dat
+==&gt; basilisk.dat &lt;==
+COMMON NAME: basilisk
+CLASSIFICATION: basiliscus vulgaris
+UPDATED: 1745-05-02
+CCCCAACGAG
+GAAACAGATC
+
+==&gt; minotaur.dat &lt;==
+COMMON NAME: minotaur
+CLASSIFICATION: bos hominus
+UPDATED: 1765-02-17
+CCCGAAGGAC
+CGACATCTCT
+
+==&gt; unicorn.dat &lt;==
+COMMON NAME: unicorn
+CLASSIFICATION: equus monoceros
+UPDATED: 1738-11-24
+AGCCGGGTCG
+CTTTACCTTA
+</div></code></pre>
+<ul>
+<li>All of these files have the same structure
+<ul>
+<li>On line two there is a <code>CLASSIFICATION</code> for each creature</li>
+<li>Now suppose we wanted to print out the classification for each species
+<ul>
+<li>We could do this by combining <code>head -n 2</code> and <code>tail -n 1</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% head -n 2 basilisk.dat | tail -n 1
+CLASSIFICATION: basiliscus vulgaris
+</div></code></pre>
+<ul>
+<li>Doing this multiple times is a pain, so we would turn to loops to solve the problem</li>
+</ul>
+<p><strong>[SHOW SLIDE: The structure of a loop - ANIMATED]</strong></p>
+<ul>
+<li>
+<p>The general form of a loop is shown on-screen</p>
+</li>
+<li>
+<p>What we want to do is operate on each <strong>thing</strong> in a <strong>list of things</strong></p>
+</li>
+<li>
+<p>We enclose what we want to do in a &quot;job execution list&quot;</p>
+<ul>
+<li>between <strong>do</strong> (start of the loop)</li>
+<li>and <strong>done</strong> (end of the loop)</li>
+</ul>
+</li>
+<li>
+<p>Between <strong>do</strong> and <strong>done</strong> we place the commands that we want to apply to each <strong>thing</strong></p>
+</li>
+<li>
+<p>**Note that there is a specific change to the syntax here - <code>thing</code> has a <code>$</code> in front of it, indicating that it is a <strong>variable</strong></p>
+</li>
+<li>
+<p>So let's try this for our example</p>
+<ul>
+<li>Note that, as we hit &quot;Return&quot; on each line, we get a new prompt style to indicate we haven't finished typing the command/closed the for loop, yet</li>
+</ul>
+</li>
+</ul>
+<p><strong>[SHOW SHELL]</strong></p>
+<pre class="hljs"><code><div>% <span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> basilisk.dat minotaur.dat unicorn.dat
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt;     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$filename</span>
+<span class="hljs-keyword">for</span>&gt;     head -n 2 <span class="hljs-variable">$filename</span> | tail -n 1
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+basilisk.dat
+CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
+CLASSIFICATION: bos hominus
+unicorn.dat
+CLASSIFICATION: equus monoceros
+</div></code></pre>
+<ul>
+<li>
+<p>We have started using something called a <strong>variable</strong></p>
+<ul>
+<li>This is essentially a &quot;box&quot; with a name on it (the <em>variable name</em>)</li>
+<li>Each time we go round the loop, the box gets the next item in the list of things</li>
+<li>Within the loop, rather than referring to the <em>thing</em> itself, we refer to the box that contains it</li>
+</ul>
+</li>
+<li>
+<p>In our loop, the box has the name <code>filename</code>, and we refer to it with the <code>$</code> to indicate that it is a variable: <code>$filename</code></p>
+</li>
+<li>
+<p>As the loop proceeds, the &quot;filename&quot; box first contains <code>basilisk.dat</code>, <code>minotaur.dat</code>, and finally <code>unicorn.dat</code></p>
+</li>
+<li>
+<p>To some extent the variable name itself doesn't matter</p>
+<ul>
+<li>But it is good practice to <strong>make your code readable by using a desriptive variable name</strong></li>
+</ul>
+</li>
+<li>
+<p>Using <code>x</code> works just as well as <code>filename</code>, but <code>filename</code> is clearer to understand</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> basilisk.dat minotaur.dat unicorn.dat
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt;     head -n 2 <span class="hljs-variable">$x</span> | tail -n 1
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+CLASSIFICATION: basiliscus vulgaris
+CLASSIFICATION: bos hominus
+CLASSIFICATION: equus monoceros
+</div></code></pre>
+<p><strong>[SHOW SLIDE: Challenge (write your own loop)]</strong></p>
+<p><strong>[SHOW SHELL]</strong></p>
+<ul>
+<li>We can use wildcards in loops</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> *.dat
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt;     head -n 2 <span class="hljs-variable">$filename</span> | tail -n 1
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+basilisk.dat
+CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
+CLASSIFICATION: bos hominus
+unicorn.dat
+CLASSIFICATION: equus monoceros
+</div></code></pre>
+<ul>
+<li>We can also use another redirection symbol: <code>&gt;&gt;</code> to <strong>append</strong> data to a file (which we then inspect with <code>cat</code>)</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-keyword">for</span> filename <span class="hljs-keyword">in</span> *.dat
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt;     head -n 2 <span class="hljs-variable">$filename</span> | tail -n 1 &gt;&gt; classification.txt
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+% cat classification.txt
+basilisk.dat
+CLASSIFICATION: basiliscus vulgaris
+minotaur.dat
+CLASSIFICATION: bos hominus
+unicorn.dat
+CLASSIFICATION: equus monoceros
+</div></code></pre>
+<h3 id="nelles-pipeline-processing-files">Nelle's pipeline: processing files</h3>
+<ul>
+<li>We now know enough for Nelle to process her data files using <code>goostats.sh</code></li>
+<li>This is a program written by her supervisor that calculates some statistics
+<ul>
+<li>It takes two inputs:
+<ul>
+<li>An input file (the raw data)</li>
+<li>An output file (where the statistics will be stored)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Let's go back to Nelle's data directory and make sure we can apply the program to the files we want
+<ul>
+<li>This is only the files ending in <code>A</code> or <code>B</code> as they don't have missing data</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ../../north-pacific-gyre 
+% <span class="hljs-keyword">for</span> datafile <span class="hljs-keyword">in</span> NENE*A.txt NENE*B.txt
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$datafile</span>
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+NENE01729A.txt
+NENE01736A.txt
+NENE01751A.txt
+NENE01812A.txt
+NENE01843A.txt
+NENE01978A.txt
+NENE02040A.txt
+NENE02043A.txt
+NENE01729B.txt
+NENE01751B.txt
+NENE01843B.txt
+NENE01978B.txt
+NENE02018B.txt
+NENE02040B.txt
+NENE02043B.txt
+</div></code></pre>
+<ul>
+<li>So we can loop over all the correct files - that's good</li>
+<li>Now we need to decide what to call the output files for <code>goostats.sh</code>
+<ul>
+<li>Nelle decides to prepend the string <code>stats</code></li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-keyword">for</span> datafile <span class="hljs-keyword">in</span> NENE*A.txt NENE*B.txt
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$datafile</span> stats-<span class="hljs-variable">$datafile</span>
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+NENE01729A.txt stats-NENE01729A.txt
+NENE01736A.txt stats-NENE01736A.txt
+NENE01751A.txt stats-NENE01751A.txt
+NENE01812A.txt stats-NENE01812A.txt
+NENE01843A.txt stats-NENE01843A.txt
+NENE01978A.txt stats-NENE01978A.txt
+NENE02040A.txt stats-NENE02040A.txt
+NENE02043A.txt stats-NENE02043A.txt
+NENE01729B.txt stats-NENE01729B.txt
+NENE01751B.txt stats-NENE01751B.txt
+NENE01843B.txt stats-NENE01843B.txt
+NENE01978B.txt stats-NENE01978B.txt
+NENE02018B.txt stats-NENE02018B.txt
+NENE02040B.txt stats-NENE02040B.txt
+NENE02043B.txt stats-NENE02043B.txt
+</div></code></pre>
+<ul>
+<li>So we have all the arguments we need</li>
+<li>Now we can replace <code>echo</code> with <code>bash goostats.sh</code> (which is how we run the program)</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-keyword">for</span> datafile <span class="hljs-keyword">in</span> NENE*A.txt NENE*B.txt
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$datafile</span> stats-<span class="hljs-variable">$datafile</span>
+<span class="hljs-keyword">for</span>&gt; bash goostats.sh <span class="hljs-variable">$datafile</span> stats-<span class="hljs-variable">$datafile</span>
+<span class="hljs-keyword">for</span>&gt; <span class="hljs-keyword">done</span>
+NENE01729A.txt stats-NENE01729A.txt
+NENE01736A.txt stats-NENE01736A.txt
+NENE01751A.txt stats-NENE01751A.txt
+NENE01812A.txt stats-NENE01812A.txt
+NENE01843A.txt stats-NENE01843A.txt
+NENE01978A.txt stats-NENE01978A.txt
+NENE02040A.txt stats-NENE02040A.txt
+NENE02043A.txt stats-NENE02043A.txt
+NENE01729B.txt stats-NENE01729B.txt
+NENE01751B.txt stats-NENE01751B.txt
+NENE01843B.txt stats-NENE01843B.txt
+NENE01978B.txt stats-NENE01978B.txt
+NENE02018B.txt stats-NENE02018B.txt
+NENE02040B.txt stats-NENE02040B.txt
+NENE02043B.txt stats-NENE02043B.txt
+</div></code></pre>
+<h2 id="shell-scripts">Shell scripts</h2>
+<ul>
+<li>
+<p>Now we're going to see what makes the shell such a powerful environment for data analysis and computational science</p>
+</li>
+<li>
+<p>We're going to take the commands we repeat frequently and save them in files so that we can re-run them on new data by typing a single command</p>
+</li>
+<li>
+<p>These files are called <strong>shell scripts</strong>, and they are small <strong>programs</strong>.</p>
+</li>
+<li>
+<p>Using scripts makes your work faster and more efficient</p>
+<ul>
+<li>It also makes it more accurate and less prone to errors through typing/copy-paste</li>
+<li>It also makes your work more reproducible - you can share scripts with colleagues and reviewers (and get the credit!)</li>
+</ul>
+</li>
+<li>
+<p>Let's go back to <code>alkanes</code> and create a new file called <code>middle.sh</code> - this will be our shell script</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ../exercise-data/alkanes
+% nano middle.sh
+</div></code></pre>
+<ul>
+<li>Now we are going to write a shell command in the new file</li>
+</ul>
+<pre class="hljs"><code><div>head -n 15 octane.pdb | tail -n 5
+</div></code></pre>
+<ul>
+<li>
+<p>This is a variation on the pipe we made earlier</p>
+<ul>
+<li>This command selects the first 15 lines of <code>octane.pdb</code> and then selects the last 5 of those 15 lines</li>
+</ul>
+</li>
+<li>
+<p>Then save the file (<code>Ctrl+O</code>) and exit (<code>Ctrl-X</code>)</p>
+</li>
+<li>
+<p>To run this file as a shell script, we use the command <code>bash middle.sh</code></p>
+</li>
+</ul>
+<pre class="hljs"><code><div>% bash middle.sh
+ATOM      9  H           1      -4.502   0.681   0.785  1.00  0.00
+ATOM     10  H           1      -5.254  -0.243  -0.537  1.00  0.00
+ATOM     11  H           1      -4.357   1.252  -0.895  1.00  0.00
+ATOM     12  H           1      -3.009  -0.741  -1.467  1.00  0.00
+ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
+</div></code></pre>
+<ul>
+<li>This is giving us exactly what we'd get if we ran the command in <code>middle.sh</code> directly</li>
+<li>But what if we wanted to perform the same action on a different file?
+<ul>
+<li>`octane.pdb is &quot;hard-coded&quot; into the script</li>
+</ul>
+</li>
+<li>Shell scripts allow us to use special variables to catch filenames</li>
+<li>Let's open <code>middle.sh</code> again and do that</li>
+</ul>
+<pre class="hljs"><code><div>% nano middle.sh
+</div></code></pre>
+<pre class="hljs"><code><div>head -n 15 <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> | tail -n 5
+</div></code></pre>
+<ul>
+<li>The <code>&quot;$1&quot;</code> tells the script to use the first argument that comes after the command to run the script.</li>
+<li>Let's run our script specifying the <code>octane.pdb</code> file as input</li>
+</ul>
+<pre class="hljs"><code><div>% bash middle.sh octane.pdb
+ATOM      9  H           1      -4.502   0.681   0.785  1.00  0.00
+ATOM     10  H           1      -5.254  -0.243  -0.537  1.00  0.00
+ATOM     11  H           1      -4.357   1.252  -0.895  1.00  0.00
+ATOM     12  H           1      -3.009  -0.741  -1.467  1.00  0.00
+ATOM     13  H           1      -3.172  -1.337   0.206  1.00  0.00
+</div></code></pre>
+<ul>
+<li>We get the same result as last time</li>
+<li>But what if we try it on <code>pentane.pdb</code>?</li>
+</ul>
+<pre class="hljs"><code><div>% bash middle.sh pentane.pdb
+ATOM      9  H           1       1.324   0.350  -1.332  1.00  0.00
+ATOM     10  H           1       1.271   1.378   0.122  1.00  0.00
+ATOM     11  H           1      -0.074  -0.384   1.288  1.00  0.00
+ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
+ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
+</div></code></pre>
+<ul>
+<li>We can now run this program/command on any file we like</li>
+</ul>
+<h3 id="more-arguments">More arguments</h3>
+<ul>
+<li>But what if we want to change the range of lines that get returned?</li>
+<li>We can use special variables <code>&quot;$2&quot;</code> and <code>&quot;$3&quot;</code> (and so on) to collect the second and third command line arguments</li>
+<li>Let's use these to specify the line numbers we want to return
+<ul>
+<li>So that <code>middle.sh filename 20 5</code> will report lines 15 to 20 from <code>filename</code></li>
+</ul>
+</li>
+<li>We open <code>middle.sh</code> in Nano again</li>
+</ul>
+<pre class="hljs"><code><div>% nano middle.sh
+</div></code></pre>
+<pre class="hljs"><code><div>head -n <span class="hljs-string">"<span class="hljs-variable">$2</span>"</span> <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> | tail -n <span class="hljs-string">"<span class="hljs-variable">$3</span>"</span>
+</div></code></pre>
+<ul>
+<li>Let's run this on <code>pentane.pdb</code></li>
+</ul>
+<pre class="hljs"><code><div>% bash middle.sh pentane.pdb 15 5
+ATOM      9  H           1       1.324   0.350  -1.332  1.00  0.00
+ATOM     10  H           1       1.271   1.378   0.122  1.00  0.00
+ATOM     11  H           1      -0.074  -0.384   1.288  1.00  0.00
+ATOM     12  H           1      -0.048  -1.362  -0.205  1.00  0.00
+ATOM     13  H           1      -1.183   0.500  -1.412  1.00  0.00
+% bash middle.sh pentane.pdb 20 5
+ATOM     14  H           1      -1.259   1.420   0.112  1.00  0.00
+ATOM     15  H           1      -2.608  -0.407   1.130  1.00  0.00
+ATOM     16  H           1      -2.540  -1.303  -0.404  1.00  0.00
+ATOM     17  H           1      -3.393   0.254  -0.321  1.00  0.00
+TER      18              1
+</div></code></pre>
+<h3 id="commenting-a-script">Commenting a script</h3>
+<ul>
+<li>This works, and it's great that we understand what's going on</li>
+<li>But in six months time we might forget what this script is doing, and a new person might take a while to work it out
+<ul>
+<li>So we add comments to our script</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% nano middle.sh
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># Select lines from the middle of a file.</span>
+<span class="hljs-comment"># Usage: bash middle.sh filename end_line num_lines</span>
+head -n <span class="hljs-string">"<span class="hljs-variable">$2</span>"</span> <span class="hljs-string">"<span class="hljs-variable">$1</span>"</span> | tail -n <span class="hljs-string">"<span class="hljs-variable">$3</span>"</span>
+</div></code></pre>
+<ul>
+<li>The <code>#</code> character means that Bash doesn't read the line as an instruction, but instead just as a comment</li>
+<li><strong>It is good practice to leave sufficient comments so that you in the future (and others) can understand your scripts</strong></li>
+</ul>
+<h3 id="using-wildcard-arguments">Using wildcard arguments</h3>
+<ul>
+<li>Now what if we want to process a lot of files at the same time?</li>
+<li>Suppose we want to sort all our <code>.pdb</code> files by length?
+<ul>
+<li>At the terminal we would type:</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>% wc -l *.pdb | sort -n
+       9 methane.pdb
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     107 total
+</div></code></pre>
+<ul>
+<li>If we wanted to get all those filenames into the script we couldn't use <code>$1</code>, <code>$2</code>, and so on because we don't know how many filenames there would be.</li>
+<li>Instead, we use the special variable <code>$@</code> which means &quot;all of the arguments to the script&quot;</li>
+<li>We'll create a new file called <code>sorted.sh</code></li>
+</ul>
+<pre class="hljs"><code><div>% nano middle.sh
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># Sort files by their length.</span>
+<span class="hljs-comment"># Usage: bash sorted.sh one_or_more_filenames</span>
+wc -l <span class="hljs-string">"<span class="hljs-variable">$@</span>"</span> | sort -n
+</div></code></pre>
+<ul>
+<li>Now we can run this on all the <code>.pdb</code> files in the current directory</li>
+</ul>
+<pre class="hljs"><code><div>% bash sorted.sh *.pdb
+       9 methane.pdb
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     107 total
+</div></code></pre>
+<ul>
+<li>We can also run it on arbitrary collections of files</li>
+</ul>
+<pre class="hljs"><code><div>% bash sorted.sh *.pdb ../creatures/*.dat
+      12 ethane.pdb
+      15 propane.pdb
+      20 cubane.pdb
+      21 pentane.pdb
+      30 octane.pdb
+     163 ../creatures/basilisk.dat
+     163 ../creatures/minotaur.dat
+     163 ../creatures/unicorn.dat
+     596 total
+</div></code></pre>
+<h3 id="nelles-pipeline-script">Nelle's pipeline script</h3>
+<ul>
+<li>Back with Nelle, her supervisor insists - rightly - that her analysis needs to be reproducible and that she should use a script</li>
+<li>Let's go back to her project and create a new script called <code>do-stats.sh</code></li>
+</ul>
+<pre class="hljs"><code><div>% <span class="hljs-built_in">cd</span> ../../north-pacific-gyre
+% nano <span class="hljs-keyword">do</span>-stats.sh
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># Calculate stats for data files.</span>
+<span class="hljs-keyword">for</span> datafile <span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">$@</span>"</span>
+<span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$datafile</span>
+    bash goostats.sh <span class="hljs-variable">$datafile</span> stats-<span class="hljs-variable">$datafile</span>
+<span class="hljs-keyword">done</span>
+</div></code></pre>
+<ul>
+<li>Nelle can now run this script on her files with a single command:</li>
+</ul>
+<pre class="hljs"><code><div>% bash <span class="hljs-keyword">do</span>-stats.sh NENE*A.txt NENE*B.txt
+</div></code></pre>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>
+<p>We've gone through quite a lot, and it might take some time to digest everything</p>
+</li>
+<li>
+<p>But here's a summary of some of the topics we've been through</p>
+<ul>
+<li>running commands at the terminal/command-line prompt
+<ul>
+<li>using command line options and arguments</li>
+</ul>
+</li>
+<li>finding the current working directory (<code>pwd</code>) and listing its contents (<code>ls</code>)</li>
+<li>navigating around the filesystem with <code>cd</code></li>
+<li>creating, copying, moving, and deleting directories and files with <code>mkdir</code>, <code>cp</code>, <code>mv</code>, <code>rm</code></li>
+<li>understanding file extensions</li>
+<li>using shell commands <code>wc</code>, <code>sort</code>, <code>head</code>, <code>tail</code></li>
+<li>redirecting output with <code>&gt;</code> and <code>&gt;&gt;</code></li>
+<li>piping program output with <code>|</code> and chaining arbitrary commands together</li>
+<li>writing loops to automate and iterate analyses over multiple files</li>
+<li>combining all of this into shell scripts for reproducibility and flexibility</li>
+</ul>
+</li>
+<li>
+<p><strong>PLEASE WRITE ONE THING YOU LIKED/WE DID WELL ON THE GREEN STICKY; ONE THING WE COULD IMPROVE ON THE RED STICKY</strong></p>
+</li>
+</ul>
+
+</body>
+</html>

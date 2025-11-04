@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>instructor_notes.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="2025-11-04-strathclyde-openrefine-lesson-instructor-notes">2025-11-04-strathclyde OpenRefine lesson instructor notes</h1>
+<h2 id="summary-and-setup">Summary and Setup</h2>
+<p><strong>[SLIDE HERE: Links/QR codes]</strong></p>
+<ul>
+<li>Lesson site: <a href="https://swcarpentry.github.io/shell-novice/">https://swcarpentry.github.io/shell-novice/</a></li>
+</ul>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>
+<p>Before you can analyse your data, you normally need to <em>clean it</em>*</p>
+</li>
+<li>
+<p>What is &quot;data cleaning&quot;?</p>
+<ul>
+<li>Identification (and maybe correction) of errors in the data</li>
+<li>Formatting data for consistency</li>
+</ul>
+</li>
+<li>
+<p><strong>If your data is not clean, your analysis results may be false and/or not reproducible</strong></p>
+</li>
+<li>
+<p>OpenRefine is a powerful, free, and open source tool for working with messy data</p>
+<ul>
+<li>It can clean data and transform it from one format to another</li>
+<li>It can also generate reproducible data cleaning workflows or pipelines that track the changes you make</li>
+<li>The scripts can also be applied to <strong>undo</strong> changes that were made to the raw data</li>
+</ul>
+</li>
+<li>
+<p>Data cleaning steps often need to be applied to more than one file</p>
+<ul>
+<li>The pipelines OpenRefine makes allow you to reapply the processes to new datasets</li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p>OpenRefine is a Java program that runs on your own machine</p>
+<ul>
+<li>It is a desktop application that uses your web browser as an interface</li>
+<li>No internet connection is required and no data or commands are sent to any server: <strong>it can be used on confidential data</strong></li>
+</ul>
+</li>
+<li>
+<p>OpenRefine <strong>does not modify your original dataset</strong> - this is best practice</p>
+<ul>
+<li>You must save the cleaned data in a different file</li>
+</ul>
+</li>
+<li>
+<p>All OpenRefine actions can be reversed</p>
+</li>
+<li>
+<p>OpenRefine saves as you go - you can leave or pick up a data cleaning proejct at any point</p>
+</li>
+<li>
+<p>OpenRefine can import your data in many formats, including</p>
+<ul>
+<li>Comma-separated (CSV) or tab-separated (TSV)</li>
+<li>text files</li>
+<li>fixed-width columns</li>
+<li>JSON</li>
+<li>XML</li>
+<li>OpenDocument Spreadsheet (ODS)</li>
+<li>Excel spreadsheet (XLS/XLSX)</li>
+<li>RDF data</li>
+</ul>
+</li>
+</ul>
+<h2 id="importing-data">Importing data</h2>
+<p><strong>[OPENREFINE DEMO]</strong></p>
+<ul>
+<li>
+<p>Let's get started with OpenRefine, by creating a project</p>
+</li>
+<li>
+<p>Start OpenRefine</p>
+<ul>
+<li>This will open in a web browser at <a href="http://127.0.0.1:3333">http://127.0.0.1:3333</a></li>
+<li>In the left margin you'll see options: <code>Create Project</code>, <code>Open Project</code> and so on</li>
+</ul>
+</li>
+<li>
+<p>Click <code>Create Project</code></p>
+<ul>
+<li>The window &quot;Create a project by importing data&quot; should be visible</li>
+</ul>
+</li>
+<li>
+<p>Select <code>This Computer</code> as you want to use a local file</p>
+</li>
+<li>
+<p>Click <code>Browse</code></p>
+<ul>
+<li>Navigate to where you downloaded <code>Portal_rodents_19772002_simplified.csv</code></li>
+<li>Select that file and click <code>Open</code></li>
+<li>The filename should be visible</li>
+</ul>
+</li>
+<li>
+<p>Click <code>Next</code> to upload the data to OpenRefine</p>
+<ul>
+<li>Once it's loaded, OpenRefine will present a preview of your data</li>
+</ul>
+</li>
+<li>
+<p><strong>Any obvious errors (like file formatting problems) should be visible at this point</strong></p>
+</li>
+<li>
+<p>In the middle of the page there should be a set of options including <code>Character Encoding</code></p>
+<ul>
+<li>Ensure that the <code>Trim leading and trailing whitespace from strings</code> option is <strong>not</strong> checked</li>
+</ul>
+</li>
+<li>
+<p>Everything should look OK</p>
+</li>
+<li>
+<p>Click <code>Create project</code></p>
+</li>
+<li>
+<p>OpenRefine should present you with a table of 790 rows</p>
+<ul>
+<li>All data is imported as text - <strong>even numerical data</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="exploring-data">Exploring data</h2>
+<h3 id="exploring-data-with-facets">Exploring data with facets</h3>
+<ul>
+<li>
+<p><strong>Facets</strong> are a useful concept in OpenRefine</p>
+<ul>
+<li><strong>Faceting</strong> is the process of exploring data using filters, to explore its composition</li>
+<li>Faceting allows us to identify a subset of data to change in bulk</li>
+</ul>
+</li>
+<li>
+<p><strong>Faceting groups all like values that appear in a column</strong></p>
+<ul>
+<li>It allows filtering by those values</li>
+</ul>
+</li>
+<li>
+<p>This is easier to understand through practice</p>
+</li>
+<li>
+<p>Find the <code>scientificName</code> column in the dataset</p>
+</li>
+<li>
+<p>Click the down arrow/triangle next to the header</p>
+</li>
+<li>
+<p>Choose <code>Facet -&gt; Text facet</code></p>
+</li>
+<li>
+<p>In the left panel you will see a box representing each unique value in the <code>scientificName</code> column</p>
+<ul>
+<li>The number of times each entry appears is also shown</li>
+</ul>
+</li>
+<li>
+<p>Sort the facet by <code>name</code> and <code>count</code></p>
+<ul>
+<li>What problems do you see with the data?</li>
+</ul>
+</li>
+<li>
+<p>Hover your mouse over a name in the facet</p>
+<ul>
+<li>You should see an <code>edit</code> and an <code>include</code> link</li>
+<li>If you click on <code>edit</code> you will see options to repair errors immediately - <strong>don't do this yet</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>[SHOW SLIDES: Challenge (faceting)]</strong></p>
+<p><strong>[OPENREFINE DEMO]</strong></p>
+<ul>
+<li>
+<p>By default, all imported columns are treated as text</p>
+</li>
+<li>
+<p>We can convert data we know to be a different data type (e.g. number or date) using <code>Edit cells -&gt; Common transforms</code></p>
+<ul>
+<li><strong>Sometimes the data has errors that prevent us treating it as numeric</strong> so we explore it with a facet first</li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>yr</code></p>
+</li>
+<li>
+<p>Select <code>Facet -&gt; Numeric facet</code></p>
+<ul>
+<li>This will generate a facet that says there is no numeric data present (the data is in text format)</li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>yr</code></p>
+</li>
+<li>
+<p>Select <code>Edit cells -&gt; Common transforms... -&gt; To number</code></p>
+<ul>
+<li>The data shifts to right-justified and turns green</li>
+<li>The facet shows a histogram</li>
+</ul>
+</li>
+<li>
+<p>Transform <code>period</code>, <code>plot</code>, and <code>recordID</code> from text to numbers</p>
+</li>
+<li>
+<p>Remove the facets by clicking the <code>X</code></p>
+</li>
+</ul>
+<h3 id="using-scatterplots">Using scatterplots</h3>
+<ul>
+<li>We can see how numeric columns relate to each other using the <strong>scatterplot facet</strong></li>
+<li>Click on the down arrow/triangle for <code>recordID</code>
+<ul>
+<li>Select <code>Facet -&gt; Scatterplot facet</code></li>
+<li>A new window called <code>Scatterplot matrix</code> appears</li>
+<li>This plots each numeric column against the others</li>
+</ul>
+</li>
+<li>Select the plot of <code>recordID</code> against <code>yr</code>
+<ul>
+<li>A facet of the comparison appears</li>
+</ul>
+</li>
+<li>Click in the scatterplot and drag to highlight a rectangle
+<ul>
+<li><strong>What happens to the data</strong>? It is selected/subsetted in the table</li>
+<li><strong>We can use this approach to identify outliers in a dataset</strong></li>
+</ul>
+</li>
+<li>Click anywhere in the scatterplot to deselect</li>
+</ul>
+<h2 id="transforming-data">Transforming data</h2>
+<h3 id="data-splitting">Data splitting</h3>
+<ul>
+<li>
+<p>We can split data from one column into multiple columns, if we can identify a common separator (like a comma or space)</p>
+</li>
+<li>
+<p>Let's split the <code>scientificName</code> into two columns: one for genus, one for species</p>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName</code></p>
+<ul>
+<li>Select <code>Edit Column -&gt; Split into several columns...</code></li>
+<li>In the <code>Separator box</code> replace the comma with a space</li>
+<li><strong>Uncheck the <code>Remove this column</code> box</strong></li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>You should now see several columns: <code>scientificName1</code>, <code>scientificName2</code>, etc.</p>
+<ul>
+<li>We can see that some of the data was not well-formatted, in the sense it wasn't simple <em>Genus species</em> data</li>
+<li>We're going to have to fix this</li>
+</ul>
+</li>
+</ul>
+<h3 id="undoingredoing-actions">Undoing/redoing actions</h3>
+<ul>
+<li>
+<p>But first let's undo what we just did with the split</p>
+<ul>
+<li>This is quite a common requirement when cleaning data</li>
+</ul>
+</li>
+<li>
+<p>Click <code>Undo/Redo</code> in the left margin</p>
+<ul>
+<li>You should see all the changes you made to the data in that panel</li>
+<li>The current stage is highlighted</li>
+<li>We can click on any stage in the processing to jump to that version of the data</li>
+</ul>
+</li>
+<li>
+<p>Click on the appropriate step just before splitting <code>scientificName</code></p>
+</li>
+<li>
+<p>We could click on the last stage and redo the change, but let's not do that.</p>
+</li>
+</ul>
+<h3 id="trimming-leadingtrailing-whitespace">Trimming leading/trailing whitespace</h3>
+<ul>
+<li>
+<p>It's quite common for whitespace to be added at the start/end of text in datasets</p>
+<ul>
+<li>But it's difficult to spot this by eye</li>
+</ul>
+</li>
+<li>
+<p>OpenRefine can remove these characters for us automatically</p>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName</code></p>
+<ul>
+<li>Select <code>Edit cells -&gt; Common transforms -&gt; Trim leading and trailing whitespace</code></li>
+<li>OpenRefine will warn us about deleting project history (taking a different path), but click <code>Apply anyway</code></li>
+</ul>
+</li>
+<li>
+<p>Let's split the <code>scientificName</code> into columns again: one for genus, one for species</p>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName</code></p>
+<ul>
+<li>Select <code>Edit Column -&gt; Split into several columns...</code></li>
+<li>In the <code>Separator box</code> replace the comma with a space</li>
+<li><strong>Uncheck the <code>Remove this column</code> box</strong></li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>You should now see two columns: <code>scientificName1</code>, <code>scientificName2</code></p>
+</li>
+</ul>
+<h3 id="renaming-columns">Renaming columns</h3>
+<ul>
+<li>
+<p>We have Genus and species separated into two columns, but they have generic names</p>
+<ul>
+<li>We want to call the columns <code>genus</code> and <code>species</code></li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName1</code></p>
+<ul>
+<li>Select <code>Edit Column -&gt; Rename column...</code></li>
+<li>Enter <code>genus</code> into the field</li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName2</code></p>
+<ul>
+<li>Select <code>Edit Column -&gt; Rename column...</code></li>
+<li>Enter <code>species</code> into the field</li>
+<li><strong>You will not be allowed to rename the column</strong></li>
+<li><strong>Change the name of the <code>species</code> column to <code>species_abbreviation</code></strong></li>
+<li>Rename the <code>scientificName2</code> column to <code>species</code></li>
+</ul>
+</li>
+</ul>
+<p>### Combine columns</p>
+<ul>
+<li>
+<p>The date for each row is split in three columns, for month, day, and year</p>
+<ul>
+<li><strong>We want to create a single column which contains the date</strong></li>
+</ul>
+</li>
+<li>
+<p>Click on the menu for the <code>yr</code> column</p>
+<ul>
+<li>Select <code>Edit column -&gt; Join columns...</code></li>
+<li>Check the boxes next to <code>mo</code> and <code>dy</code></li>
+<li>Enter <code>-</code> as a separator</li>
+<li>Select the option <code>Write result in new column named</code> and write <code>date</code> in the field</li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>Click on the menu for the new <code>date</code> column</p>
+<ul>
+<li>Select <code>Edit cells -&gt; Common transforms -&gt; To date</code></li>
+</ul>
+</li>
+<li>
+<p>Now we can use a <strong>Timeline facet</strong> to inspect the data</p>
+</li>
+<li>
+<p>Click on the menu for the new <code>date</code> column</p>
+<ul>
+<li>Select <code>Facet -&gt; Timeline facet</code></li>
+<li>A histogram view of sampled dates should appear in the left margin</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-clustering">Data clustering</h3>
+<ul>
+<li>
+<p>Clustering allows us to find groups of entries that are not identical, but that are similar</p>
+</li>
+<li>
+<p>These may be alternative representations of the same thing - possibly even typos</p>
+</li>
+<li>
+<p>Make a text facet for <code>scientificName</code></p>
+</li>
+<li>
+<p>In <code>scientificName</code> there are several near-identical entries</p>
+<ul>
+<li>For example a misspelling of <em>Ammospermophilus harrisii</em></li>
+<li>Click the <code>Cluster</code> button
+<ul>
+<li>Try some options for <code>Method</code> and <code>Keying function</code> and click the <code>Cluster</code> button</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Choose <code>Key collision</code> and <code>Metaphone3</code></p>
+<ul>
+<li>This identifies a cluster of options for <em>Ammospermophilus harrisii</em></li>
+<li>It also suggests a new cell value to replace the likely misspellings</li>
+</ul>
+</li>
+<li>
+<p>Tick the <code>Merge</code> checkbox</p>
+</li>
+<li>
+<p>Click <code>Merge selected and close</code></p>
+</li>
+<li>
+<p>Note that the facet has updated so that there are no more misspellings of <em>Ammospermophilus harrisii</em></p>
+</li>
+</ul>
+<h2 id="filtering-and-sorting">Filtering and sorting</h2>
+<ul>
+<li>Sometimes you only want to view and work with a subset of your data, or to apply an operation only to that subset</li>
+<li>In OpenRefine, we do this with <strong>filters</strong></li>
+</ul>
+<h3 id="includeexclude-in-facets">Include/Exclude in facets</h3>
+<ul>
+<li>The <code>include</code> and <code>exclude</code> buttons in facets allow us to control our subset for working with</li>
+<li>In the text face for <code>scientificName</code>, hover over <em>Baiomys taylori</em>
+<ul>
+<li>The <code>edit</code> and <code>include</code> options will appear</li>
+<li>Click on <code>include</code></li>
+</ul>
+</li>
+<li>The <em>Baiomys taylori</em> text changes to orange to show it is included, and the <code>exclude</code> option appears
+<ul>
+<li>The number of matching rows has also changed (to 33 from 790)</li>
+</ul>
+</li>
+<li>Hover over <em>Chaetodipus baileyi</em> and click <code>include</code>
+<ul>
+<li>This text also turns orange, and the number of matching rows increases to 35</li>
+</ul>
+</li>
+<li>Click on <code>reset</code> at the top of the facet
+<ul>
+<li>This returns the selection to the original state</li>
+<li>All the entries in the facet return to blue text</li>
+</ul>
+</li>
+</ul>
+<h2 id="text-filters">Text filters</h2>
+<ul>
+<li>
+<p>We can also create text filters on columns</p>
+</li>
+<li>
+<p>Close all the facets that are currently open</p>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName</code></p>
+<ul>
+<li>Click on <code>Text filter</code></li>
+<li>A new text filter opens in the left margin</li>
+</ul>
+</li>
+<li>
+<p>Type <code>bai</code> into the filter field</p>
+<ul>
+<li>The top of the page shows the 35 rows where the <code>scientificName</code> column contains the string <code>bai</code></li>
+</ul>
+</li>
+<li>
+<p>Change the number of rows to be shown to <code>50</code></p>
+<ul>
+<li>Scroll down to see the matching rows</li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>scientificName</code></p>
+<ul>
+<li>Click on <code>Facet -&gt; Text facet</code></li>
+<li>We can see that two species have been selected</li>
+</ul>
+</li>
+</ul>
+<h3 id="sorting-data">Sorting data</h3>
+<ul>
+<li>
+<p>Sorting data is a good way to see the range spanned by your data, and to spot outliers at the extremes</p>
+</li>
+<li>
+<p>The <code>Sort...</code> tool is available in the drop-down menu for each column</p>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>mo</code> (month)</p>
+<ul>
+<li>Click on <code>Sort...</code></li>
+<li>Select <code>numbers</code> and make sure <code>smallest first</code> is checked so that months are sorted in order</li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>plot</code></p>
+<ul>
+<li>Click on <code>Sort...</code></li>
+<li>Select <code>numbers</code> and make sure <code>smallest first</code> is checked</li>
+<li>Check <code>sort by this column alone</code> to see which samples came from plot 1 and clear the sorting on <code>mo</code></li>
+</ul>
+</li>
+<li>
+<p>We can also sort by multiple columns</p>
+</li>
+<li>
+<p>Sorting takes place in the order you apply <code>sort</code> to each column</p>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>yr</code> (year)</p>
+<ul>
+<li>Click on <code>Sort...</code></li>
+<li>Select <code>numbers</code> and make sure <code>smallest first</code> is checked so that years are sorted in order</li>
+<li>
+<ul>
+<li>Check <code>sort by this column alone</code> to see which samples came from plot 1 and clear the sorting on <code>plot</code></li>
+</ul>
+</li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>mo</code> (month)</p>
+<ul>
+<li>Click on <code>Sort...</code></li>
+<li>Select <code>numbers</code> and make sure <code>smallest first</code> is checked so that months are sorted in order</li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>Click on the down arrow/triangle for <code>day</code> (day)</p>
+<ul>
+<li>Click on <code>Sort...</code></li>
+<li>Select <code>numbers</code> and make sure <code>smallest first</code> is checked so that days are sorted in order</li>
+<li>Click <code>OK</code></li>
+</ul>
+</li>
+<li>
+<p>The data should now be in chronological order</p>
+</li>
+<li>
+<p>Click on <code>reset</code> in the <code>Facet / Filter</code> panel</p>
+</li>
+</ul>
+<h2 id="exporting-importing-and-applying-the-data-cleaning-pipelineworkflow">Exporting, importing, and applying the data cleaning pipeline/workflow</h2>
+<ul>
+<li>
+<p>OpenRefine saves every change you make during your data cleaning and preliminary analysis</p>
+<ul>
+<li>The data is kept in a file format called JSON - an open standard - that is shareable with other applications and which can be applied to other data files</li>
+<li>If you find yourself having to clean multiple data files of the same kind, you can use this JSON script to clean them quickly in OpenRefine</li>
+</ul>
+</li>
+<li>
+<p>Click on the <code>Undo / Redo</code> tab</p>
+<ul>
+<li>Click on the <code>Extract</code> button</li>
+<li>This shows the entire history of operations you have performed on your data, in order</li>
+<li>On the left you can choose to include some, none, or all of these steps in the exported file</li>
+<li>The operations that will be exported are shown on the right hand side of the window (this is JSON format)</li>
+</ul>
+</li>
+<li>
+<p>Click on the <code>Export</code> button</p>
+<ul>
+<li>Save the file as <code>history.json</code> in a convenient location</li>
+</ul>
+</li>
+<li>
+<p>Click the <code>Close</code> button</p>
+</li>
+<li>
+<p>We can use this JSON file to clean a new dataset</p>
+<ul>
+<li>Let's practice in a new project</li>
+</ul>
+</li>
+<li>
+<p>Click on the <code>Open</code> button at the top of the window</p>
+<ul>
+<li>This opens a new project in the browser</li>
+</ul>
+</li>
+<li>
+<p>Click <code>Browse</code></p>
+<ul>
+<li>Navigate to where you downloaded <code>Portal_rodents_19772002_simplified.csv</code></li>
+<li>Select that file and click <code>Open</code></li>
+<li>The filename should be visible</li>
+</ul>
+</li>
+<li>
+<p>Click <code>Next</code> to upload the data to OpenRefine</p>
+<ul>
+<li>Once it's loaded, OpenRefine will present a preview of your data</li>
+</ul>
+</li>
+<li>
+<p>In the middle of the page there should be a set of options including <code>Character Encoding</code></p>
+<ul>
+<li>Ensure that the <code>Trim leading and trailing whitespace from strings</code> option is <strong>not</strong> checked</li>
+</ul>
+</li>
+<li>
+<p>Everything should look OK</p>
+</li>
+<li>
+<p>Click <code>Create project</code></p>
+<ul>
+<li>You should recognise the uncleaned data from earlier</li>
+</ul>
+</li>
+<li>
+<p>Click the <code>Undo / Redo</code> tab</p>
+<ul>
+<li>Click the <code>Apply</code> button</li>
+<li>Click <code>Browse</code> and select the <code>history.json</code> file you just saved - the JSON script will appear in the window</li>
+<li>Click the <code>Run Operations</code> button</li>
+</ul>
+</li>
+<li>
+<p>You should see a newly-cleaned dataset</p>
+</li>
+<li>
+<p>Using standardised data cleaning approaches is an essential component of reproducible science</p>
+<ul>
+<li>These kinds of data-cleaning scripts should be provided alongside your published work and data (e.g. as Supplementary Information)</li>
+</ul>
+</li>
+</ul>
+<h2 id="exporting-and-saving-cleaned-data">Exporting and saving cleaned data</h2>
+<ul>
+<li>
+<p>When you have cleaned your data, you will want to export it to a new file</p>
+</li>
+<li>
+<p><strong>It is important to keep raw and cleaned data in separate files</strong></p>
+</li>
+<li>
+<p>Click the <code>Export</code> button at the top right of the window</p>
+<ul>
+<li>Click on <code>Tab-separated value</code></li>
+<li>In the file dialogue box, change the filename to something that indicates the data have been cleaned (e.g. <code>Portal-rodents-19772002-simplified-csv-cleaned.tsv</code>)</li>
+<li>Click on <code>Save</code></li>
+</ul>
+</li>
+<li>
+<p>The file can then be imported into downstream analysis tools</p>
+</li>
+</ul>
+<h3 id="savingexporting-a-project">Saving/Exporting a project</h3>
+<ul>
+<li>
+<p>In addition to saving the data cleaning pipeline and the cleaned data separately, OpenRefine can save the entire project</p>
+</li>
+<li>
+<p>OpenRefine saves your projects by default</p>
+<ul>
+<li>When you start OpenRefine you will be presented with a list of former projects</li>
+<li>You can click on items in this list to open them</li>
+</ul>
+</li>
+<li>
+<p>You can also export the project, so it can be shared with others</p>
+</li>
+<li>
+<p>Click the <code>Export</code> button</p>
+<ul>
+<li>Click <code>OpenRefine project archive to file</code></li>
+<li>In the file dialogue box, navigate to a convenient location, and click <code>Save</code></li>
+</ul>
+</li>
+<li>
+<p>This saves a <code>.tar.gz</code> (compressed) file that can be reused by OpenRefine</p>
+</li>
+</ul>
+<h3 id="importing-a-project">Importing a project</h3>
+<ul>
+<li>To import an OpenRefine project, click on the <code>Open</code> button
+<ul>
+<li>Click on <code>Import project</code> in the left menu</li>
+<li>Click on <code>Browse</code> and navigate to the location of the project file</li>
+<li>Select it and click <code>Open</code></li>
+<li>Click <code>Import project</code></li>
+</ul>
+</li>
+<li>You will be presented with a view onto the project, with the history of actions intact</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>
+<p>That's all I have to say about OpenRefine</p>
+<ul>
+<li>You can find more resources listed at https://datacarpentry.github.io/OpenRefine-ecology-lesson/10-resources.html</li>
+</ul>
+</li>
+<li>
+<p>In this session you've learned how to use OpenRefine to reproducibly clean and inspect your data</p>
+<ul>
+<li>You've created, imported, and exported projects</li>
+<li>You've imported raw data and exported cleaned data</li>
+<li>You've created, imported, and exported custom data-cleaning workflows</li>
+<li>You've used facets to edit and clean data</li>
+<li>You've used facets and filters to subset your data for analysis</li>
+<li>You've used OpenRefine to transform your data into more useful forms (like combining or splitting columns, and clustering)</li>
+</ul>
+</li>
+<li>
+<p>This is a very useful skillset to have for professional, reproducible science and data analysis</p>
+</li>
+</ul>
+
+</body>
+</html>
