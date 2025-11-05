@@ -6,7 +6,7 @@
 
 - Lesson site: [https://swcarpentry.github.io/shell-novice/](https://swcarpentry.github.io/shell-novice/)
 
-### Summary
+### Introduction to the shell
 
 - The Unix shell has been around longer than most users, including me, have been alive
 - It has survived and adapted, _unlike flares, glam rock, Madchester, and the comedy reputation of Friends_, because it is a **very powerful tool for controlling a computer**.
@@ -170,13 +170,13 @@ instructor_examples/ instructor_notes.md
   - Directories are like _places_
   - At any time while we are using the shell, we can be in exactly one place at any time (though we can move from one directory/place to another)
   - The place we are in is called our current working directory.
-  - Commands mostly read and write files in the current working directory, i.e. ‘here’, so knowing where you are before running a command is important. 
+  - Commands mostly read and write files in the current working directory, i.e. ‘here’, so knowing where you are before running a command is important.
 
 - **[NEXT SLIDE: User Directories]**
 
 - In the `/Users` directory, we find one directory for each user account on that machine (just like I have `lpritc` as my home directory)
   - Nelle, Imhotep, and Larry
-  - Nelle's home directory is `/Users/nelle` 
+  - Nelle's home directory is `/Users/nelle`
 - **Generally, when you open a new shell, you start in your home directory**
 
 - We can see what's in our home directory by using the `ls` command
@@ -190,6 +190,7 @@ instructor_examples/ instructor_notes.md
 /Users/lpritc
 (base) lpritc@Rodan-2 lpritc %
 ```
+
 - Here the response is `/Users/lpritc` - which is my **home directory** on this machine
   - On Linux, your home directory may look like `/home/nelle`, and on Windows, it might be similar to `C:\Documents and Settings\nelle` or `C:\Users\nelle` - this is normal and reflects the differences between operating systems
 - Let's see what's in the home directory:

@@ -38,9 +38,9 @@ also installing the dependencies ‘bindrcpp’, ‘glue’, ‘rlang’
 
 ![images/red_green_sticky.png](images/red_green_sticky.png)
 
-----
+-
 
-## 8. CREATING PUBLICATION-QUALITY GRAPHICS
+## 8. CREATING PUBLICATION-QUALITY GRAPHICS
 
 -----
 
@@ -89,7 +89,7 @@ also installing the dependencies ‘bindrcpp’, ‘glue’, ‘rlang’
 
 - **THIS ISN'T WHAT'S POWERFUL ABOUT `ggplot2`!**
 
-----
+-----
 
 ## What is a Plot? *aesthetics*
 
@@ -107,7 +107,7 @@ also installing the dependencies ‘bindrcpp’, ‘glue’, ‘rlang’
 
 -----
 
-## What is a Plot? `geom`s
+## What is a Plot? `geom`s 1
 
 - So far **we've only defined the data and aesthetics**
   - **THIS ONLY TELLS US HOW DATA POINTS ARE REPRESENTED, NOT THE TYPE OF PLOT**
@@ -119,7 +119,7 @@ also installing the dependencies ‘bindrcpp’, ‘glue’, ‘rlang’
 
 -----
 
-## What is a Plot? `geom`s
+## What is a Plot? `geom`s 2
 
 - **DEMO IN SCRIPT** (`gapminder.R`)
   - We **create a plot with the `ggplot()` function**.
@@ -160,7 +160,7 @@ p + geom_point()
 
 -----
 
-## What is a Plot? *layers*
+## What is a Plot? *layers* 1
 
 - Without drawing attention to it, **WE'VE JUST BEEN USING THE LAYERS CONCEPT**
   - **all `ggplot2` plots are built as layers**
@@ -173,9 +173,9 @@ p + geom_point()
   - **THESE ARE INHERITED BY THE OTHER LAYERS IN THE PLOT**
   - **The values can also be overridden in specified layers**
 
-----
+-----
 
-## What is a Plot? *layers*
+## What is a Plot? *layers* 2
 
 - In our first plot we defined a *base* with:
   - *data* from `gapminder`
@@ -186,7 +186,7 @@ p + geom_point()
 
 -*LAYERS ARE ADDED WITH THE `+` OPERATOR**
 
-----
+-----
 
 ## What is a Plot? *layers*
 
@@ -232,7 +232,7 @@ p + geom_line(aes(group=country)) + geom_point(alpha=0.35)
 
 ![images/red_green_sticky.png](images/red_green_sticky.png)
 
-----
+-----
 
 ## Transformations and `scale`s
 
@@ -375,11 +375,11 @@ p + geom_density_2d(alpha=0.5) + facet_wrap(~year)
 
 -----
 
-## Components of an `R Markdown` file
+## Components of an `R Markdown` file
 
 - The **HEADER REGION IS FENCED BY `---`**
-    - **Metadata** (author, title, date)
-    - Requested **output format**
+  - **Metadata** (author, title, date)
+  - Requested **output format**
 
 ```R
 ---
@@ -412,8 +412,8 @@ A second list:
 Or numbered lists
 
 1. bold with double-asterisks
-1. italics with underscores
-1. code-type font with backticks
+2. italics with underscores
+3. code-type font with backticks
 
 Even section headers of different sizes
 
@@ -455,22 +455,22 @@ Even section headers of different sizes
 - **DELETE THE EXISTING TEXT/CODE CHUNKS** (`literate_programming.Rmd`)
   - **Change the title** (`Life Expectancies`)
   - **Define the input data location in the `setup` section**
-     - Code in the `setup` section is run, but not shown (**knit to demo**)
-     - `include = FALSE`
+    - Code in the `setup` section is run, but not shown (**knit to demo**)
+    - `include = FALSE`
   - **Write introduction and KNIT**
-     - Header notation with the hash `#`
-     - Inline `R` to name the data used
-     - **We can define the location of the data in one place, and reuse the variable/have it propagate when we update the data**
-     - Import the data in `setup`
+    - Header notation with the hash `#`
+    - Inline `R` to name the data used
+    - **We can define the location of the data in one place, and reuse the variable/have it propagate when we update the data**
+    - Import the data in `setup`
   - **Write next section** (`Life expectancy in countries`)
-     - `Source` the `functions.R` file to get our solution to Challenge 23 (`plotLifeExp`)
-     - Use the imported function
-     - `{r echo=FALSE}` shows output but not the code
+    - `Source` the `functions.R` file to get our solution to Challenge 23 (`plotLifeExp`)
+    - Use the imported function
+    - `{r echo=FALSE}` shows output but not the code
   - **Change the letters**
-     - Change the letters to something else
-     - Re-run the document
+    - Change the letters to something else
+    - Re-run the document
   - **Add Numbered Table of Contents (where possible)**
-     - Make the required changes in the header
+    - Make the required changes in the header
 
 ```R
 ---
@@ -556,10 +556,9 @@ plotLifeExp(gapminder, az, wrap=TRUE)
 - How to use the Tidyverse to manipulate and plot data
 - How to create dynamic reports in `R`
 
-
 -----
 
-## The End Is The Beginning
+## The End Is The Beginning
 
 - You've learned a lot in the last couple of days
   - More than enough to be productive and save yourself a lot of time
@@ -567,13 +566,13 @@ plotLifeExp(gapminder, az, wrap=TRUE)
 - There's a whole lot more you can do with `R`, `OpenRefine` and the shell
   - This is just the beginning of a whole world opening up where you can make computers do exactly what you want, in service of your research
 
----------
+-----
 
-# BONUS. PROGRAMMING IN `R`
+## BONUS. PROGRAMMING IN `R`
 
 -----
 
-## Learning Objectives
+### Learning Objectives
 
 - What we've covered so far will **get you a long way with your analyses**
   - As you saw with the Unix Shell, the real power of using computers is putting all the pieces together into larger pieces of code - scripts and programs - that can automate complex tasks in a reusable way
@@ -587,19 +586,19 @@ plotLifeExp(gapminder, az, wrap=TRUE)
 
 - We'll also cover how to write *functions*, which let you package up your code into reusable chunks that you can apply again and again to different datasets.
 
-## `if()` … `else`
+### `if()` … `else`
 
 - We **often want to run a piece of code, or take an action, dependent on whether some data has a particular value (is true or false, say**
 - When this is the case, we can use the general `if()` … `else` structure, which is common to most programming languages
 
 - **DEMO IN SCRIPT**
 - **CREATE NEW SCRIPT** (`flow_control.R`)
-    - Let's say that we want to print a message if some value is greater than 10
-    - **NOTE AUTOCOMPLETION/BRACKETS ETC.**
-    - **THE CODE TO BE RUN GOES IN CURLY BRACES**
-    - `Source` the file
-    - **NOTHING HAPPENS** (`x > 10` is `FALSE`)
-    - The `if()` block executes **if the value in the parentheses evaluates to `TRUE`**
+  - Let's say that we want to print a message if some value is greater than 10
+  - **NOTE AUTOCOMPLETION/BRACKETS ETC.**
+  - **THE CODE TO BE RUN GOES IN CURLY BRACES**
+  - `Source` the file
+  - **NOTHING HAPPENS** (`x > 10` is `FALSE`)
+  - The `if()` block executes **if the value in the parentheses evaluates to `TRUE`**
 
 - **MAKE `x` 11 FIRST TO DEMONSTRATE**
 - **THEN MAKE `x` 8**
@@ -615,9 +614,9 @@ if (x > 10) {
 ```
 
 - **MODIFY THE SCRIPT**
-    - Add the `else` block
-    - `Source` the code: **we get a message**
-    - **BUT IS THE MESSAGE TRUE?**
+  - Add the `else` block
+  - `Source` the code: **we get a message**
+  - **BUT IS THE MESSAGE TRUE?**
 
 ```R
 # Example if statement
@@ -630,7 +629,7 @@ if (x > 10) {
 
 - **SET `x <- 10` AND TRY AGAIN**
 - **MODIFY THE SCRIPT WITH `else if()` STATEMENT**
-    - `Source` the script: **NO OUTPUT**
+  - `Source` the script: **NO OUTPUT**
 
 ```R
 # A data point
@@ -645,7 +644,7 @@ if (x > 10) {
 ```
 
 - **MODIFY THE SCRIPT WITH A FINAL `else` STATEMENT**
-    - `Source` the script: **EQUALS** output
+  - `Source` the script: **EQUALS** output
 
 ```R
 # A data point
@@ -661,9 +660,9 @@ if (x > 10) {
 }
 ```
 
-----
+-----
 
-## Challenge 14 (2min)
+### Challenge 14 (2min)
 
 ```R
 # Are there any records for a year
@@ -677,7 +676,7 @@ if(any(gapminder$year == year)){
 
 -----
 
-## `for()` loops
+### `for()` loops
 
 - If you want to iterate over a set of values, then `for()` loops can be used
 - `for()` loops are **a very common programming construct**
@@ -732,7 +731,7 @@ for (i in 1:5) {
 
 -----
 
-## `while()` loops
+### `while()` loops
 
 - Sometimes you need to perform some action **WHILE A CONDITION IS TRUE**
   - This isn't as common as a `for()` loop
@@ -755,7 +754,7 @@ while(z > 0.1){
 
 -----
 
-## Challenge 15 (2min)
+### Challenge 15 (2min)
 
 ```R
 # Challenge solution
@@ -773,7 +772,7 @@ for (l in letters) {
 
 -----
 
-## Vectorisation
+### Vectorisation
 
 - Although `for()` and `while()` loops can be useful, they are **rarely the most efficient way to work in `R`**
 - **MOST FUNCTIONS IN `R` ARE VECTORISED**
@@ -829,7 +828,7 @@ for (l in letters) {
 
 -----
 
-## Challenge 16 (2min)
+## Challenge 16 (2min)
 
 ```R
 > v <- 1:10000
@@ -846,7 +845,7 @@ for (l in letters) {
 
 -----
 
-## Why Functions?
+### Why Functions?
 
 - Functions let us **run a complex series of logically- or functionally-RELATED commands in one go**
 - It helps when functions have **descriptive and memorable names**, as this makes code **READABLE AND UNDERSTANDABLE**
@@ -856,11 +855,11 @@ for (l in letters) {
 - **FUNCTIONS ARE THE BUILDING BLOCKS OF PROGRAMMING**
 
 - As a **rule of thumb** it is good to write small functions with one obvious, clearly-defined task.
-    - As you will see **we can chain smaller functions together to manage complexity**
+  - As you will see **we can chain smaller functions together to manage complexity**
 
-----
+-----
 
-## Defining a Function
+### Defining a Function
 
 - Functions have a **STANDARD FORM**
   - We **declare a `<function_name>`**
@@ -978,9 +977,9 @@ fahr_to_celsius <- function(temp) {
 [1] -40   0 100
 ```
 
-----
+-----
 
-## Documentation
+### Documentation
 
 - It's important to have well-named functions (this is itself a form of documentation)
 - But it's **not a detailed explanation**
@@ -989,7 +988,7 @@ fahr_to_celsius <- function(temp) {
 - **YOUR FUTURE SELF WILL THANK YOU FOR DOING IT!**
 
 - **SOME GOOD PRINCIPLES TO FOLLOW WHEN WRITING DOCUMENTATION ARE:**
-  - Say what the code does (and why) - *more important than **how** *
+  - Say what the code does (and why) - *more important than **how**
   - Define your inputs and outputs
   - Provide an example
 
@@ -1039,12 +1038,12 @@ function(temp) {
 }
 ```
 
-----
+-----
 
-## Function Arguments
+### Function Arguments
 
 - **DEMO IN SCRIPT** (`functions.R`)
-    - `Source` script
+  - `Source` script
 
 ```R
 # Calculate total GDP in gapminder data
@@ -1082,7 +1081,7 @@ require(dplyr)
 ```
 
 - **DEMO IN CONSOLE**
-    - The new column has been added
+  - The new column has been added
 
 ```R
 > head(calcGDP(gapminder))
@@ -1097,7 +1096,7 @@ require(dplyr)
 
 - **So, that's *all* the `gapminder` data - but what if we want to get the data by year?**
 - **DEMO IN SCRIPT** (`functions.R`)
-    - `Source` script
+  - `Source` script
 
 ```R
 # Calculate total GDP in gapminder data
@@ -1144,11 +1143,11 @@ calcGDP <- function(data, year_in) {
 ```
 
 - **Now we have an issue - NO YEAR PROVIDED MEANS NO OUTPUT**
-    - We need to handle this
-    - 1 - **PROVIDE A DEFAULT VALUE** (`NULL`)
-    - 2 - **TEST FOR VALUE AND TAKE ALTERNATIVE ACTIONS**
+  - We need to handle this
+  - 1 - **PROVIDE A DEFAULT VALUE** (`NULL`)
+  - 2 - **TEST FOR VALUE AND TAKE ALTERNATIVE ACTIONS**
 - **DEMO IN SCRIPT**
-    - `Source` script
+  - `Source` script
 
 ```R
 # Calculate total GDP in gapminder data
@@ -1195,7 +1194,7 @@ calcGDP <- function(data, year_in=NULL) {
 
 - **Now let's do the same for country**
 - **DEMO IN SCRIPT**
-    - `Source` script
+  - `Source` script
 
 ```R
 # Calculate total GDP in gapminder data
@@ -1254,9 +1253,9 @@ calcGDP <- function(data, year_in=NULL, country_in=NULL) {
 6   Egypt 1977 38783863    Africa  53.319  2785.494 108032201472
 ```
 
-----
+-----
 
-## Challenge 17 (10min)
+### Challenge 17 (10min)
 
 ```R
 # Plot grid of country life expectancy

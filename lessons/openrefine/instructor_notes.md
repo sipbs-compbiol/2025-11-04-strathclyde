@@ -6,7 +6,7 @@
 
 - Lesson site: [https://swcarpentry.github.io/shell-novice/](https://swcarpentry.github.io/shell-novice/)
 
-### Summary
+### Data cleaning
 
 - Before you can analyse your data, you normally need to *clean it**
 - What is "data cleaning"?
@@ -19,8 +19,8 @@
   - It can also generate reproducible data cleaning workflows or pipelines that track the changes you make
   - The scripts can also be applied to **undo** changes that were made to the raw data
 
--  Data cleaning steps often need to be applied to more than one file
-   -  The pipelines OpenRefine makes allow you to reapply the processes to new datasets
+- Data cleaning steps often need to be applied to more than one file
+  - The pipelines OpenRefine makes allow you to reapply the processes to new datasets
 
 ## Introduction
 
@@ -193,7 +193,7 @@
   - **Change the name of the `species` column to `species_abbreviation`**
   - Rename the `scientificName2` column to `species`
 
-### Combine columns
+### Combine columns
 
 - The date for each row is split in three columns, for month, day, and year
   - **We want to create a single column which contains the date**
@@ -315,7 +315,7 @@
 - Click the `Close` button
 
 - We can use this JSON file to clean a new dataset
-  -  Let's practice in a new project
+  - Let's practice in a new project
 
 - Click on the `Open` button at the top of the window
   - This opens a new project in the browser
@@ -376,7 +376,7 @@
 ## Summary
 
 - That's all I have to say about OpenRefine
-  - You can find more resources listed at https://datacarpentry.github.io/OpenRefine-ecology-lesson/10-resources.html
+  - You can find more resources listed at [https://datacarpentry.github.io/OpenRefine-ecology-lesson/10-resources.html](https://datacarpentry.github.io/OpenRefine-ecology-lesson/10-resources.html)
 
 - In this session you've learned how to use OpenRefine to reproducibly clean and inspect your data
   - You've created, imported, and exported projects
